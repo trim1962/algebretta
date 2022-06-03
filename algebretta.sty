@@ -19,7 +19,110 @@
 %Comando per scrivere un binomio non dotato di parentesi l'incognita è x
 %   \begin{macrocode}
 \newcommand{\binomio}[2]{\ifnumcomp{#1}{>}{0}
-	{\parteAbin{#1}\parteBbin{#2})}{(#2\parteAbin{#1}}}
+	{\parteAbin{#1}\parteBbin{#2}}{#2\parteAbin{#1}}}
 %   \end{macrocode}
 % \end{macro}
+% \begin{macro}{\binomiop}
+	%Comando per scrivere un binomio dotato di parentesi l'incognita è x
+	%   \begin{macrocode}
+		\newcommand{\binomiop}[2]{\ifnumcomp{#1}{>}{0}
+			{(\parteAbin{#1}\parteBbin{#2})}{(#2\parteAbin{#1})}}
+		%   \end{macrocode}
+	% \end{macro}
+
+\newcommand{\parteAtriSecabc}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
+	{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}
+			{x^{2}}{#1x^{2}}}%
+		{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}
+\newcommand{\parteBtriSecabc}[1]{%
+	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{\ifnumequal{#1}{1}{+x}{+#1x}}
+		{\ifnumequal{#1}{-1}{-x}{#1x}}}%
+}
+\newcommand{\parteCtriSecabc}[1]{%
+	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{+#1}{#1}}%
+}
+%3 bac
+\newcommand{\parteAtriSecbac}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
+	{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}
+			{+x^{2}}{+#1x^{2}}}%
+		{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}
+\newcommand{\parteBtriSecbac}[1]{%
+	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{\ifnumequal{#1}{1}{x}{#1x}}
+		{\ifnumequal{#1}{-1}{-x}{#1x}}}%
+}
+
+\newcommand{\parteCtriSeccab}[1]{%
+	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{#1}{#1}}%
+}
+%\begin{macro}{\newbinomio}
+	%Comando per scrivere un trinomio di secondo grado non dotato di parentesi 
+	%l'incognita è x il primo coefficiente è a il secondo è b il terzo è c
+	% il quarto parametro (da 1 a 5) scrive il trinomio secondo la codifica è  
+	%%% la seguente
+	%0 abc
+	%1 acb
+	%2 bac
+	%3 bca
+	%4 cab
+	%5 cba
+%\begin{macrocode}
+\newcommand{\newtrinomio}[4]{%
+	\ifcase #4%
+	\parteAtriSecabc{#1}\parteBtriSecabc{#2}\parteCtriSecabc{#3}%1 abc
+	\or
+	\parteAtriSecabc{#1}\parteCtriSecabc{#3}\parteBtriSecabc{#2}%2 acb
+	\or
+	\parteBtriSecbac{#2}\parteAtriSecbac{#1}\parteCtriSecabc{#3}%3 bac
+	\or
+	\parteBtriSecbac{#2}\parteCtriSecabc{#3}\parteAtriSecbac{#1}%4 bca
+	\or
+	\parteCtriSeccab{#3}\parteAtriSecbac{#1}\parteBtriSecabc{#2}%5 cab
+	\or
+	\parteCtriSeccab{#3}\parteBtriSecabc{#2}\parteAtriSecbac{#1}%6 cba
+	\fi
+}%
+%   \end{macrocode}
+% \end{macro}
+%\begin{macro}{\trimonioSecGrad}
+%Comando per scrivere un trinomio di secondo grado non dotato di parentesi 
+%l'incognita è x il primo coefficiente è a il secondo è b il terzo è c
+% codificato comw abc
+%\begin{macrocode}
+\newcommand{\parteAtriSec}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
+	{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}%
+			{x^{2}}{#1x^{2}}}%
+		{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}%
+\newcommand{\parteBtriSec}[1]{%
+	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{\ifnumequal{#1}{1}{+x}{+#1x}}
+		{\ifnumequal{#1}{-1}{-x}{#1x}}}%
+}
+\newcommand{\parteCtriSec}[1]{%
+	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{+#1}{#1}}%
+}
+\newcommand{\trimonioSecGrad}[3]{\parteAtriSec{#1}\parteBtriSec{#2}\parteCtriSec{#3}}%
+%   \end{macrocode}
+% \end{macro}
+%\begin{macro}{\verso}
+%Comando per scrivere il verso codificato
+% 0 >
+% 1 <
+% 2 >=
+% 3 <=
+%\begin{macrocode}
+\newcommand{\verso}[1]{
+\ifcase #1%
+>%
+\or
+<%
+\or
+\geq%
+\or
+\leq%
+\fi%
+}%
+%   \end{macrocode}
+% \end{macro}
+
+
+
 \endinput
