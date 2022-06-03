@@ -1,0 +1,22 @@
+% Creazione di binomi trinomi etc
+% 
+% (c) claudio duchi
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+% 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{algebretta}
+[2022/06/03 v0.01 creazione binomi trinomi ]
+\RequirePackage{etoolbox}
+%%%%%%%%%%%binomio
+
+\newcommand{\parteAbin}[1]{\ifnumcomp{#1}{>}{0}
+	{\ifnumcomp{#1}{=}{1}{x}{#1x}}{\ifnumcomp{#1}{=}{-1}{-x}{#1x}}}
+\newcommand{\parteBbin}[1]{\ifnumcomp{#1}{>}{0}{+#1}{#1}}
+\newcommand{\binomio}[2]{\ifnumcomp{#1}{>}{0}
+	{(\parteAbin{#1}\parteBbin{#2})}{(#2\parteAbin{#1})}}
+
+
+\endinput

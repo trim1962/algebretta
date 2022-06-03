@@ -1,0 +1,50 @@
+\documentclass[10pt,a4paper]{article}
+%\usepackage{abort}
+\usepackage{etoolbox}
+
+
+\newcommand{\parteAtriSecabc}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
+	{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}
+		{x^{2}}{#1x^{2}}}%
+	{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}
+\newcommand{\parteBtriSecabc}[1]{%
+\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{\ifnumequal{#1}{1}{+x}{+#1x}}
+	{\ifnumequal{#1}{-1}{-x}{#1x}}}%
+}
+\newcommand{\parteCtriSecabc}[1]{%
+\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{+#1}{#1}}%
+}
+%3 bac
+\newcommand{\parteAtriSecbac}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
+	{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}
+			{+x^{2}}{+#1x^{2}}}%
+		{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}
+	\newcommand{\parteBtriSecbac}[1]{%
+		\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{\ifnumequal{#1}{1}{x}{#1x}}
+			{\ifnumequal{#1}{-1}{-x}{#1x}}}%
+	}
+
+\newcommand{\parteCtriSeccab}[1]{%
+	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{#1}{#1}}%
+}
+\newcommand{\newtrinomio}[4]{
+\ifcase #4
+\parteAtriSecabc{#1}\parteBtriSecabc{#2}\parteCtriSecabc{#3}%1 abc
+\or
+\parteAtriSecabc{#1}\parteCtriSecabc{#3}\parteBtriSecabc{#2}%2 acb
+\or
+\parteBtriSecbac{#2}\parteAtriSecbac{#1}\parteCtriSecabc{#3}%3 bac
+\or
+\parteBtriSecbac{#2}\parteCtriSecabc{#3}\parteAtriSecbac{#1}%4 bca
+\or
+\parteCtriSeccab{#3}\parteAtriSecbac{#1}\parteBtriSecabc{#2}%5 cab
+\or
+\parteCtriSeccab{#3}\parteBtriSecabc{#2}\parteAtriSecbac{#1}%6 cba
+\fi
+}
+
+\begin{document}
+	\[\newtrinomio{1}{2}{4}{4}\]
+	
+	\[\newtrinomio{1}{2}{4}{2}\]
+\end{document}

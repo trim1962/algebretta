@@ -1,0 +1,50 @@
+\NeedsTeXFormat{LaTeX2e}[1998/06/01] % LaTeX2e is required!
+\ProvidesPackage{abort}
+[2015/04/03 v0.01 (development)]
+% This package defines the "\@abort" command, which tells TeX to throw away 
+% anything it is working on and to stop without doing anything else.
+%
+% For obvious reasons the command has been given a name containing an "@".
+\@ifdefinable\@abort@trace{\let\@abort@trace\@gobble}
+\DeclareOption{trace}{%
+	\def\@abort@trace#1{\typeout{Exiting #1 mode.}}%
+}
+\DeclareOption{notrace}{\let\@abort@trace\@gobble}
+\ExecuteOptions{notrace}
+\ProcessOptions\relax
+\newcommand*\@abort{%
+	\ifx\@abort@trace\@gobble
+	\nonstopmode
+	\fi
+	\ifmmode
+	\ifinner
+	\@abort@trace{(ordinary) math}
+	\let\@next $%
+	\else
+	\@abort@trace{display math}
+	\def\@next{$$}%
+	\fi
+	\else \ifhmode
+	\ifinner
+	\@abort@trace{restricted horizontal}
+	\let\@next\egroup
+	\else
+	\@abort@trace{(unrestricted) horizontal}
+	\let\@next\@@par
+	\fi
+	\else % vertical mode
+	\ifinner
+	\@abort@trace{inner vertical}
+	\let\@next\egroup
+	\else
+	%       \@abort@trace{(outer) vertical}
+	\output{%
+		\setbox\z@ \box\@cclv
+		\deadcycles \z@
+	}%
+	\deadcycles \z@
+	\let\@next\@@end % after "\@@end", "\@abort" will not be re-invoked
+	\fi
+	\fi \fi
+	\@next \@abort % exit current mode and retry
+}

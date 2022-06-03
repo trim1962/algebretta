@@ -1,0 +1,10 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{etoolbox}
+\newcommand{\parteAtriSec}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}
+	{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}
+		{x^{2}}{#1x^{2}}}
+	{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}
+\newcommand{\trimonioSecGrad}[3]{\parteAtriSec{#1}}
+\begin{document}
+	$\trimonioSecGrad{0}{-1}{1}$
+\end{document}
