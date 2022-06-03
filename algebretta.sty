@@ -15,8 +15,11 @@
 \newcommand{\parteAbin}[1]{\ifnumcomp{#1}{>}{0}
 	{\ifnumcomp{#1}{=}{1}{x}{#1x}}{\ifnumcomp{#1}{=}{-1}{-x}{#1x}}}
 \newcommand{\parteBbin}[1]{\ifnumcomp{#1}{>}{0}{+#1}{#1}}
+% \begin{macro}{\binomio}
+%Comando per scrivere un binomio non dotato di parentesi l'incognita è x
+%   \begin{macrocode}
 \newcommand{\binomio}[2]{\ifnumcomp{#1}{>}{0}
-	{(\parteAbin{#1}\parteBbin{#2})}{(#2\parteAbin{#1})}}
-
-
+	{\parteAbin{#1}\parteBbin{#2})}{(#2\parteAbin{#1}}}
+%   \end{macrocode}
+% \end{macro}
 \endinput
