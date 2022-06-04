@@ -122,7 +122,17 @@
 }%
 %   \end{macrocode}
 % \end{macro}
-
-
-
+%\begin{macro}{\mult}
+%Comando per scrivere un numero
+% se x=1 +
+% se x=-1 -
+% se x=+2 +2
+% se x=-2 -2
+%\begin{macrocode}
+\newcommand{\mult}[1]{%
+\ifnumequal{#1}{0}{\message{a=0}\stop}{%
+\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}{+}{+#1}}%
+{\ifnumequal{#1}{-1}{-}{#1}}}}%
+%   \end{macrocode}
+% \end{macro}
 \endinput
