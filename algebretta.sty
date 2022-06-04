@@ -10,6 +10,7 @@
 \ProvidesPackage{algebretta}
 [2022/06/03 v0.01 creazione binomi trinomi ]
 \RequirePackage{etoolbox}
+\RequirePackage{amsfonts}
 %%%%%%%%%%%binomio
 
 \newcommand{\parteAbin}[1]{\ifnumcomp{#1}{>}{0}
@@ -135,4 +136,46 @@
 {\ifnumequal{#1}{-1}{-}{#1}}}}%
 %   \end{macrocode}
 % \end{macro}
+%%%\begin{macro}{\multa}
+%%%Comando per scrivere un numero
+%%% se x=1  
+%%% se x=-1 -
+%%% se x=+2 2
+%%% se x=-2 -2
+%%%\begin{macrocode}
+%%\newcommand{\multa}[1]{%
+%%	\ifnumequal{#1}{0}{\message{a=0}\stop}{%
+%%		\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}{}{#1}}%
+%%		{\ifnumequal{#1}{-1}{-}{#1}}}}%
+%%%   \end{macrocode}
+%%% \end{macro}
+%%\newcommand{\binomoxy}[2]{\multa{#1}x\mult{#2}y}
+\newcommand{\parteArettaimplicita}[1]{
+	\ifnumequal{#1}{0}{}{
+		\ifnumgreater{#1}{0}{
+			\ifnumequal{#1}{1}{x}{#1x}}{
+			\ifnumequal{#1}{-1}{-x}{#1x}}}}
+\newcommand{\parteBrettaimplicitaA}[1]{
+	\ifnumequal{#1}{0}{}{
+	\ifnumgreater{#1}{0}{
+	\ifnumequal{#1}{1}{y}{+#1y}}{
+	\ifnumequal{#1}{-1}{-y}{#1y}}}}
+\newcommand{\parteBrettaimplicitaB}[1]{
+	\ifnumequal{#1}{0}{}{
+		\ifnumgreater{#1}{0}{
+			\ifnumequal{#1}{1}{+y}{+#1y}}{
+			\ifnumequal{#1}{-1}{-y}{#1y}}}}
+\newcommand{\parteCrettaimplicita}[1]{
+	\ifnumequal{#1}{0}{}{
+	\ifnumgreater{#1}{0}{+#1}{#1}}}
+%\begin{macro}{\rettaimplicita}
+%Comando per scrivere la retta in forma  implicita
+% ax+by+c=0
+%\begin{macrocode}
+\newcommand{\rettaimplicita}[3]{\parteArettaimplicita{#1}
+\ifnumequal{#1}{0}{\parteBrettaimplicitaA{#2}}{\parteBrettaimplicitaB{#2}}
+\parteCrettaimplicita{#3}=0}
+%   \end{macrocode}
+% \end{macro}
+\newcommand{\rettaesplicita}[2]{y=\parteArettaimplicita{#1}\parteCrettaimplicita{#2}}
 \endinput
