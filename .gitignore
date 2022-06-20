@@ -2,3 +2,12 @@
 *.aux
 *.log
 *.pdf
+*.hd
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ins
+*.out
+*.toc

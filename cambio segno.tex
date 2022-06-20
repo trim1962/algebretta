@@ -1,0 +1,24 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{algebretta}
+%\usepackage[nomessages]{fp}
+%\newcommand{\cambiosegno}[1]{def}
+%\begin{document}
+%\[\binomio{-2}{3}\verso{1}0\]	
+%\end{document}
+\usepackage[nomessages]{fp}
+
+\newcommand\dfqq[2]{
+	\FPeval\b{(#2)*(-1)}%
+	\FPeval\b{round(b:0)}%   
+	\binomiop{#1}{\b}\binomiop{#1}{#2}
+}
+
+
+\begin{document}
+\[\dfqq{2}{-3}\]
+
+\[\dfqq{-2}{3}\]
+
+\[\dfqq{1}{1}\]
+\[\binomiop{1}{2}\]
+\end{document}

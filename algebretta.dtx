@@ -1,0 +1,407 @@
+% !TeX document-id = {b9e47e88-bab6-4550-be70-3f10d5e5e6a3}
+% \iffalse meta-comment
+% !TEX program  = pdfLaTeX
+%<*internal>
+\iffalse
+%</internal>
+%<*readme>
+----------------------------------------------------------------
+Algebretta
+E-mail: claducATgmail.com
+Released under the LaTeX Project Public License v1.3c or later
+See http://www.latex-project.org/lppl.txt
+----------------------------------------------------------------
+Sty per la gestione dei polinomi in esami
+%</readme>
+% 
+%<*internal>
+\fi
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+\expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+\input docstrip.tex
+\keepsilent
+\askforoverwritefalse
+\preamble
+----------------------------------------------------------------
+Algebretta
+E-mail: claducATgmail.com
+Released under the LaTeX Project Public License v1.3c or later
+See http://www.latex-project.org/lppl.txt
+----------------------------------------------------------------
+
+\endpreamble
+\postamble
+
+Copyright (C) 2022 by Claudio Duchi
+
+This work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License (LPPL), either
+version 1.3c of this license or (at your option) any later
+version.  The latest version of this license is in the file:
+
+https://www.latex-project.org/lppl.txt
+
+This work is "maintained" (as per LPPL maintenance status) by
+You.
+
+This work consists of the file  algebretta.dtx
+and the derived files           algebretta.ins,
+algebretta.pdf and
+algebretta.sty.
+
+\endpostamble
+\usedir{tex/latex/algebretta}
+\generate{
+	\file{\jobname.sty}{\from{\jobname.dtx}{package}}
+}
+%</install>
+%<install>\endbatchfile
+%<*internal>
+\usedir{source/latex/algebretta}
+\generate{
+	\file{\jobname.ins}{\from{\jobname.dtx}{install}}
+}
+\nopreamble\nopostamble
+\usedir{doc/latex/algebretta}
+\generate{
+	\file{README.txt}{\from{\jobname.dtx}{readme}}
+}
+\ifx\fmtname\nameofplainTeX
+\expandafter\endbatchfile
+\else
+\expandafter\endgroup
+\fi
+%</internal>
+%<*package>
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{algebretta}
+[2022/06/03 v1.0 creazione binomi trinomi]
+%</package>
+%<*driver>
+\documentclass{ltxdoc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[italian]{babel}
+\usepackage{\jobname}
+\usepackage[numbered]{hypdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\usepackage{imakeidx}
+\makeindex 
+\begin{document}
+	\DocInput{\jobname.dtx}
+	\PrintIndex
+\end{document}
+%</driver>
+% \fi
+%
+%\GetFileInfo{\jobname.sty}
+%
+%\title{^^A
+	%  \textsf{Algebretta} 
+	%}
+%\author{^^A
+	%  Claudio Duchi^^A
+	%^^A
+	%^^A
+	%E-mail: claducATgmail.com^^A
+	%}
+%\date{Released \filedate}
+%
+%\maketitle
+%
+%\changes{v1.0}{2022/06/19}{First public release}
+%
+%\tableofcontents
+%\section{Introduzione}
+%Algebretta nasce come supporto ad esami. Pacchetto per la gestione delle prove 
+%di verifica. 
+%\section{I comandi}
+%\DescribeMacro{\binomio}
+%Comando per scrivere un binomio $ax+b$ non dotato di parentesi
+%
+%\cs{binomio}
+%\marg{a}
+%\marg{b}
+%
+%\DescribeMacro{\binomiop}
+%Comando per scrivere un binomio $(ax+b)$ dotato di parentesi
+%
+%\cs{binomio}
+%\marg{a}
+%\marg{b}
+%
+%\DescribeMacro{\sommadifferenza}
+%Comando per scrivere un binomio $(ax+b)(ax-b)$ dotato di parentesi
+%
+%\cs{sommadifferenza}
+%\marg{a}
+%\marg{b}
+%
+%\DescribeMacro{\trimonioSecGrad}
+% Comando per scrivere un trinomio di secondo grado $ax^2+bx+c$ non dotato di 
+%parentesi 
+% 
+%
+%\cs{newtrinomio}
+%\marg{a}
+%\marg{b}
+%\marg{c}
+%
+%\DescribeMacro{\newtrimonioSecGrad}
+% Comando per scrivere un trinomio di secondo grado $ax^2+bx+c$ non dotato di 
+%parentesi 
+% 
+%
+%\cs{newtrinomio}
+%\marg{a}
+%\marg{b}
+%\marg{c}
+%\marg{z}
+%
+% Il quarto parametro (da 0 a 5) scrive il trinomio secondo la codifica   
+% la seguente
+%
+%\begin{center}
+%	\begin{tabular}{lc}
+%   z&codifica\\ 
+%	0& abc	  \\
+%	1& acb	 \\
+%	2& bac	 \\
+%	3& bca	  \\
+%	4& cab	 \\
+%	5& cba \\
+%	\end{tabular}
+%\end{center}
+%
+%\DescribeMacro{\verso}
+%Comando per scrivere il verso codificato
+%
+%\cs{verso}
+%\marg{x}
+%
+%\begin{center}
+%\begin{tabular}{lc}
+%	x&Verso  \\
+%	0&$>$  \\
+%	1& $<$ \\
+%	2&$\geq$  \\
+%	3&$\leq$  \\
+%\end{tabular}
+%\end{center}
+%
+%\DescribeMacro{\mult}
+%Comando per scrivere un numero
+%
+%\cs{mult}
+%\marg{x}
+%
+%\begin{center}
+%	\begin{tabular}{lc}
+%	x & stampa \\
+%	$+1$ & $+$ \\
+%	$-1$ & $-$ \\
+%	$2$ & $+2$ \\
+%	$-2$ &$-2$ \\
+%\end{tabular}
+%\end{center}
+%
+%\DescribeMacro{\rettaimplicita}
+%Comando per scrivere la retta in forma  implicita
+% $ax+by+c=0$
+%
+%\cs{rettaimplicita}
+%\marg{a}
+%\marg{b}
+%\marg{c}
+%
+%\DescribeMacro{\rettaesplicita}
+%Comando per scrivere la retta in forma  esplicita
+% $y=mx+q$
+%
+%\cs{rettaesplicita}
+%\marg{m}
+%\marg{q}
+%
+%\StopEventually{^^A
+%  \newpage
+%  \PrintChanges
+%  \PrintIndex
+%}
+%
+%\section{Codice}
+%<*package>
+%    \begin{macrocode}
+\RequirePackage{etoolbox}
+\RequirePackage{amssymb}
+\RequirePackage[nomessages]{fp}
+%\changes{v1.1}{2022/06/22}{Aggiunto fp}
+%    \end{macrocode}
+%    \begin{macrocode}
+\newcommand{\parteAbin}[1]{\ifnumcomp{#1}{>}{0}
+	{\ifnumcomp{#1}{=}{1}{x}{#1x}}{\ifnumcomp{#1}{=}{-1}{-x}{#1x}}}
+\newcommand{\parteBbin}[1]{\ifnumcomp{#1}{>}{0}{+#1}{#1}}
+%    \end{macrocode}
+%\begin{macro}{\binomio}
+%\changes{v1.0}{2022/06/21}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\binomio}[2]{\ifnumcomp{#1}{>}{0}
+	{\parteAbin{#1}\parteBbin{#2}}{#2\parteAbin{#1}}}
+%    \end{macrocode}
+%\end{macro}
+%
+%\begin{macro}{\binomiop}
+%\changes{v1.0}{2022/06/21}{Versione iniziale}
+%    \begin{macrocode}
+		\newcommand{\binomiop}[2]{\ifnumcomp{#1}{>}{0}
+			{(\parteAbin{#1}\parteBbin{#2})}{(#2\parteAbin{#1})}}
+%    \end{macrocode}
+%\end{macro}
+%
+%
+%\begin{macro}{\sommadifferenza}
+%\changes{v1.1}{2022/06/22}{Aggiunto fp}
+%    \begin{macrocode}
+\newcommand{\sommadifferenza}[2]{
+	\FPeval\b{(#2)*(-1)}%
+	\FPeval\b{round(b:0)}%   
+	\binomiop{#1}{\b}\binomiop{#1}{#2}}
+%    \end{macrocode}
+%\end{macro}
+%
+%    \begin{macrocode}
+\newcommand{\parteAtriSecabc}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
+	{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}
+			{x^{2}}{#1x^{2}}}%
+		{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}
+\newcommand{\parteBtriSecabc}[1]{%
+	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{\ifnumequal{#1}{1}{+x}{+#1x}}
+		{\ifnumequal{#1}{-1}{-x}{#1x}}}%
+}
+\newcommand{\parteCtriSecabc}[1]{%
+	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{+#1}{#1}}%
+}
+\newcommand{\parteAtriSecbac}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
+	{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}
+			{+x^{2}}{+#1x^{2}}}%
+		{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}
+\newcommand{\parteBtriSecbac}[1]{%
+	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{\ifnumequal{#1}{1}{x}{#1x}}
+		{\ifnumequal{#1}{-1}{-x}{#1x}}}%
+}
+\newcommand{\parteCtriSeccab}[1]{%
+	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{#1}{#1}}%
+}
+%    \end{macrocode}
+%\begin{macro}{\newtrinomioSecGrad}
+%\changes{v1.0}{2022/06/21}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\newtrinomioSecGrad}[4]{%
+	\ifcase #4%
+	\parteAtriSecabc{#1}\parteBtriSecabc{#2}\parteCtriSecabc{#3}%1 abc
+	\or
+	\parteAtriSecabc{#1}\parteCtriSecabc{#3}\parteBtriSecabc{#2}%2 acb
+	\or
+	\parteBtriSecbac{#2}\parteAtriSecbac{#1}\parteCtriSecabc{#3}%3 bac
+	\or
+	\parteBtriSecbac{#2}\parteCtriSecabc{#3}\parteAtriSecbac{#1}%4 bca
+	\or
+	\parteCtriSeccab{#3}\parteAtriSecbac{#1}\parteBtriSecabc{#2}%5 cab
+	\or
+	\parteCtriSeccab{#3}\parteBtriSecabc{#2}\parteAtriSecbac{#1}%6 cba
+	\fi
+}%
+%    \end{macrocode}
+%\end{macro}
+%
+%\begin{macro}{\trimonioSecGrad}
+%\changes{v1.0}{2022/06/21}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\parteAtriSec}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
+	{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}%
+			{x^{2}}{#1x^{2}}}%
+		{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}%
+\newcommand{\parteBtriSec}[1]{%
+	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{\ifnumequal{#1}{1}{+x}{+#1x}}
+		{\ifnumequal{#1}{-1}{-x}{#1x}}}%
+}
+\newcommand{\parteCtriSec}[1]{%
+	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{+#1}{#1}}%
+}
+\newcommand{\trimonioSecGrad}[3]{\parteAtriSec{#1}\parteBtriSec{#2}\parteCtriSec{#3}}%
+%    \end{macrocode}
+%\end{macro}
+%
+%\begin{macro}{\verso}
+%\changes{v1.0}{2022/06/21}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\verso}[1]{
+\ifcase #1%
+>
+\or
+<
+\or
+\geq
+\or
+\leq
+\fi
+}
+%    \end{macrocode}
+%\end{macro}
+%
+%\begin{macro}{\mult}
+%\changes{v1.0}{2022/06/21}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\mult}[1]{%
+\ifnumequal{#1}{0}{\message{a=0}\stop}{%
+\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}{+}{+#1}}%
+{\ifnumequal{#1}{-1}{-}{#1}}}}%
+%    \end{macrocode}
+%\end{macro}
+%
+%    \begin{macrocode}
+\newcommand{\parteArettaimplicita}[1]{
+	\ifnumequal{#1}{0}{}{
+		\ifnumgreater{#1}{0}{
+			\ifnumequal{#1}{1}{x}{#1x}}{
+			\ifnumequal{#1}{-1}{-x}{#1x}}}}
+\newcommand{\parteBrettaimplicitaA}[1]{
+	\ifnumequal{#1}{0}{}{
+	\ifnumgreater{#1}{0}{
+	\ifnumequal{#1}{1}{y}{+#1y}}{
+	\ifnumequal{#1}{-1}{-y}{#1y}}}}
+\newcommand{\parteBrettaimplicitaB}[1]{
+	\ifnumequal{#1}{0}{}{
+		\ifnumgreater{#1}{0}{
+			\ifnumequal{#1}{1}{+y}{+#1y}}{
+			\ifnumequal{#1}{-1}{-y}{#1y}}}}
+\newcommand{\parteCrettaimplicita}[1]{
+	\ifnumequal{#1}{0}{}{
+	\ifnumgreater{#1}{0}{+#1}{#1}}}
+%    \end{macrocode}
+%\begin{macro}{\rettaimplicita}
+%\changes{v1.0}{2022/06/21}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\rettaimplicita}[3]{\parteArettaimplicita{#1}
+	\ifnumequal{#1}{0}{\parteBrettaimplicitaA{#2}}{\parteBrettaimplicitaB{#2}}
+	\parteCrettaimplicita{#3}=0}
+%    \end{macrocode}
+%\end{macro}
+%
+%\begin{macro}{\rettaesplicita}
+%\changes{v1.0}{2022/06/21}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\rettaesplicita}[2]{y=\parteArettaimplicita{#1}\parteCrettaimplicita{#2}}
+%    \end{macrocode}
+%\end{macro}
+%
+%    \begin{macrocode}
+%</package>
+%    \end{macrocode}
+%\Finale
+\endinput
