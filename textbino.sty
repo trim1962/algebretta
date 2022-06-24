@@ -1,0 +1,25 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{textbino}
+[2022/06/03 v1.0 creazione binomi trinomi]
+\RequirePackage{pgfkeys}
+\RequirePackage{etoolbox}
+\pgfkeys{
+	/mybinomio/.is family, /mybinomio,
+	default/.style = 
+	{pinc = x, sinc = y},
+	pinc/.estore in = \mybinoA,
+	sinc/.estore in = \mybinoB,
+}
+\RequirePackage{algebretta}
+\newcommand{\pbinomio}[3][]{
+	\pgfkeys{/mybinomio, default, #1}%
+	\ifnumequal{#2}{0}{}{
+\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
+	\ifnumequal{#3}{0}{}{
+\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mybinoB}{+#3\mybinoB}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
+}
+\newcommand{\pbinomiop}[3][]{
+\pgfkeys{/mybinomio, default, #1}%
+(\pbinomio[#1]{#2}{#3})
+}
+\endinput

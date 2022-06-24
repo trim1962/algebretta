@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage{pgfkeys}
+\pgfkeys{
+	/mybino/.is family, /mybino,
+	default/.style = 
+	{pinc = a, sinc = b},
+	pinc/.estore in = \mybinopinc,
+	sinc/.estore in = \mybinosinc,
+}
+\newcommand{\bino}[3][]{
+ \pgfkeys{/mybino, default, #1}%
+(#2\mybinopinc+#3\mybinosinc)
+}
+
+\begin{document}
+\bino[pinc=x, sinc=y]{2}{3}
+
+
+\bino{2}{3}
+
+$\bino[pinc=ax^2, sinc=y]{2}{3}$
+\end{document}

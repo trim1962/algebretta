@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfkeys}
+\pgfkeys{
+	/keys/.is family,
+	/keys,
+	test 1/.estore in=\testone,
+	test 1/.initial=unset,
+	test 2/.estore in=\testtwo,
+	test 2/.default=x,
+}
+\newcommand\setkey[1]{\pgfkeys{/keys,#1}}
+
+\begin{document}
+	\setkey{test 1=a,test 2=y}
+	t1 : \testone,
+	t2 : \testtwo.
+\end{document}
