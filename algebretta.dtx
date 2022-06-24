@@ -239,13 +239,13 @@ algebretta.sty.
 %Se $a$ o $b$ sono zero non viene stampato nulla
 %
 %\cs{pbinomio}
-%\oarg{pinc=a, sinc=b}
+%\oarg{pbinc=a, sbinc=b}
 %\marg{a}
 %\marg{b}
 %
 %Esempi
 %
-% $\pbinomio[pinc=a^2, sinc=z]{-2}{3}+\pbinomio{1}{-3}$
+% $\pbinomio[pbinc=a^2, sbinc=z]{-2}{3}+\pbinomio{1}{-3}$
 %
 %
 %
@@ -262,7 +262,7 @@ algebretta.sty.
 %
 %Esempi
 %
-% $\pbinomiop[pinc=a^2, sinc=z]{-2}{3}+ \pbinomiop{1}{-3}$
+% $\pbinomiop[pbinc=a^2, sbinc=z]{-2}{3}+ \pbinomiop{1}{-3}$
 %
 %\StopEventually{^^A
 %  \newpage
@@ -280,9 +280,9 @@ algebretta.sty.
 \pgfkeys{
 	/mybinomio/.is family, /mybinomio,
 	default/.style = 
-	{ppinc = a, spinc = b},
-	ppinc/.estore in = \mybinoA,
-	spinc/.estore in = \mybinoB,
+	{pbinc = a, sbinc = b},
+	pbinc/.estore in = \mybinoA,
+	sbinc/.estore in = \mybinoB,
 }
 %\changes{v2.0}{2022/06/20}{Aggiunto pgfkeys}
 %\changes{v1.1}{2022/06/22}{Aggiunto fp}
