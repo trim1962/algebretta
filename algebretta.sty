@@ -22,9 +22,9 @@
 \pgfkeys{
 /mybinomio/.is family, /mybinomio,
 default/.style =
-{pinc = a, sinc = b},
-pinc/.estore in = \mybinoA,
-sinc/.estore in = \mybinoB,
+{pbinc = a, sbinc = b},
+pbinc/.estore in = \mybinoA,
+sbinc/.estore in = \mybinoB,
 }
 \newcommand{\parte@Abin}[1]{\ifnumcomp{#1}{>}{0}
 {\ifnumcomp{#1}{=}{1}{x}{#1x}}{\ifnumcomp{#1}{=}{-1}{-x}{#1x}}}

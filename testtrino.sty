@@ -1,0 +1,27 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{testtrino}
+[2022/06/03 v1.0 creazione binomi trinomi]
+\RequirePackage{pgfkeys}
+\RequirePackage{etoolbox}
+\pgfkeys{
+	/mytrinomio/.is family, /mytrinomio,
+	default/.style = 
+	{ptinc = x, stinc = y, ttinc = z},
+	ptinc/.estore in = \mytrioA,
+	stinc/.estore in = \mytrioB,
+	ttinc/.estore in = \mytrioC
+}
+\newcommand{\ptrinomio}[4][]{
+	\pgfkeys{/mytrinomio, default, #1}%
+	\ifnumequal{#2}{0}{}{
+\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mytrioA}{#2\mytrioA}}{\ifnumequal{#2}{-1}{-\mytrioA}{#2\mytrioA}}}
+	\ifnumequal{#3}{0}{}{
+\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioB}{+#3\mytrioB}}{\ifnumequal{#3}{-1}{-\mytrioB}{#3\mytrioB}}}
+\ifnumequal{#4}{0}{}{
+	\ifnumgreater{#4}{0}{\ifnumequal{#4}{1}{+\mytrioC}{+#4\mytrioC}}{\ifnumequal{#4}{-1}{-\mytrioC}{#4\mytrioC}}}
+}
+\newcommand{\ptrinomiop}[4][]{
+\pgfkeys{/mytrinomio, default, #1}%
+(\ptrinomio[#1]{#2}{#3}{#4})
+}
+\endinput
