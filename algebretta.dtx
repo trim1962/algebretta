@@ -475,6 +475,22 @@ algebretta.sty.
 %    \end{macrocode}
 %\end{macro}
 %
+%
+%\begin{macro}{\ptrinomio}
+%\changes{v2.0}{2022/06/24}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\ptrinomio}[4][]{
+	\pgfkeys{/mytrinomio, default, #1}%
+	\ifnumequal{#2}{0}{}{
+		\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mytrioA}{#2\mytrioA}}{\ifnumequal{#2}{-1}{-\mytrioA}{#2\mytrioA}}}
+	\ifnumequal{#3}{0}{}{
+		\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioB}{+#3\mytrioB}}{\ifnumequal{#3}{-1}{-\mytrioB}{#3\mytrioB}}}
+	\ifnumequal{#4}{0}{}{
+		\ifnumgreater{#4}{0}{\ifnumequal{#4}{1}{+\mytrioC}{+#4\mytrioC}}{\ifnumequal{#4}{-1}{-\mytrioC}{#4\mytrioC}}}
+}
+%    \end{macrocode}
+%\end{macro}
+%
 %    \begin{macrocode}
 %</package>
 %    \end{macrocode}
