@@ -514,7 +514,7 @@ stinc/.estore in = \mytrioB,
 %
 %
 %\begin{macro}{\ptrinomio}
-%\changes{v2.0}{2022/06/24}{Versione iniziale}
+%\changes{v2.0}{2022/06/25}{Versione iniziale}
 %    \begin{macrocode}
 \newcommand{\ptrinomio}[4][]{
 	\pgfkeys{/mytrinomio, default, #1}%
@@ -538,6 +538,29 @@ stinc/.estore in = \mytrioB,
 		\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mytrioA}{#2\mytrioA}}{\ifnumequal{#2}{-1}{-\mytrioA}{#2\mytrioA}}}
 	\ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioB}{+#3\mytrioB}}{\ifnumequal{#3}{-1}{-\mytrioB}{#3\mytrioB}}}
 	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
+}
+%    \end{macrocode}
+%\end{macro}
+%
+%
+%\begin{macro}{\ptrinomiop}
+%\changes{v2.0}{2022/06/25}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\ptrinomiop}[4][]{
+	\pgfkeys{/mytrinomio, default, #1}%
+	(\ptrinomio[#1]{#2}{#3}{#4})
+}
+%    \end{macrocode}
+%\end{macro}
+%
+%
+%
+%\begin{macro}{\ptrinomiosp}
+%\changes{v2.0}{2022/06/25}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\ptrinomiosp}[4][]{
+	\pgfkeys{/mytrinomios, default, #1}%
+	(\ptrinomio[#1]{#2}{#3}{#4})
 }
 %    \end{macrocode}
 %\end{macro}
