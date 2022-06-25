@@ -246,22 +246,39 @@ algebretta.sty.
 %
 % $\pbinomio[pbinc=a^2, sbinc=z]{-2}{3}+\pbinomio{1}{-3}$
 %
-%
-%
-%\DescribeMacro{\pbinomiop}
+%\DescribeMacro{\pbinomio}
 %Comando per scrivere un binomio nella forma 
-% $(ax+by)$
+% $ax+by$
 %
 %Se $a$ o $b$ sono zero non viene stampato nulla
 %
-%\cs{pbinomiop}
-%\oarg{pinc=a, sinc=b}
+%\cs{pbinomio}
+%\oarg{pbinc=x, sbinc=y}
 %\marg{a}
 %\marg{b}
 %
 %Esempi
 %
-% $\pbinomiop[pbinc=a^2, sbinc=z]{-2}{3}+ \pbinomiop{1}{-3}$
+% $\pbinomio[pbinc=a^2, sbinc=z]{-2}{3}+\pbinomio{1}{-3}$
+%
+%
+%
+%
+%\DescribeMacro{\ptrinomio}
+%Comando per scrivere un binomio nella forma 
+% $(ax+by+cz)$
+%
+%Se $a$ o $b$ sono zero non viene stampato nulla
+%
+%\cs{pbinomiop}
+%\oarg{ptinc = x, stinc = y, ttinc = z}
+%\marg{a}
+%\marg{b}
+%\marg{c}
+%
+%Esempi
+%
+% $\ptrinomio{1}{-3}{1}+\ptrinomio[ptinc=a]{-1}{3}{-1}$
 %
 %\StopEventually{^^A
 %  \newpage
@@ -279,7 +296,7 @@ algebretta.sty.
 \pgfkeys{
 	/mybinomio/.is family, /mybinomio,
 	default/.style = 
-	{pbinc = a, sbinc = b},
+	{pbinc = x, sbinc = y},
 	pbinc/.estore in = \mybinoA,
 	sbinc/.estore in = \mybinoB,
 }
