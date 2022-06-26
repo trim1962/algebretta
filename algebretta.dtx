@@ -93,8 +93,7 @@ algebretta.sty.
 \usepackage{imakeidx}
 \makeindex 
 \GlossaryPrologue{\section*{Changelog}}
-\usepackage{listings}
-\lstloadlanguages{TeX}
+\usepackage[tex]{listings}
 \begin{document}e 
 	\DocInput{\jobname.dtx}
 	\PrintIndex
@@ -126,13 +125,11 @@ algebretta.sty.
 %di verifica. 
 % Il package è caricato con
 % \iffalse
-% <*example>
+%<*example>
 % \fi
-
 \begin{lstlisting}
 \usepackage{algebretta}
 \end{lstlisting}
-
 % \iffalse
 % </example>
 % \fi
