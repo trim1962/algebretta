@@ -92,9 +92,8 @@ algebretta.sty.
 \RecordChanges
 \usepackage{imakeidx}
 \makeindex 
-\GlossaryPrologue{\section*{Changelog}}
-\usepackage[tex]{listings}
-\begin{document}e 
+\GlossaryPrologue{\section*{Changelog}
+\begin{document}
 	\DocInput{\jobname.dtx}
 	\PrintIndex
 \end{document}
@@ -275,19 +274,11 @@ algebretta.sty.
 %\marg{c}
 %
 %Esempi
-% \iffalse
-%<*example>
-% \fi
-\begin{lstlisting}
-$\ptrinomio{1}{-3}{1}\ptrinomio[ptinc=a]{-1}{3}{-1}$
-\end{lstlisting}
-% \iffalse
-%</example>
-% \fi
+% $\ptrinomio{1}{-3}{1}\ptrinomio[ptinc=a]{-1}{3}{-1}$
 %
 % $\ptrinomio{1}{-3}{1}\ptrinomio[ptinc=a]{-1}{3}{-1}$
 %
-%$\ptrinomio[ptinc=a, ttinc=b]{-1}{3}{1}$
+% $\ptrinomio[ptinc=a, ttinc=b]{-1}{3}{1}$
 %
 %
 %\DescribeMacro{\ptrinomiop}
