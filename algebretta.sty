@@ -14,7 +14,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{algebretta}
-[2022/06/24 v2.0 creazione binomi trinomi]
+[2022/06/25 v2.0 creazione di binomi e trinomi]
 \RequirePackage{etoolbox}
 \RequirePackage{amssymb}
 \RequirePackage[nomessages]{fp}
@@ -22,9 +22,20 @@
 \pgfkeys{
 /mybinomio/.is family, /mybinomio,
 default/.style =
-{pbinc = a, sbinc = b},
+{pbinc = x, sbinc = y},
 pbinc/.estore in = \mybinoA,
 sbinc/.estore in = \mybinoB,
+/mytrinomio/.is family, /mytrinomio,
+default/.style =
+{ptinc = x, stinc = y, ttinc = z},
+ptinc/.estore in = \mytrioA,
+stinc/.estore in = \mytrioB,
+ttinc/.estore in = \mytrioC,
+/mytrinomios/.is family, /mytrinomios,
+default/.style =
+{ptinc = x, stinc = y},
+ptinc/.estore in = \mytrioA,
+stinc/.estore in = \mytrioB,
 }
 \newcommand{\parte@Abin}[1]{\ifnumcomp{#1}{>}{0}
 {\ifnumcomp{#1}{=}{1}{x}{#1x}}{\ifnumcomp{#1}{=}{-1}{-x}{#1x}}}
@@ -98,7 +109,7 @@ sbinc/.estore in = \mybinoB,
 \fi
 }
 \newcommand{\mult}[1]{%
-\ifnumequal{#1}{0}{\message{a=0}\stop}{%
+\ifnumequal{#1}{0}{\PackageError{algebretta}{$a$ è zero}}{%
 \ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}{+}{+#1}}%
 {\ifnumequal{#1}{-1}{-}{#1}}}}%
 \newcommand{\parte@Arettaimplicita}[1]{
@@ -125,14 +136,38 @@ sbinc/.estore in = \mybinoB,
 \newcommand{\rettaesplicita}[2]{y=\parte@Arettaimplicita{#1}\parte@Crettaimplicita{#2}}
 \newcommand{\pbinomio}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
-\ifnumequal{#2}{0}{}{
-\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
+\ifnumequal{#2}{0}{\PackageError{algebretta}{$a$ è zero\MessageBreak}}
+{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
 \ifnumequal{#3}{0}{}{
 \ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mybinoB}{+#3\mybinoB}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
 }
 \newcommand{\pbinomiop}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 (\pbinomio[#1]{#2}{#3})
+}
+\newcommand{\ptrinomio}[4][]{
+\pgfkeys{/mytrinomio, default, #1}%
+\ifnumequal{#2}{0}{}{
+\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mytrioA}{#2\mytrioA}}{\ifnumequal{#2}{-1}{-\mytrioA}{#2\mytrioA}}}
+\ifnumequal{#3}{0}{}{
+\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioB}{+#3\mytrioB}}{\ifnumequal{#3}{-1}{-\mytrioB}{#3\mytrioB}}}
+\ifnumequal{#4}{0}{}{
+\ifnumgreater{#4}{0}{\ifnumequal{#4}{1}{+\mytrioC}{+#4\mytrioC}}{\ifnumequal{#4}{-1}{-\mytrioC}{#4\mytrioC}}}
+}
+\newcommand{\ptrinomios}[4][]{
+\pgfkeys{/mytrinomios, default, #1}%
+\ifnumequal{#2}{0}{}{
+\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mytrioA}{#2\mytrioA}}{\ifnumequal{#2}{-1}{-\mytrioA}{#2\mytrioA}}}
+\ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioB}{+#3\mytrioB}}{\ifnumequal{#3}{-1}{-\mytrioB}{#3\mytrioB}}}
+\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
+}
+\newcommand{\ptrinomiop}[4][]{
+\pgfkeys{/mytrinomio, default, #1}%
+(\ptrinomio[#1]{#2}{#3}{#4})
+}
+\newcommand{\ptrinomiosp}[4][]{
+\pgfkeys{/mytrinomios, default, #1}%
+(\ptrinomios[#1]{#2}{#3}{#4})
 }
 %% 
 %% Copyright (C) 2022 by Claudio Duchi

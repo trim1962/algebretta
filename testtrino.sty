@@ -9,8 +9,16 @@
 	{ptinc = x, stinc = y, ttinc = z},
 	ptinc/.estore in = \mytrioA,
 	stinc/.estore in = \mytrioB,
-	ttinc/.estore in = \mytrioC
+	ttinc/.estore in = \mytrioC,
+	/mytrinomios/.is family, /mytrinomios,
+	default/.style = 
+	{ptinc = x, stinc = y},
+	ptinc/.estore in = \mytrioA,
+	stinc/.estore in = \mytrioB,
 }
+
+
+	
 \newcommand{\ptrinomio}[4][]{
 	\pgfkeys{/mytrinomio, default, #1}%
 	\ifnumequal{#2}{0}{}{
@@ -19,6 +27,13 @@
 \ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioB}{+#3\mytrioB}}{\ifnumequal{#3}{-1}{-\mytrioB}{#3\mytrioB}}}
 \ifnumequal{#4}{0}{}{
 	\ifnumgreater{#4}{0}{\ifnumequal{#4}{1}{+\mytrioC}{+#4\mytrioC}}{\ifnumequal{#4}{-1}{-\mytrioC}{#4\mytrioC}}}
+}
+\newcommand{\ptrinomios}[4][]{
+	\pgfkeys{/mytrinomios, default, #1}%
+	\ifnumequal{#2}{0}{}{
+		\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mytrioA}{#2\mytrioA}}{\ifnumequal{#2}{-1}{-\mytrioA}{#2\mytrioA}}}
+	\ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioB}{+#3\mytrioB}}{\ifnumequal{#3}{-1}{-\mytrioB}{#3\mytrioB}}}
+	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
 }
 \newcommand{\ptrinomiop}[4][]{
 \pgfkeys{/mytrinomio, default, #1}%

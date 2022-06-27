@@ -1,0 +1,19 @@
+\documentclass{article}
+%\usepackage[utf8]{inputenc}
+\usepackage{pgf}
+\pgfkeys{/myerrori/.is family, /myerrori,
+	default/.style = 
+	{erroreuno = a zero,
+	erroredue = b folle},
+	erroreuno/.estore in = \Erroreuno,
+	erroredue/.estore in = \Erroredue
+}
+
+
+\begin{document}
+\pgfkeys{/myerrori, default}%
+\Erroreuno
+
+\Erroredue
+\end{document}
+Punti da notare:

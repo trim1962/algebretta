@@ -1,0 +1,47 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{errori}
+[2022/06/03 v1.0 creazione binomi trinomi]
+\RequirePackage{pgfkeys}
+\RequirePackage{etoolbox}
+\pgfkeys{/myerrori/.is family, /myerrori,
+	default/.style = 
+	{erroreuno =\space il parametro uno di pbinomio è zero,
+	erroredue =\space il parametro due  pbinomio è zero},
+	erroreuno/.estore in = \Erroreuno,
+	erroredue/.estore in = \Erroredue
+}
+\pgfkeys{
+	/mybinomio/.is family, /mybinomio,
+	default/.style =
+	{pbinc = x, sbinc = y},
+	pbinc/.estore in = \mybinoA,
+	sbinc/.estore in = \mybinoB,
+	/mytrinomio/.is family, /mytrinomio,
+	default/.style =
+	{ptinc = x, stinc = y, ttinc = z},
+	ptinc/.estore in = \mytrioA,
+	stinc/.estore in = \mytrioB,
+	ttinc/.estore in = \mytrioC,
+	/mytrinomios/.is family, /mytrinomios,
+	default/.style =
+	{ptinc = x, stinc = y},
+	ptinc/.estore in = \mytrioA,
+	stinc/.estore in = \mytrioB,
+}
+\newcommand{\pbinomio}[3][]{
+	\pgfkeys{/mybinomio, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#2}{0}{\Erroreuno}
+	{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
+	\ifnumequal{#3}{0}{}{
+		\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mybinoB}{+#3\mybinoB}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
+}
+\newcommand{\pbinomiodue}[3][]{
+	\pgfkeys{/mybinomio, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#2}{0}{\PackageWarning{errori}{\Erroreuno}}
+	{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
+	\ifnumequal{#3}{0}{\PackageWarning{errori}{\Erroredue}}
+	{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mybinoB}{+#3\mybinoB}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
+}
+\endinput
