@@ -521,7 +521,7 @@ stinc/.estore in = \mytrioB,
 %    \begin{macrocode}
 \newcommand{\pbinomio}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
-	\ifnumequal{#2}{0}{\PackageError{algebretta}{$a$ è zero}}
+	\ifnumequal{#2}{0}{}
 	{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
 	\ifnumequal{#3}{0}{}{
 		\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mybinoB}{+#3\mybinoB}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
