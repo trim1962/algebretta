@@ -474,7 +474,7 @@ stinc/.estore in = \mytrioB,
 %\changes{v1.0}{2022/06/21}{Versione iniziale}
 %    \begin{macrocode}
 \newcommand{\mult}[1]{%
-\ifnumequal{#1}{0}{\message{a=0}\stop}{%
+\ifnumequal{#1}{0}{\PackageError{algebretta}{$a$ è zero}}{%
 \ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}{+}{+#1}}%
 {\ifnumequal{#1}{-1}{-}{#1}}}}%
 %    \end{macrocode}
@@ -521,7 +521,7 @@ stinc/.estore in = \mytrioB,
 %    \begin{macrocode}
 \newcommand{\pbinomio}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
-	\ifnumequal{#2}{0}{}{
+	\ifnumequal{#2}{0}{\PackageError{algebretta}{$a$ è zero}}{
 		\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
 	\ifnumequal{#3}{0}{}{
 		\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mybinoB}{+#3\mybinoB}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
