@@ -146,13 +146,15 @@ algebretta.sty.
 %\oarg{debug} gli errori vengono messi nel log e la compilazione  è interrotta
 %\section{Funzioni base}
 %\DescribeMacro{\binomio}
-%Comando per scrivere un binomio $ax+b$ non dotato di parentesi
+%Comando per scrivere un binomio $ax+b$ non dotato di parentesi. Non viene 
+%%%fatto nessun controllo su i parametri.
 %
 %\cs{binomio}
 %\marg{a}
 %\marg{b}
 %
 %Esempio
+%
 % \iffalse
 %<*verb>
 % \fi
@@ -164,12 +166,61 @@ algebretta.sty.
 % \fi
 %$10x+1$
 %
+%
+% \iffalse
+%<*verb>
+% \fi
+\begin{verbatim}
+\binomio{1}{1}
+\end{verbatim}
+% \iffalse
+%</verb>
+% \fi
+%$x+1$
+%
+%
+% \iffalse
+%<*verb>
+% \fi
+\begin{verbatim}
+\binomio{-10}{1}
+\end{verbatim}
+% \iffalse
+%</verb>
+% \fi
+%$1-10x$
+%
 %\DescribeMacro{\binomiop}
-%Comando per scrivere un binomio $(ax+b)$ dotato di parentesi
+%Comando per scrivere un binomio $(ax+b)$ dotato di parentesi. Non viene fatto 
+%%%nessun controllo su i parametri.
 %
 %\cs{binomio}
 %\marg{a}
 %\marg{b}
+%
+%
+% \iffalse
+%<*verb>
+% \fi
+\begin{verbatim}
+\binomiop{10}{1}
+\end{verbatim}
+% \iffalse
+%</verb>
+% \fi
+%$(10x+1)$
+%
+%
+% \iffalse
+%<*verb>
+% \fi
+\begin{verbatim}
+\binomio{-10}{1}
+\end{verbatim}
+% \iffalse
+%</verb>
+% \fi
+%$1-10x$
 %
 %\DescribeMacro{\sommadifferenza}
 %Comando per scrivere un binomio $(ax+b)(ax-b)$ dotato di parentesi
