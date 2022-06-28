@@ -79,7 +79,7 @@ algebretta.sty.
 %<*package>
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{algebretta}
-[2022/06/25 v2.0 creazione di binomi e trinomi]
+[2022/06/28 v3.0 creazione di binomi e trinomi]
 %</package>
 %<*driver>
 \documentclass{ltxdoc}
@@ -118,11 +118,15 @@ algebretta.sty.
 %
 %\changes{v1.0}{2022/06/19}{First public release}
 %\changes{v1.1}{2022/06/20}{First public release}
-%\changes{v2.0}{2022/06/20}{Aggiunto pgfkeys}
+%\changes{v2.0}{2022/06/22}{Aggiunto pgfkeys}
+%\changes{v3.0}{2022/06/28}{Aggiunto aggiunti parametri ingresso e gestione 
+%errori}
 %\tableofcontents
 %\section{Introduzione}
 %Algebretta nasce come supporto ad esami. Pacchetto per la gestione delle prove 
 %di verifica. 
+%\section{Uso di algebretta}
+%\pkg{algebretta}
 %\section{Funzioni base}
 %\DescribeMacro{\binomio}
 %Comando per scrivere un binomio $ax+b$ non dotato di parentesi
@@ -338,6 +342,20 @@ algebretta.sty.
 \RequirePackage{amssymb}
 \RequirePackage[nomessages]{fp}
 \RequirePackage{pgfkeys}
+\pgfkeys{/myerrori/.is family, /myerrori,
+	default/.style = 
+	{erroreuno =\space il parametro uno di pbinomio è zero,
+		erroredue =\space il parametro due  pbinomio è zero},
+	erroreuno/.estore in = \Errore@uno,
+	erroredue/.estore in = \Errore@due
+}
+\newcommand{\errore}[1]{}
+
+\DeclareOption{warning}{\renewcommand{\errore}[1]{\PackageWarning{errori}{#1}}}
+\DeclareOption{debug}{\renewcommand{\errore}[1]{\PackageError{errori}{#1}{}}}
+\DeclareOption*{\PackageWarning{errori}{Il parametro ‘\CurrentOption’ è 
+		sconosciuto}}
+\ProcessOptions\relax
 \pgfkeys{
 	/mybinomio/.is family, /mybinomio,
 	default/.style = 
@@ -357,7 +375,7 @@ ptinc/.estore in = \mytrioA,
 stinc/.estore in = \mytrioB,
 }
 %\changes{v2.0}{2022/06/20}{Aggiunto pgfkeys}
-%\changes{v1.1}{2022/06/22}{Aggiunto fp}
+%\changes{v1.1}{2022/06/22}{Aggiunto fp} 
 %    \end{macrocode}
 %    \begin{macrocode}
 \newcommand{\parte@Abin}[1]{\ifnumcomp{#1}{>}{0}
