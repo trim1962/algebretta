@@ -415,7 +415,8 @@ algebretta.sty.
 %Comando per scrivere un tribinomio di secondo grado nella forma 
 % $ax^2+bx+c$
 %
-%Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ in modalita warning o 
+%Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
+%in modalita warning o 
 %debug viene dato un messaggio di errore
 %
 %\cs{ptrisgabc}
@@ -429,7 +430,8 @@ algebretta.sty.
 %Comando per scrivere un tribinomio di secondo grado nella forma 
 % $ax^2+c+bx$
 %
-%Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ in modalita warning o 
+%Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
+%in modalita warning o 
 %debug viene dato un messaggio di errore
 %
 %\cs{ptrisgacb}
@@ -443,7 +445,8 @@ algebretta.sty.
 %Comando per scrivere un tribinomio di secondo grado nella forma 
 % $bx+ax^2+c$
 %
-%Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ in modalita warning o 
+%Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
+%in modalita warning o 
 %debug viene dato un messaggio di errore
 %
 %\cs{ptrisgbac}
@@ -457,7 +460,8 @@ algebretta.sty.
 %Comando per scrivere un tribinomio di secondo grado nella forma 
 % $c+ax^2+bx$
 %
-%Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ in modalita warning o 
+%Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
+%in modalita warning o 
 %debug viene dato un messaggio di errore
 %
 %\cs{ptrisgcab}
@@ -471,7 +475,8 @@ algebretta.sty.
 %Comando per scrivere un tribinomio di secondo grado nella forma 
 % $c+bx+ax^2$
 %
-%Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ in modalita warning o 
+%Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
+%in modalita warning o 
 %debug viene dato un messaggio di errore
 %
 %\cs{ptrisgcba}
@@ -485,7 +490,8 @@ algebretta.sty.
 %Comando per scrivere un tribinomio di secondo grado nella forma 
 % $bx+c+ax^2$
 %
-%Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ in modalita warning o 
+%Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
+%in modalita warning o 
 %debug viene dato un messaggio di errore
 %
 %\cs{ptrisgbca}
@@ -493,6 +499,36 @@ algebretta.sty.
 %\marg{a}
 %\marg{b}
 %\marg{c}
+%
+%
+%\DescribeMacro{\ptrisgm}
+% Comando per scrivere un trinomio di secondo grado $ax^2+bx+c$ non dotato di 
+%parentesi 
+%
+%Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
+%in modalita warning o 
+%debug viene dato un messaggio di errore
+%
+%\cs{ptrisgm}
+%\marg{a}
+%\marg{b}
+%\marg{c}
+%\marg{z}
+%
+% Il quarto parametro (da 0 a 5) scrive il trinomio secondo la codifica   
+% la seguente
+%
+%\begin{center}
+	%	\begin{tabular}{lc}
+		%   z&codifica\\ 
+		%	0& abc	  \\
+		%	1& acb	 \\
+		%	2& bac	 \\
+		%	3& bca	  \\
+		%	4& cab	 \\
+		%	5& cba \\
+		%	\end{tabular}
+	%\end{center}
 %
 %
 %\StopEventually{^^A
