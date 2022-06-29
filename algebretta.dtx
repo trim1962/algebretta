@@ -734,22 +734,6 @@ algebretta.sty.
 %\begin{macro}{\ptrisgacb}
 %\changes{v3.0}{2022/06/29}{Versione iniziale}
 %    \begin{macrocode}
-\newcommand{\ptrisgacb}[4][]{
-	\pgfkeys{/mytrinomiosecondog, default, #1}%
-	\pgfkeys{/myerrori, default}%
-	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
-		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{#2\mytrioA^{2}}}}
-	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
-	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
-		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
-}
-%    \end{macrocode}
-%\end{macro}
-%
-%
-%\begin{macro}{\ptrisgacb}
-%\changes{v3.0}{2022/06/29}{Versione iniziale}
-%    \begin{macrocode}
 \newcommand{\ptrisgbac}[4][]{
 	\pgfkeys{/mytrinomiosecondog, default, #1}%
 	\pgfkeys{/myerrori, default}%
