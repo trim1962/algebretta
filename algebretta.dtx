@@ -425,10 +425,14 @@ algebretta.sty.
 \RequirePackage{pgfkeys}
 \pgfkeys{/myerrori/.is family, /myerrori,
 	default/.style = 
-	{erroreuno =\space il parametro uno di pbinomio è zero,
-		erroredue =\space il parametro due  pbinomio è zero},
+	{
+		erroreuno =\space il parametro uno di pbinomio è zero,
+		erroredue =\space il parametro due  pbinomio è zero,
+		erroretre =\space il parametro $a$ è zero,
+	},
 	erroreuno/.estore in = \Errore@uno,
-	erroredue/.estore in = \Errore@due
+	erroredue/.estore in = \Errore@due,
+	erroretre/.estore in = \Errore@tre,
 }
 \newcommand{\errore}[1]{}
 
@@ -439,25 +443,25 @@ algebretta.sty.
 \ProcessOptions\relax
 \pgfkeys{
 	/mybinomio/.is family, /mybinomio,
-	default/.style = 
+	default/.style =
 	{pbinc = x, sbinc = y},
 	pbinc/.estore in = \mybinoA,
 	sbinc/.estore in = \mybinoB,
 	/mytrinomio/.is family, /mytrinomio,
-default/.style = 
-{ptinc = x, stinc = y, ttinc = z},
-ptinc/.estore in = \mytrioA,
-stinc/.estore in = \mytrioB,
-ttinc/.estore in = \mytrioC,
-/mytrinomios/.is family, /mytrinomios,
-default/.style = 
-{ptinc = x, stinc = y},
-ptinc/.estore in = \mytrioA,
-stinc/.estore in = \mytrioB,
-/mytrinomiosecondog/.is family, /mytrinomiosecondog,
-default/.style = 
-{ptinc = x},
-ptinc/.estore in = \mytrioA,
+	default/.style =
+	{ptinc = x, stinc = y, ttinc = z},
+	ptinc/.estore in = \mytrioA,
+	stinc/.estore in = \mytrioB,
+	ttinc/.estore in = \mytrioC,
+	/mytrinomios/.is family, /mytrinomios,
+	default/.style =
+	{ptinc = x, stinc = y},
+	ptinc/.estore in = \mytrioA,
+	stinc/.estore in = \mytrioB,
+	/mytrinomiosecondog/.is family, /mytrinomiosecondog,
+	default/.style = 
+	{ptinc = x},
+	ptinc/.estore in = \mytrioA,
 }
 %\changes{v2.0}{2022/06/20}{Aggiunto pgfkeys}
 %\changes{v1.1}{2022/06/22}{Aggiunto fp} 
@@ -695,6 +699,36 @@ ptinc/.estore in = \mytrioA,
 %    \end{macrocode}
 %\end{macro}
 %
+%\begin{macro}{\ptrisgabc}
+%\changes{v3.0}{2022/06/29}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\ptrisgabc}[4][]{
+	\pgfkeys{/mytrinomiosecondog, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
+		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{#2\mytrioA^{2}}}}
+	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
+		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
+	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
+}
+%    \end{macrocode}
+%\end{macro}
+%
+%
+%\begin{macro}{\ptrisgabc}
+%\changes{v3.0}{2022/06/29}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\ptrisgacb}[4][]{
+	\pgfkeys{/mytrinomiosecondog, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
+		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{#2\mytrioA^{2}}}}
+	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
+	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
+		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
+}
+%    \end{macrocode}
+%\end{macro}
 %    \begin{macrocode}
 %</package>
 %    \end{macrocode}
