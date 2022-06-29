@@ -715,7 +715,7 @@ algebretta.sty.
 %\end{macro}
 %
 %
-%\begin{macro}{\ptrisgabc}
+%\begin{macro}{\ptrisgacb}
 %\changes{v3.0}{2022/06/29}{Versione iniziale}
 %    \begin{macrocode}
 \newcommand{\ptrisgacb}[4][]{
@@ -729,6 +729,88 @@ algebretta.sty.
 }
 %    \end{macrocode}
 %\end{macro}
+%
+%
+%\begin{macro}{\ptrisgacb}
+%\changes{v3.0}{2022/06/29}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\ptrisgacb}[4][]{
+	\pgfkeys{/mytrinomiosecondog, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
+		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{#2\mytrioA^{2}}}}
+	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
+	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
+		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
+}
+%    \end{macrocode}
+%\end{macro}
+%
+%
+%\begin{macro}{\ptrisgacb}
+%\changes{v3.0}{2022/06/29}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\ptrisgbac}[4][]{
+	\pgfkeys{/mytrinomiosecondog, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{\mytrioA}
+		{\ifnumequal{#3}{-1}{-\mytrioA}{#3\mytrioA}}}
+	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
+	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
+}
+%    \end{macrocode}
+%\end{macro}
+%
+%
+%\begin{macro}{\ptrisgacb}
+%\changes{v3.0}{2022/06/29}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\ptrisgcab}[4][]{
+	\pgfkeys{/mytrinomiosecondog, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#4}{0}{}{#4}	
+	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
+	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
+		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
+}
+%    \end{macrocode}
+%\end{macro}
+%
+%
+%\begin{macro}{\ptrisgcba}
+%\changes{v3.0}{2022/06/29}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\ptrisgcba}[4][]{
+	\pgfkeys{/mytrinomiosecondog, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#4}{0}{}{#4}	
+	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
+		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
+	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
+} 
+%    \end{macrocode}
+%\end{macro}
+%
+%
+%\begin{macro}{\ptrisgbca}
+%\changes{v3.0}{2022/06/29}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\ptrisgbca}[4][]{
+	\pgfkeys{/mytrinomiosecondog, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{\mytrioA}
+		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{#3\mytrioA}{#3\mytrioA}}}}
+	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}	
+	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
+}
+%    \end{macrocode}
+%\end{macro}
+%
+%
 %    \begin{macrocode}
 %</package>
 %    \end{macrocode}
