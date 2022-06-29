@@ -880,6 +880,31 @@ algebretta.sty.
 %\end{macro}
 %
 %
+%\begin{macro}{\ptrisgm}
+%\changes{v3.0}{2022/06/29}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\ptrisgm}[5][]{%
+	\ifcase #5%
+	\ptrisgabc[]{#2}{#3}{#4}%0 abc
+	\or
+	\ptrisgacb[]{#2}{#3}{#4}%1 acb
+	\or
+	\ptrisgbac[]{#2}{#3}{#4}%2 bac
+	\or
+	\ptrisgbca[]{#2}{#3}{#4}%3 bca
+	\or
+	\ptrisgcab[]{#2}{#3}{#4}%4 cab
+	\or
+	\ptrisgcba[]{#2}{#3}{#4}%5 cba
+	\fi
+	\FPeval\resultaP{#3*#3-4*#2*#4}%
+	\FPeval\resultaP{round(resultaP:0)}
+	\PackageWarning{trisecg}{\FPprint‌\resultaP}
+}%
+%    \end{macrocode}
+%\end{macro}
+%
+%
 %    \begin{macrocode}
 %</package>
 %    \end{macrocode}
