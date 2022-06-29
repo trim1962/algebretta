@@ -3,13 +3,21 @@
 [2022/06/03 v1.0 creazione binomi trinomi]
 \RequirePackage{pgfkeys}
 \RequirePackage{etoolbox}
+
 \pgfkeys{/myerrori/.is family, /myerrori,
 	default/.style = 
 	{erroreuno =\space il parametro uno di pbinomio è zero,
 	erroredue =\space il parametro due  pbinomio è zero},
-	erroreuno/.estore in = \Erroreuno,
-	erroredue/.estore in = \Erroredue
+	erroreuno/.estore in = \Errore@uno,
+	erroredue/.estore in = \Errore@due
 }
+\newcommand{\errore}[1]{}
+
+\DeclareOption{warning}{\renewcommand{\errore}[1]{\PackageWarning{errori}{#1}}}
+\DeclareOption{debug}{\renewcommand{\errore}[1]{\PackageError{errori}{#1}{}}}
+\DeclareOption*{\PackageWarning{errori}{Il parametro ‘\CurrentOption’ è 
+sconosciuto}}
+\ProcessOptions\relax
 \pgfkeys{
 	/mybinomio/.is family, /mybinomio,
 	default/.style =
@@ -31,17 +39,17 @@
 \newcommand{\pbinomio}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
-	\ifnumequal{#2}{0}{\Erroreuno}
+	\ifnumequal{#2}{0}{\errore{\Errore@uno}}
 	{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
-	\ifnumequal{#3}{0}{}{
+	\ifnumequal{#3}{0}{\errore{\Errore@due}}{
 		\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mybinoB}{+#3\mybinoB}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
 }
 \newcommand{\pbinomiodue}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
-	\ifnumequal{#2}{0}{\PackageWarning{errori}{\Erroreuno}}
+	\ifnumequal{#2}{0}{\errore{\Errore@uno}}
 	{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
-	\ifnumequal{#3}{0}{\PackageWarning{errori}{\Erroredue}}
+	\ifnumequal{#3}{0}{\errore{\Errore@due}}
 	{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mybinoB}{+#3\mybinoB}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
 }
 \endinput

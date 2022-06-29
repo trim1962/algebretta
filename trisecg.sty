@@ -1,0 +1,119 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{trisecg}
+[2022/06/03 v1.0 creazione binomi trinomi]
+\RequirePackage{pgfkeys}
+\RequirePackage{etoolbox}
+\RequirePackage{fp}
+\pgfkeys{/myerrori/.is family, /myerrori,
+	default/.style = 
+{
+	erroreuno =\space il parametro uno di pbinomio è zero,
+	erroredue =\space il parametro due  pbinomio è zero,
+	erroretre =\space il parametro $a$ è zero,
+},
+	erroreuno/.estore in = \Errore@uno,
+	erroredue/.estore in = \Errore@due,
+	erroretre/.estore in = \Errore@tre,
+}
+\newcommand{\errore}[1]{}
+
+\DeclareOption{warning}{\renewcommand{\errore}[1]{\PackageWarning{trisecg}{#1}}}
+\DeclareOption{debug}{\renewcommand{\errore}[1]{\PackageError{trisecg}{#1}{}}}
+\DeclareOption*{\PackageWarning{trisecg}{Il parametro ‘\CurrentOption’ è 
+sconosciuto}}
+\ProcessOptions\relax
+\pgfkeys{
+	/mybinomio/.is family, /mybinomio,
+	default/.style =
+	{pbinc = x, sbinc = y},
+	pbinc/.estore in = \mybinoA,
+	sbinc/.estore in = \mybinoB,
+	/mytrinomio/.is family, /mytrinomio,
+	default/.style =
+	{ptinc = x, stinc = y, ttinc = z},
+	ptinc/.estore in = \mytrioA,
+	stinc/.estore in = \mytrioB,
+	ttinc/.estore in = \mytrioC,
+	/mytrinomios/.is family, /mytrinomios,
+	default/.style =
+	{ptinc = x, stinc = y},
+	ptinc/.estore in = \mytrioA,
+	stinc/.estore in = \mytrioB,
+	/mytrinomiosecondog/.is family, /mytrinomiosecondog,
+	default/.style = 
+	{ptinc = x},
+	ptinc/.estore in = \mytrioA,
+}
+\newcommand{\ptrisgabc}[4][]{
+	\pgfkeys{/mytrinomiosecondog, default, #1}%
+	\pgfkeys{/myerrori, default}%
+\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
+	{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{#2\mytrioA^{2}}}}
+\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
+	{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
+\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
+}
+\newcommand{\ptrisgacb}[4][]{
+	\pgfkeys{/mytrinomiosecondog, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
+		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{#2\mytrioA^{2}}}}
+	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
+	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
+		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
+	}
+\newcommand{\ptrisgbac}[4][]{
+		\pgfkeys{/mytrinomiosecondog, default, #1}%
+	\pgfkeys{/myerrori, default}%
+\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{\mytrioA}
+	{\ifnumequal{#3}{-1}{-\mytrioA}{#3\mytrioA}}}
+	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
+	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
+}
+\newcommand{\ptrisgcab}[4][]{
+	\pgfkeys{/mytrinomiosecondog, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#4}{0}{}{#4}	
+	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
+\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
+	{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
+}
+\newcommand{\ptrisgcba}[4][]{
+	\pgfkeys{/mytrinomiosecondog, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#4}{0}{}{#4}	
+	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
+		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
+		\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
+}
+\newcommand{\ptrisgbca}[4][]{
+	\pgfkeys{/mytrinomiosecondog, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{\mytrioA}
+		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{#3\mytrioA}{#3\mytrioA}}}}
+		\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}	
+	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
+}
+\newcommand{\ptrisgm}[5][]{%
+	\ifcase #5%
+	\ptrisgabc[]{#2}{#3}{#4}%0 abc
+	\or
+	\ptrisgacb[]{#2}{#3}{#4}%1 acb
+	\or
+	\ptrisgbac[]{#2}{#3}{#4}%2 bac
+	\or
+	\ptrisgbca[]{#2}{#3}{#4}%3 bca
+	\or
+	\ptrisgcab[]{#2}{#3}{#4}%4 cab
+	\or
+	\ptrisgcba[]{#2}{#3}{#4}%5 cba
+	\fi
+	\FPeval\resultaP{#3*#3-4*#2*#4}%
+	\FPeval\resultaP{round(resultaP:0)}
+\PackageWarning{trisecg}{\FPprint‌\resultaP}
+	}%
+\endinput

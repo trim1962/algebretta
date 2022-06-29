@@ -14,11 +14,27 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{algebretta}
-[2022/06/25 v2.0 creazione di binomi e trinomi]
+[2022/06/28 v3.0 creazione di binomi e trinomi]
+%%%fatto nessun controllo su i parametri.
+%%%nessun controllo su i parametri.
 \RequirePackage{etoolbox}
 \RequirePackage{amssymb}
 \RequirePackage[nomessages]{fp}
 \RequirePackage{pgfkeys}
+\pgfkeys{/myerrori/.is family, /myerrori,
+default/.style =
+{erroreuno =\space il parametro uno di pbinomio è zero,
+erroredue =\space il parametro due  pbinomio è zero},
+erroreuno/.estore in = \Errore@uno,
+erroredue/.estore in = \Errore@due
+}
+\newcommand{\errore}[1]{}
+
+\DeclareOption{warning}{\renewcommand{\errore}[1]{\PackageWarning{errori}{#1}}}
+\DeclareOption{debug}{\renewcommand{\errore}[1]{\PackageError{errori}{#1}{}}}
+\DeclareOption*{\PackageWarning{errori}{Il parametro ‘\CurrentOption’ è
+sconosciuto}}
+\ProcessOptions\relax
 \pgfkeys{
 /mybinomio/.is family, /mybinomio,
 default/.style =
@@ -136,9 +152,9 @@ stinc/.estore in = \mytrioB,
 \newcommand{\rettaesplicita}[2]{y=\parte@Arettaimplicita{#1}\parte@Crettaimplicita{#2}}
 \newcommand{\pbinomio}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
-\ifnumequal{#2}{0}{\PackageError{algebretta}{$a$ è zero\MessageBreak}}
+\ifnumequal{#2}{0}{\errore{\Errore@uno}}
 {\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
-\ifnumequal{#3}{0}{}{
+\ifnumequal{#3}{0}{\errore{\Errore@due}}{
 \ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mybinoB}{+#3\mybinoB}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
 }
 \newcommand{\pbinomiop}[3][]{
