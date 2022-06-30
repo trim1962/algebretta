@@ -412,7 +412,7 @@ algebretta.sty.
 %
 %
 %\DescribeMacro{\ptrisgabc}
-%Comando per scrivere un tribinomio di secondo grado nella forma 
+%Comando per scrivere un trinomio di secondo grado nella forma 
 % $ax^2+bx+c$
 %
 %Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
@@ -427,7 +427,7 @@ algebretta.sty.
 %
 %
 %\DescribeMacro{\ptrisgacb}
-%Comando per scrivere un tribinomio di secondo grado nella forma 
+%Comando per scrivere un trinomio di secondo grado nella forma 
 % $ax^2+c+bx$
 %
 %Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
@@ -442,7 +442,7 @@ algebretta.sty.
 %
 %
 %\DescribeMacro{\ptrisgbac}
-%Comando per scrivere un tribinomio di secondo grado nella forma 
+%Comando per scrivere un trinomio di secondo grado nella forma 
 % $bx+ax^2+c$
 %
 %Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
@@ -457,7 +457,7 @@ algebretta.sty.
 %
 %
 %\DescribeMacro{\ptrisgcab}
-%Comando per scrivere un tribinomio di secondo grado nella forma 
+%Comando per scrivere un trinomio di secondo grado nella forma 
 % $c+ax^2+bx$
 %
 %Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
@@ -472,7 +472,7 @@ algebretta.sty.
 %
 %
 %\DescribeMacro{\ptrisgcba}
-%Comando per scrivere un tribinomio di secondo grado nella forma 
+%Comando per scrivere un trinomio di secondo grado nella forma 
 % $c+bx+ax^2$
 %
 %Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
@@ -487,7 +487,7 @@ algebretta.sty.
 %
 %
 %\DescribeMacro{\ptrisgbca}
-%Comando per scrivere un tribinomio di secondo grado nella forma 
+%Comando per scrivere un trinomio di secondo grado nella forma 
 % $bx+c+ax^2$
 %
 %Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
@@ -530,6 +530,22 @@ algebretta.sty.
 		%	5& cba \\
 		%	\end{tabular}
 	%\end{center}
+%
+%\section{Equazioni di secondo grado}
+%\DescribeMacro{\ptrispq}
+%Comando per scrivere una equazione di secondo grado nella forma 
+% $px^2+(p+q)x+q=0$
+%
+%$x=-1\vee\quad x=-\dfrac{p}{q}$
+%
+%. Se $p$ è zero, 
+%in modalita warning o 
+%debug viene dato un messaggio di errore
+%
+%\cs{\ptrispq}
+%\oarg{ptinc = x}
+%\marg{p}
+%\marg{q}
 %
 %
 %\StopEventually{^^A
@@ -758,6 +774,8 @@ algebretta.sty.
 %    \end{macrocode}
 %\end{macro}
 %
+%
+%
 %\begin{macro}{\pbinomiop}
 %\changes{v2.0}{2022/06/24}{Versione iniziale}
 %    \begin{macrocode}
@@ -942,13 +960,13 @@ algebretta.sty.
 %\end{macro}
 %
 %
-%\begin{macro}{\ptrisgpq}
+%\begin{macro}{\ptrispq}
 %\changes{v3.0}{2022/06/29}{Versione iniziale}
 %    \begin{macrocode}
 \newcommand{\ptrisgpq}[3][]{
 	\pgfkeys{/mytrinomiosecondog, default, #1}%
 	\pgfkeys{/myerrori, default}%
-	\FPeval\resultaP{#2+#3}%
+	\FPeval\resultaP{(#2)+(#3)}%
 	\FPeval\resultaP{round(resultaP:0)}
 	\ptrisgabc[#1]{#2}{\resultaP}{#3}
 }
