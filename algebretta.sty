@@ -18,15 +18,20 @@
 %%%fatto nessun controllo su i parametri.
 %%%nessun controllo su i parametri.
 \RequirePackage{etoolbox}
+\RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage[nomessages]{fp}
 \RequirePackage{pgfkeys}
 \pgfkeys{/myerrori/.is family, /myerrori,
 default/.style =
-{erroreuno =\space il parametro uno di pbinomio è zero,
-erroredue =\space il parametro due  pbinomio è zero},
+{
+erroreuno =\space il parametro uno di pbinomio è zero,
+erroredue =\space il parametro due  pbinomio è zero,
+erroretre =\space il parametro $a$ è zero,
+},
 erroreuno/.estore in = \Errore@uno,
-erroredue/.estore in = \Errore@due
+erroredue/.estore in = \Errore@due,
+erroretre/.estore in = \Errore@tre,
 }
 \newcommand{\errore}[1]{}
 
@@ -52,6 +57,10 @@ default/.style =
 {ptinc = x, stinc = y},
 ptinc/.estore in = \mytrioA,
 stinc/.estore in = \mytrioB,
+/mytrinomiosecondog/.is family, /mytrinomiosecondog,
+default/.style =
+{ptinc = x},
+ptinc/.estore in = \mytrioA,
 }
 \newcommand{\parte@Abin}[1]{\ifnumcomp{#1}{>}{0}
 {\ifnumcomp{#1}{=}{1}{x}{#1x}}{\ifnumcomp{#1}{=}{-1}{-x}{#1x}}}
@@ -184,6 +193,92 @@ stinc/.estore in = \mytrioB,
 \newcommand{\ptrinomiosp}[4][]{
 \pgfkeys{/mytrinomios, default, #1}%
 (\ptrinomios[#1]{#2}{#3}{#4})
+}
+\newcommand{\ptrisgabc}[4][]{
+\pgfkeys{/mytrinomiosecondog, default, #1}%
+\pgfkeys{/myerrori, default}%
+\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
+{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{#2\mytrioA^{2}}}}
+\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
+{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
+\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
+}
+\newcommand{\ptrisgacb}[4][]{
+\pgfkeys{/mytrinomiosecondog, default, #1}%
+\pgfkeys{/myerrori, default}%
+\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
+{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{#2\mytrioA^{2}}}}
+\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
+\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
+{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
+}
+\newcommand{\ptrisgbac}[4][]{
+\pgfkeys{/mytrinomiosecondog, default, #1}%
+\pgfkeys{/myerrori, default}%
+\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{\mytrioA}
+{\ifnumequal{#3}{-1}{-\mytrioA}{#3\mytrioA}}}
+\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
+\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
+}
+\newcommand{\ptrisgcab}[4][]{
+\pgfkeys{/mytrinomiosecondog, default, #1}%
+\pgfkeys{/myerrori, default}%
+\ifnumequal{#4}{0}{}{#4} 
+\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
+\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
+{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
+}
+\newcommand{\ptrisgcba}[4][]{
+\pgfkeys{/mytrinomiosecondog, default, #1}%
+\pgfkeys{/myerrori, default}%
+\ifnumequal{#4}{0}{}{#4} 
+\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
+{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
+\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
+}
+\newcommand{\ptrisgbca}[4][]{
+\pgfkeys{/mytrinomiosecondog, default, #1}%
+\pgfkeys{/myerrori, default}%
+\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{\mytrioA}
+{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{#3\mytrioA}{#3\mytrioA}}}}
+\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}} 
+\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
+}
+\newcommand{\ptrisgm}[5][]{%
+\ifcase #5%
+\ptrisgabc[#1]{#2}{#3}{#4}%0 abc
+\or
+\ptrisgacb[#1]{#2}{#3}{#4}%1 acb
+\or
+\ptrisgbac[#1]{#2}{#3}{#4}%2 bac
+\or
+\ptrisgbca[#1]{#2}{#3}{#4}%3 bca
+\or
+\ptrisgcab[#1]{#2}{#3}{#4}%4 cab
+\or
+\ptrisgcba[#1]{#2}{#3}{#4}%5 cba
+\fi
+\FPeval\resultaP{#3*#3-4*#2*#4}%
+\FPeval\resultaP{round(resultaP:0)}
+\PackageWarning{trisecg}{\FPprint‌\resultaP}
+}%
+\newcommand{\ptrisgpq}[3][]{
+\pgfkeys{/mytrinomiosecondog, default, #1}%
+\pgfkeys{/myerrori, default}%
+\FPeval\resultaP{(#2)+(#3)}%
+\FPeval\resultaP{round(resultaP:0)}
+\ptrisgabc[#1]{#2}{\resultaP}{#3}
+}
+\newcommand{\ptrisgphi}[2][]{%
+\pgfkeys{/mytrinomiosecondog, default, #1}%
+\pgfkeys{/myerrori, default}%
+\FPeval\resultaP{(-1)*(#2)*(#2)}%
+\FPeval\resultaP{round(resultaP:0)}
+\ptrisgabc[#1]{1}{#2}{\resultaP}
 }
 %% 
 %% Copyright (C) 2022 by Claudio Duchi
