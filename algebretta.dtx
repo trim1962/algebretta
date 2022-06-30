@@ -975,12 +975,10 @@ algebretta.sty.
 %\end{macro}
 %
 %
-%
-%
 %\begin{macro}{\ptrisgphi}
 %\changes{v1.0}{2022/06/30{Versione iniziale}
 %    \begin{macrocode}
-\newcommand{\ptrisgphi}[2][]{
+\newcommand{\ptrisgphi}[2][]{%
 	\pgfkeys{/mytrinomiosecondog, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\FPeval\resultaP{(-1)*(#2)*(#2)}%
