@@ -330,22 +330,42 @@ algebretta.sty.
 %
 %Esempi
 %
-% $\pbinomio[pbinc=a^2, sbinc=z]{-2}{3}+\pbinomio{1}{-3}$
+% \iffalse
+%<*verb>
+% \fi
+\begin{verbatim}
+$\pbinomio[pbinc=a^2, sbinc=z]{-2}{3}+\pbinomio{1}{-3}$
+\end{verbatim}
+% \iffalse
+%</verb>
+% \fi
+$\pbinomio[pbinc=a^2, sbinc=z]{-2}{3}+\pbinomio{1}{-3}$
 %
-%\DescribeMacro{\pbinomio}
+%
+%\DescribeMacro{\pbinomios}
 %Comando per scrivere un binomio nella forma 
-% $ax+by$
+% $ax+b$
 %
 %Se $a$ o $b$ sono zero non viene stampato nulla
 %
 %\cs{pbinomio}
-%\oarg{pbinc=x, sbinc=y}
+%\oarg{pbinc=x}
 %\marg{a}
 %\marg{b}
 %
 %Esempi
 %
-% $\pbinomio[pbinc=a^2, sbinc=z]{-2}{3}+\pbinomio{1}{-3}$
+% \iffalse
+%<*verb>
+% \fi
+\begin{verbatim}
+$\pbinomios[pbinc=a^2]{-2}{3}+\pbinomios{1}{-3}$
+\end{verbatim}
+% \iffalse
+%</verb>
+% \fi
+$\pbinomios[pbinc=a^2]{-2}{3}+\pbinomios{1}{-3}$
+%
 %
 %\DescribeMacro{\ptrinomio}
 %Comando per scrivere un binomio nella forma 
@@ -783,6 +803,20 @@ algebretta.sty.
 	\ifnumequal{#3}{0}{\errore{\Errore@due}}{
 		\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mybinoB}{+#3\mybinoB}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
 }
+%    \end{macrocode}
+%\end{macro}
+%
+%
+%
+%\begin{macro}{\pbinomios}
+%\changes{v1.0}{2022/06/24}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\pbinomios}[3][]{
+	\pgfkeys{/mybinomio, default, #1}%
+	\ifnumequal{#2}{0}{\errore{\Errore@uno}}
+	{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
+	\ifnumequal{#3}{0}{\errore{\Errore@due}}{
+		\ifnumgreater{#3}{0}{+#3}{#3}}}
 %    \end{macrocode}
 %\end{macro}
 %
