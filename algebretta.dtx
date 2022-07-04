@@ -656,9 +656,9 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 		erroredue =\space il parametro due  pbinomio è zero,
 		erroretre =\space il parametro $a$ è zero,
 	},
-	erroreuno/.estore in = \Errore@uno,
-	erroredue/.estore in = \Errore@due,
-	erroretre/.estore in = \Errore@tre,
+	erroreuno/.estore in = \Erroreuno,
+	erroredue/.estore in = \Erroredue,
+	erroretre/.estore in = \Erroretre,
 }
 \newcommand{\errore}[1]{}
 
@@ -867,9 +867,9 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \begin{macrocode}
 \newcommand{\pbinomio}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
-	\ifnumequal{#2}{0}{\errore{\Errore@uno}}
+	\ifnumequal{#2}{0}{\errore{\Erroreuno}}
 	{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
-	\ifnumequal{#3}{0}{\errore{\Errore@due}}{
+	\ifnumequal{#3}{0}{\errore{\Erroredue}}{
 		\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mybinoB}{+#3\mybinoB}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
 }
 %    \end{macrocode}
@@ -882,9 +882,9 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \begin{macrocode}
 \newcommand{\pbinomios}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
-	\ifnumequal{#2}{0}{\errore{\Errore@uno}}
+	\ifnumequal{#2}{0}{\errore{\Erroreuno}}
 	{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
-	\ifnumequal{#3}{0}{\errore{\Errore@due}}{
+	\ifnumequal{#3}{0}{\errore{\Erroredue}}{
 		\ifnumgreater{#3}{0}{+#3}{#3}}}
 %    \end{macrocode}
 %\end{macro}
@@ -933,7 +933,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %
 %\begin{macro}{\ptrinomiop}
-%\changes{v1.0}{2022/06/25}{Versione iniziale}
+%\changes{v1.0}{2022/06/25}{Versione iniziale trinomio} 
 %    \begin{macrocode}
 \newcommand{\ptrinomiop}[4][]{
 	\pgfkeys{/mytrinomio, default, #1}%
@@ -942,7 +942,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \end{macrocode}
 %\end{macro}
 %
-%\begin{macro}{\ptrinomiosp}
+%\begin{macro}{\ptrinomiosp trinomio con parentesi e due incognite}
 %\changes{v1.0}{2022/06/25}{Versione iniziale}
 %    \begin{macrocode}
 \newcommand{\ptrinomiosp}[4][]{
@@ -953,12 +953,12 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\end{macro}
 %
 %\begin{macro}{\ptrisgabc}
-%\changes{v1.0}{2022/06/29}{Versione iniziale}
+%\changes{v1.0}{2022/06/29}{Versione iniziale trinomio secondo grado}
 %    \begin{macrocode}
 \newcommand{\ptrisgabc}[4][]{
 	\pgfkeys{/mytrinomiosecondog, default, #1}%
 	\pgfkeys{/myerrori, default}%
-	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
+	\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
 		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{#2\mytrioA^{2}}}}
 	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
 		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
@@ -968,12 +968,12 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %
 %\begin{macro}{\ptrisgacb}
-%\changes{v1.0}{2022/06/29}{Versione iniziale}
+%\changes{v1.0}{2022/06/29}{Versione iniziale trinomio secondo grado}
 %    \begin{macrocode}
 \newcommand{\ptrisgacb}[4][]{
 	\pgfkeys{/mytrinomiosecondog, default, #1}%
 	\pgfkeys{/myerrori, default}%
-	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
+	\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
 		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{#2\mytrioA^{2}}}}
 	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
 	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
@@ -983,14 +983,14 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %
 %\begin{macro}{\ptrisgbac}
-%\changes{v1.0}{2022/06/29}{Versione iniziale}
+%\changes{v1.0}{2022/06/29}{Versione iniziale trimonio secondo grado}
 %    \begin{macrocode}
 \newcommand{\ptrisgbac}[4][]{
 	\pgfkeys{/mytrinomiosecondog, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{\mytrioA}
 		{\ifnumequal{#3}{-1}{-\mytrioA}{#3\mytrioA}}}
-	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+	\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
 		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
 	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}}
 %    \end{macrocode}
@@ -998,13 +998,13 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %
 %\begin{macro}{\ptrisgcab}
-%\changes{v1.0}{2022/06/29}{Versione iniziale}
+%\changes{v1.0}{2022/06/29}{Versione iniziale trinomio secondo grado}
 %    \begin{macrocode}
 \newcommand{\ptrisgcab}[4][]{
 	\pgfkeys{/mytrinomiosecondog, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\ifnumequal{#4}{0}{}{#4}	
-	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+	\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
 		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
 	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
 		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}}
@@ -1013,7 +1013,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %
 %\begin{macro}{\ptrisgcba}
-%\changes{v1.0}{2022/06/29}{Versione iniziale}
+%\changes{v1.0}{2022/06/29}{Versione iniziale trinomio secondo grado}
 %    \begin{macrocode}
 \newcommand{\ptrisgcba}[4][]{
 	\pgfkeys{/mytrinomiosecondog, default, #1}%
@@ -1021,14 +1021,14 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 	\ifnumequal{#4}{0}{}{#4}	
 	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
 		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
-	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+	\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
 		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}}
 %    \end{macrocode}
 %\end{macro}
 %
 %
 %\begin{macro}{\ptrisgbca}
-%\changes{v1.0}{2022/06/29}{Versione iniziale}
+%\changes{v1.0}{2022/06/29}{Versione iniziale trinomio secondo grado}
 %    \begin{macrocode}
 \newcommand{\ptrisgbca}[4][]{
 	\pgfkeys{/mytrinomiosecondog, default, #1}%
@@ -1036,14 +1036,14 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 	\ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{\mytrioA}
 		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{#3\mytrioA}{#3\mytrioA}}}}
 	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}	
-	\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+	\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
 		{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}}
 %    \end{macrocode}
 %\end{macro}
 %
 %
 %\begin{macro}{\ptrisgm}
-%\changes{v1.0}{2022/06/29}{Versione iniziale}
+%\changes{v1.0}{2022/06/29}{Versione iniziale trinomio secondo grado}
 %    \begin{macrocode}
 \newcommand{\ptrisgm}[5][]{%
 	\ifcase #5%
@@ -1067,7 +1067,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %
 %\begin{macro}{\ptrispq}
-%\changes{v1.0}{2022/06/29}{Versione iniziale}
+%\changes{v1.0}{2022/06/29}{Versione iniziale trinomio secondo grado}
 %\changes{v1.1}{2022/06/30}{Corretto errore con fp se i parametri sono negativi}
 %    \begin{macrocode}
 \newcommand{\ptrisgpq}[3][]{
@@ -1082,7 +1082,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %
 %\begin{macro}{\ptrisgphi}
-%\changes{v1.0}{2022/06/30}{Versione iniziale}
+%\changes{v1.0}{2022/06/30}{Versione iniziale trinomio secondo grado}
 %    \begin{macrocode}
 \newcommand{\ptrisgphi}[2][]{%
 	\pgfkeys{/mytrinomiosecondog, default, #1}%
@@ -1095,7 +1095,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\end{macro}
 %
 %\begin{macro}{\pcirco}
-%\changes{v1.0}{2022/07/04}{Versione iniziale}
+%\changes{v1.0}{2022/07/04}{Versione iniziale Circonferenza}
 %    \begin{macrocode}
 \newcommand{\pcirco}[4][]{
 	\pgfkeys{/mycirc, default, #1}%
@@ -1110,7 +1110,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %
 %\begin{macro}{\ppara}
-%\changes{v1.0}{2022/07/04}{Versione iniziale}
+%\changes{v1.0}{2022/07/04}{Versione iniziale Parabola}
 %    \begin{macrocode}
 \newcommand{\ppara}[4][]{
 	\pgfkeys{/mypara, default, #1}%
