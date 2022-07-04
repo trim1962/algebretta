@@ -1,0 +1,122 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[debug]{coniche}
+%\newcommand{\pcirco}[4][]{
+%\pgfkeys{/myconcirc, default, #1}%
+%	\mytrioA^2+\mytrioB^2
+%\ifnumequal{#2}{0}{}{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{+\mytrioA}{+#2\mytrioA}}{\ifnumequal{#2}{-1}
+%		{-\mytrioA}{#2\mytrioA}}}
+%\ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioB}{+#3\mytrioB}}{\ifnumequal{#3}{-1}
+%		{-\mytrioB}{#3\mytrioB}}}
+%\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}=0
+%}
+%\newcommand{\pfncirco}[1][]{
+%	\pgfkeys{/myconcirc, default, #1}%
+%		\mytrioA^2+\mytrioB^2+a\mytrioA+b\mytrioB+c=0
+%}
+%\newcommand{\pfnpara}[1][]{
+%		\pgfkeys{/myconcirc, default, #1}%
+%		\mytrioB=a\mytrioA^2+b\mytrioA+c%
+%	}
+\pgfkeys{/myerrori/.is family, /myerrori,
+	default/.style = 
+	{
+		erroreuno =\space il parametro uno di pbinomio è zero,
+		erroredue =\space il parametro due  pbinomio è zero,
+		erroretre =\space il parametro $a$ è zero,
+	},
+	erroreuno/.estore in = \Erroreuno,
+	erroredue/.estore in = \Erroredue,
+	erroretre/.estore in = \Erroretre,
+}
+\newcommand{\ppara}[4][]{
+	\pgfkeys{/mypara, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\mytrioB=\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mytrioA^2}{#2\mytrioA^2}}}
+	{\ifnumequal{#2}{-1}{-\mytrioA^2}{#2\mytrioA^2}}
+    \ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioA}{+#3\mytrioA}}}
+{\ifnumequal{#3}{-1}{-\mytrioA}{#3\mytrioA}}
+\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}}
+\newcommand{\pfnellis}[1][]{
+	\pgfkeys{/myellis, default, #1}%
+\pgfkeys{/myerrori, default}%
+	\dfrac{\mytrioA^2}{a^2}+\dfrac{\mytrioB^2}{b^2}=1}
+\newcommand{\pellis}[3][]{
+		\pgfkeys{/myellis, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{\mytrioA^2}{\ifnumequal{#2}{-1}{\mytrioA^2}{
+\FPeval\resultaP{(#2)*(#2)}%
+\FPeval\resultaP{round(resultaP:0)}	
+\dfrac{\mytrioA^2}{\resultaP}}}}
+	\ifnumequal{#3}{0}{\errore{\Erroretre}}{\ifnumequal{#3}{1}{+\mytrioB^2}{\ifnumequal{#3}{-1}{+\mytrioB^2}{
+			\FPeval\resultaP{(#3)*(#3)}%
+			\FPeval\resultaP{round(resultaP:0)}	
+			+\dfrac{\mytrioB^2}{\resultaP}}}}=1%
+}
+\begin{document}
+$\pcirco{1}{2}{3}$
+
+$\pcirco{-1}{-2}{-3}$
+
+$\pcirco{0}{2}{3}$
+
+$\pcirco{2}{2}{3}$
+
+$\pcirco{-2}{-2}{-3}$
+
+$\pcirco{0}{2}{3}$
+
+$\pcirco{1}{2}{3}$
+
+$\pcirco{-1}{-2}{-3}$
+
+$\pcirco{0}{1}{3}$
+
+$\pcirco{0}{-1}{3}$
+
+$\pcirco{0}{-2}{-3}$
+
+$\pcirco[ptinc = t, stinc = s]{9}{2}{3}$
+
+$\pfncirco$
+
+$\pfncirco[ptinc = t, stinc = s]$
+
+
+$\pfnpara$
+
+$\pfnpara[ptinc = y, stinc = x]$
+
+$\ppara{1}{2}{3}$
+
+$\ppara{-1}{-1}{3}$
+
+$\ppara{-2}{1}{3}$
+
+$\ppara{2}{2}{3}$
+
+$\ppara{1}{-2}{3}$
+
+$\ppara{1}{2}{0}$
+
+$\ppara{-1}{-1}{1}$
+
+$\ppara{-2}{1}{-1}$
+
+$\ppara{2}{2}{-3}$
+
+$\ppara{1}{-2}{3}$
+
+$\pfnellis$
+
+$\pfnellis[ptinc = t, stinc = v]$
+
+$\pellis{1}{2}$
+
+$\pellis{-1}{2}$
+
+$\pellis{-2}{-2}$
+
+$\pellis{-1}{2}$
+
+$\pellis[ptinc = t, stinc = v]{10}{2}$
+\end{document}

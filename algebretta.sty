@@ -207,8 +207,7 @@ ptinc/.estore in = \mytrioA,
 {\ifnumequal{#2}{-1}{-\mytrioA^{2}}{#2\mytrioA^{2}}}}
 \ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
 {\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
-\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
-}
+\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}}
 \newcommand{\ptrisgacb}[4][]{
 \pgfkeys{/mytrinomiosecondog, default, #1}%
 \pgfkeys{/myerrori, default}%
@@ -216,8 +215,7 @@ ptinc/.estore in = \mytrioA,
 {\ifnumequal{#2}{-1}{-\mytrioA^{2}}{#2\mytrioA^{2}}}}
 \ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
 \ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
-{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
-}
+{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}}
 \newcommand{\ptrisgbac}[4][]{
 \pgfkeys{/mytrinomiosecondog, default, #1}%
 \pgfkeys{/myerrori, default}%
@@ -225,8 +223,7 @@ ptinc/.estore in = \mytrioA,
 {\ifnumequal{#3}{-1}{-\mytrioA}{#3\mytrioA}}}
 \ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
 {\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
-\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
-}
+\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}}
 \newcommand{\ptrisgcab}[4][]{
 \pgfkeys{/mytrinomiosecondog, default, #1}%
 \pgfkeys{/myerrori, default}%
@@ -234,8 +231,7 @@ ptinc/.estore in = \mytrioA,
 \ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
 {\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
 \ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
-{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
-}
+{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}}
 \newcommand{\ptrisgcba}[4][]{
 \pgfkeys{/mytrinomiosecondog, default, #1}%
 \pgfkeys{/myerrori, default}%
@@ -243,8 +239,7 @@ ptinc/.estore in = \mytrioA,
 \ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
 {\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
 \ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
-{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
-}
+{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}}
 \newcommand{\ptrisgbca}[4][]{
 \pgfkeys{/mytrinomiosecondog, default, #1}%
 \pgfkeys{/myerrori, default}%
@@ -252,26 +247,24 @@ ptinc/.estore in = \mytrioA,
 {\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{#3\mytrioA}{#3\mytrioA}}}}
 \ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}} 
 \ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
-{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
-}
+{\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}}
 \newcommand{\ptrisgm}[5][]{%
 \ifcase #5%
-\ptrisgabc{#1}{#2}{#3}{#4}%0 abc
+\ptrisgabc[#1]{#2}{#3}{#4}%0 abc
 \or
-\ptrisgacb{#1}{#2}{#3}{#4}%1 acb
+\ptrisgacb[#1]{#2}{#3}{#4}%1 acb
 \or
-\ptrisgbac{#1}{#2}{#3}{#4}%2 bac
+\ptrisgbac[#1]{#2}{#3}{#4}%2 bac
 \or
-\ptrisgbca{#1}{#2}{#3}{#4}%3 bca
+\ptrisgbca[#1]{#2}{#3}{#4}%3 bca
 \or
-\ptrisgcab{#1}{#2}{#3}{#4}%4 cab
+\ptrisgcab[#1]{#2}{#3}{#4}%4 cab
 \or
-\ptrisgcba{#1}{#2}{#3}{#4}%5 cba
+\ptrisgcba[#1]{#2}{#3}{#4}%5 cba
 \fi
 \FPeval\resultaP{#3*#3-4*#2*#4}%
 \FPeval\resultaP{round(resultaP:0)}
-\PackageWarning{trisecg}{\FPprint‌\resultaP}
-}%
+\PackageWarning{trisecg}{\FPprint‌\resultaP}}%
 \newcommand{\ptrisgpq}[3][]{
 \pgfkeys{/mytrinomiosecondog, default, #1}%
 \pgfkeys{/myerrori, default}%

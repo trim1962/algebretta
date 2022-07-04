@@ -1,0 +1,82 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{coniche}
+[2022/06/03 v1.0 creazione binomi trinomi]
+\RequirePackage{pgfkeys}
+\RequirePackage{etoolbox}
+\RequirePackage{fp}
+\RequirePackage{amsmath}
+\pgfkeys{/myerrori/.is family, /myerrori,
+	default/.style = 
+{
+	erroreuno =\space il parametro uno di pbinomio è zero,
+	erroredue =\space il parametro due  pbinomio è zero,
+	erroretre =\space il parametro $a$ è zero,
+},
+	erroreuno/.estore in = \Erroreuno,
+	erroredue/.estore in = \Erroredue,
+	erroretre/.estore in = \Erroretre,
+}
+\newcommand{\errore}[1]{}
+
+\DeclareOption{warning}{\renewcommand{\errore}[1]{\PackageWarning{coniche}{#1}}}
+\DeclareOption{debug}{\renewcommand{\errore}[1]{\PackageError{coniche}{#1}{}}}
+\DeclareOption*{\PackageWarning{coniche}{Il parametro ‘\CurrentOption’ è 
+sconosciuto}}
+\ProcessOptions\relax
+\pgfkeys{
+	/mybinomio/.is family, /mybinomio,
+	default/.style =
+	{pbinc = x, sbinc = y},
+	pbinc/.estore in = \mybinoA,
+	sbinc/.estore in = \mybinoB,
+	/mytrinomio/.is family, /mytrinomio,
+	default/.style =
+	{ptinc = x, stinc = y, ttinc = z},
+	ptinc/.estore in = \mytrioA,
+	stinc/.estore in = \mytrioB,
+	ttinc/.estore in = \mytrioC,
+	/mytrinomios/.is family, /mytrinomios,
+	default/.style =
+	{ptinc = x, stinc = y},
+	ptinc/.estore in = \mytrioA,
+	stinc/.estore in = \mytrioB,
+	/mytrinomiosecondog/.is family, /mytrinomiosecondog,
+	default/.style = 
+	{ptinc = x},
+	ptinc/.estore in = \mytrioA,
+	/mycirc/.is family, /mycirc,
+	default/.style =
+	{ptinc = x, stinc = y},
+	ptinc/.estore in = \mytrioA,
+	stinc/.estore in = \mytrioB,
+	/mypara/.is family, /mypara,
+	default/.style =
+	{ptinc = x, stinc = y},
+	ptinc/.estore in = \mytrioA,
+	stinc/.estore in = \mytrioB,
+	/myellis/.is family, /myellis,
+	default/.style =
+	{ptinc = x, stinc = y},
+	ptinc/.estore in = \mytrioA,
+	stinc/.estore in = \mytrioB,
+}
+\newcommand{\pcirco}[4][]{
+	\pgfkeys{/mycirc, default, #1}%
+	\mytrioA^2+\mytrioB^2
+	\ifnumequal{#2}{0}{}{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{+\mytrioA}{+#2\mytrioA}}{\ifnumequal{#2}{-1}
+			{-\mytrioA}{#2\mytrioA}}}
+	\ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioB}{+#3\mytrioB}}{\ifnumequal{#3}{-1}
+			{-\mytrioB}{#3\mytrioB}}}
+	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}=0
+}
+\newcommand{\pfncirco}[1][]{
+	\pgfkeys{/mycirc, default, #1}%
+	\mytrioA^2+\mytrioB^2+a\mytrioA+b\mytrioB+c=0%
+}
+
+\newcommand{\pfnpara}[1][]{
+	\pgfkeys{/mypara, default, #1}%
+	\mytrioB=a\mytrioA^2+b\mytrioA+c%
+}
+
+\endinput
