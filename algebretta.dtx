@@ -627,6 +627,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\marg{b}
 %\marg{c}
 %
+%
 %\DescribeMacro{\ppara}
 %
 %Comando per scrivere una equazione di una parabola nella forma 
@@ -641,7 +642,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %\DescribeMacro{\pellis}
 %
-%Comando per scrivere una equazione di una parabola nella forma 
+%Comando per scrivere una equazione di una ellisse nella forma 
 %
 % $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$
 %
@@ -650,6 +651,14 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\marg{a}
 %\marg{b}
 %
+%\DescribeMacro{\pfncirco}
+%
+%Comando per scrivere una equazione di una ciconferenza in forma normale 
+%
+% $x^2+y^2+ax+ay+c=0$
+%
+%\cs{\pfncirco}
+%\oarg{ptinc = x, stinc = y}
 %
 %\StopEventually{^^A
 %  \newpage
@@ -1158,6 +1167,19 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 }
 %    \end{macrocode}
 %\end{macro}
+%
+%
+%
+%
+%\begin{macro}{\pfncirco}
+%\changes{v1.0}{2022/07/04}{Versione iniziale forma normale circonferenza}
+%    \begin{macrocode}
+\newcommand{\pfncirco}[1][]{
+	\pgfkeys{/mycirc, default, #1}%
+	\mytrioA^2+\mytrioB^2+a\mytrioA+b\mytrioB+c=0}%
+%    \end{macrocode}
+%\end{macro}
+%
 %
 %    \begin{macrocode}
 %</package>
