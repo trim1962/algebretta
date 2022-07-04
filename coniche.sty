@@ -78,5 +78,9 @@ sconosciuto}}
 	\pgfkeys{/mypara, default, #1}%
 	\mytrioB=a\mytrioA^2+b\mytrioA+c%
 }
+\newcommand{\pfnellis}[1][]{
+	\pgfkeys{/myellis, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\dfrac{\mytrioA^2}{a^2}+\dfrac{\mytrioB^2}{b^2}=1}
 
 \endinput
