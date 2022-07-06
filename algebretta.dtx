@@ -648,18 +648,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\oarg{ptinc = x, stinc = y}
 %\marg{a}
 %\marg{b}
-%
-%
-%\DescribeMacro{\pfncirco}
-%
-%Comando per scrivere l'equazione di una circonferenza in forma normale 
-%
-% $x^2+y^2+ax+ay+c=0$
-%
-%\cs{pfncirco}
-%\oarg{ptinc = x, stinc = y}
-%
-%
+
 %\DescribeMacro{\piperassex}
 %
 %Comando per scrivere l'equazione di un'iperbole nella forma 
@@ -681,6 +670,26 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\oarg{ptinc = x, stinc = y}
 %\marg{a}
 %\marg{b}
+%
+%\DescribeMacro{\piperequiassex}
+%
+%Comando per scrivere l'equazione di un'iperbole nella forma 
+%
+% $x^2-y^2=a^2$
+%
+%\cs{piperequiassex}
+%\oarg{ptinc = x, stinc = y}
+%\marg{a}
+%
+%\DescribeMacro{\pfncirco}
+%
+%Comando per scrivere l'equazione di una circonferenza in forma normale 
+%
+% $x^2+y^2+ax+ay+c=0$
+%
+%\cs{pfncirco}
+%\oarg{ptinc = x, stinc = y}
+%
 %
 %
 %\DescribeMacro{\pfnpara}
@@ -1263,6 +1272,20 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 				\FPeval\resultaP{(#3)*(#3)}%
 				\FPeval\resultaP{round(resultaP:0)}	
 				-\dfrac{\mytrioB^2}{\resultaP}}}}=-1%
+}
+%    \end{macrocode}
+%\end{macro}
+%
+%
+%\begin{macro}{\piperequiassex}
+%\changes{v1.0}{2022/07/06}{Versione iniziale forma normale ellisse}
+%    \begin{macrocode}
+\newcommand{\piperequiassex}[2][]{
+	\pgfkeys{/myiper, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\FPeval\resultaP{(#2)*(#2)}%
+	\FPeval\resultaP{round(resultaP:0)}
+	\mytrioA^2-\mytrioB^2=\resultaP%
 }
 %    \end{macrocode}
 %\end{macro}
