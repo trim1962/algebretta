@@ -777,15 +777,15 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 }
 %    \end{macrocode}
 %    \begin{macrocode}
-\newcommand{\parte@Abin}[1]{\ifnumcomp{#1}{>}{0}
+\newcommand{\parteAbin}[1]{\ifnumcomp{#1}{>}{0}
 	{\ifnumcomp{#1}{=}{1}{x}{#1x}}{\ifnumcomp{#1}{=}{-1}{-x}{#1x}}}
-\newcommand{\parte@Bbin}[1]{\ifnumcomp{#1}{>}{0}{+#1}{#1}}
+\newcommand{\parteBbin}[1]{\ifnumcomp{#1}{>}{0}{+#1}{#1}}
 %    \end{macrocode}
 %\begin{macro}{\binomio}
 %\changes{v1.0}{2022/06/21}{Versione iniziale}
 %    \begin{macrocode}
 \newcommand{\binomio}[2]{\ifnumcomp{#1}{>}{0}
-	{\parte@Abin{#1}\parte@Bbin{#2}}{#2\parte@Abin{#1}}}
+	{\parteAbin{#1}\parteBbin{#2}}{#2\parteAbin{#1}}}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -793,7 +793,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\changes{v1.0}{2022/06/21}{Versione iniziale}
 %    \begin{macrocode}
 		\newcommand{\binomiop}[2]{\ifnumcomp{#1}{>}{0}
-			{(\parte@Abin{#1}\parte@Bbin{#2})}{(#2\parte@Abin{#1})}}
+			{(\parteAbin{#1}\parteBbin{#2})}{(#2\parteAbin{#1})}}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -808,26 +808,26 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\end{macro}
 %
 %    \begin{macrocode}
-\newcommand{\parte@AtriSecabc}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
+\newcommand{\parteAtriSecabc}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
 	{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}
 			{x^{2}}{#1x^{2}}}%
 		{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}
-\newcommand{\parte@BtriSecabc}[1]{%
+\newcommand{\parteBtriSecabc}[1]{%
 	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{\ifnumequal{#1}{1}{+x}{+#1x}}
 		{\ifnumequal{#1}{-1}{-x}{#1x}}}%
 }
-\newcommand{\parte@CtriSecabc}[1]{%
+\newcommand{\parteCtriSecabc}[1]{%
 	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{+#1}{#1}}%
 }
-\newcommand{\parte@AtriSecbac}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
+\newcommand{\parteAtriSecbac}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
 	{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}
 			{+x^{2}}{+#1x^{2}}}%
 		{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}
-\newcommand{\parte@BtriSecbac}[1]{%
+\newcommand{\parteBtriSecbac}[1]{%
 	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{\ifnumequal{#1}{1}{x}{#1x}}
 		{\ifnumequal{#1}{-1}{-x}{#1x}}}%
 }
-\newcommand{\parte@CtriSeccab}[1]{%
+\newcommand{\parteCtriSeccab}[1]{%
 	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{#1}{#1}}%
 }
 %    \end{macrocode}
@@ -836,17 +836,17 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \begin{macrocode}
 \newcommand{\newtrinomioSecGrad}[4]{%
 	\ifcase #4%
-	\parte@AtriSecabc{#1}\parte@BtriSecabc{#2}\parte@CtriSecabc{#3}%1 abc
+	\parteAtriSecabc{#1}\parteBtriSecabc{#2}\parteCtriSecabc{#3}%1 abc
 	\or
-	\parte@AtriSecabc{#1}\parte@CtriSecabc{#3}\parte@BtriSecabc{#2}%2 acb
+	\parteAtriSecabc{#1}\parteCtriSecabc{#3}\parteBtriSecabc{#2}%2 acb
 	\or
-	\parte@BtriSecbac{#2}\parte@AtriSecbac{#1}\parte@CtriSecabc{#3}%3 bac
+	\parteBtriSecbac{#2}\parteAtriSecbac{#1}\parteCtriSecabc{#3}%3 bac
 	\or
-	\parte@BtriSecbac{#2}\parte@CtriSecabc{#3}\parte@AtriSecbac{#1}%4 bca
+	\parteBtriSecbac{#2}\parteCtriSecabc{#3}\parteAtriSecbac{#1}%4 bca
 	\or
-	\parte@CtriSeccab{#3}\parte@AtriSecbac{#1}\parte@BtriSecabc{#2}%5 cab
+	\parteCtriSeccab{#3}\parteAtriSecbac{#1}\parteBtriSecabc{#2}%5 cab
 	\or
-	\parte@CtriSeccab{#3}\parte@BtriSecabc{#2}\parte@AtriSecbac{#1}%6 cba
+	\parteCtriSeccab{#3}\parteBtriSecabc{#2}\parteAtriSecbac{#1}%6 cba
 	\fi
 }%
 %    \end{macrocode}
@@ -855,18 +855,18 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\begin{macro}{\trimonioSecGrad}
 %\changes{v1.0}{2022/06/21}{Versione iniziale}
 %    \begin{macrocode}
-\newcommand{\parte@AtriSec}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
+\newcommand{\parteAtriSec}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
 	{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}%
 			{x^{2}}{#1x^{2}}}%
 		{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}%
-\newcommand{\parte@BtriSec}[1]{%
+\newcommand{\parteBtriSec}[1]{%
 	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{\ifnumequal{#1}{1}{+x}{+#1x}}
 		{\ifnumequal{#1}{-1}{-x}{#1x}}}%
 }
-\newcommand{\parte@CtriSec}[1]{%
+\newcommand{\parteCtriSec}[1]{%
 	\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{+#1}{#1}}%
 }
-\newcommand{\trimonioSecGrad}[3]{\parte@AtriSec{#1}\parte@BtriSec{#2}\parte@CtriSec{#3}}%
+\newcommand{\trimonioSecGrad}[3]{\parteAtriSec{#1}\parteBtriSec{#2}\parteCtriSec{#3}}%
 %    \end{macrocode}
 %\end{macro}
 %
@@ -898,38 +898,38 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\end{macro}
 %
 %    \begin{macrocode}
-\newcommand{\parte@Arettaimplicita}[1]{
+\newcommand{\parteArettaimplicita}[1]{
 	\ifnumequal{#1}{0}{}{
 		\ifnumgreater{#1}{0}{
 			\ifnumequal{#1}{1}{x}{#1x}}{
 			\ifnumequal{#1}{-1}{-x}{#1x}}}}
-\newcommand{\parte@BrettaimplicitaA}[1]{
+\newcommand{\parteBrettaimplicitaA}[1]{
 	\ifnumequal{#1}{0}{}{
 	\ifnumgreater{#1}{0}{
 	\ifnumequal{#1}{1}{y}{+#1y}}{
 	\ifnumequal{#1}{-1}{-y}{#1y}}}}
-\newcommand{\parte@BrettaimplicitaB}[1]{
+\newcommand{\parteBrettaimplicitaB}[1]{
 	\ifnumequal{#1}{0}{}{
 		\ifnumgreater{#1}{0}{
 			\ifnumequal{#1}{1}{+y}{+#1y}}{
 			\ifnumequal{#1}{-1}{-y}{#1y}}}}
-\newcommand{\parte@Crettaimplicita}[1]{
+\newcommand{\parteCrettaimplicita}[1]{
 	\ifnumequal{#1}{0}{}{
 	\ifnumgreater{#1}{0}{+#1}{#1}}}
 %    \end{macrocode}
 %\begin{macro}{\rettaimplicita}
 %\changes{v1.0}{2022/06/21}{Versione iniziale}
 %    \begin{macrocode}
-\newcommand{\rettaimplicita}[3]{\parte@Arettaimplicita{#1}
-	\ifnumequal{#1}{0}{\parte@BrettaimplicitaA{#2}}{\parte@BrettaimplicitaB{#2}}
-	\parte@Crettaimplicita{#3}=0}
+\newcommand{\rettaimplicita}[3]{\parteArettaimplicita{#1}
+	\ifnumequal{#1}{0}{\parteBrettaimplicitaA{#2}}{\parteBrettaimplicitaB{#2}}
+	\parteCrettaimplicita{#3}=0}
 %    \end{macrocode}
 %\end{macro}
 %
 %\begin{macro}{\rettaesplicita}
 %\changes{v1.0}{2022/06/21}{Versione iniziale}
 %    \begin{macrocode}
-\newcommand{\rettaesplicita}[2]{y=\parte@Arettaimplicita{#1}\parte@Crettaimplicita{#2}}
+\newcommand{\rettaesplicita}[2]{y=\parteArettaimplicita{#1}\parteCrettaimplicita{#2}}
 %    \end{macrocode}
 %\end{macro}
 %
