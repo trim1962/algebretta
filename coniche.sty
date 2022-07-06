@@ -59,6 +59,11 @@ sconosciuto}}
 	{ptinc = x, stinc = y},
 	ptinc/.estore in = \mytrioA,
 	stinc/.estore in = \mytrioB,
+	/myiper/.is family, /myiper,
+	default/.style =
+	{ptinc = x, stinc = y},
+	ptinc/.estore in = \mytrioA,
+	stinc/.estore in = \mytrioB,
 }
 \newcommand{\pcirco}[4][]{
 	\pgfkeys{/mycirc, default, #1}%

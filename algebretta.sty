@@ -29,9 +29,9 @@ erroreuno =\space il parametro uno di pbinomio è zero,
 erroredue =\space il parametro due  pbinomio è zero,
 erroretre =\space il parametro $a$ è zero,
 },
-erroreuno/.estore in = \Errore@uno,
-erroredue/.estore in = \Errore@due,
-erroretre/.estore in = \Errore@tre,
+erroreuno/.estore in = \Erroreuno,
+erroredue/.estore in = \Erroredue,
+erroretre/.estore in = \Erroretre,
 }
 \newcommand{\errore}[1]{}
 
@@ -61,6 +61,21 @@ stinc/.estore in = \mytrioB,
 default/.style =
 {ptinc = x},
 ptinc/.estore in = \mytrioA,
+/mycirc/.is family, /mycirc,
+default/.style =
+{ptinc = x, stinc = y},
+ptinc/.estore in = \mytrioA,
+stinc/.estore in = \mytrioB,
+/mypara/.is family, /mypara,
+default/.style =
+{ptinc = x, stinc = y},
+ptinc/.estore in = \mytrioA,
+stinc/.estore in = \mytrioB,
+/myellis/.is family, /myellis,
+default/.style =
+{ptinc = x, stinc = y},
+ptinc/.estore in = \mytrioA,
+stinc/.estore in = \mytrioB,
 }
 \newcommand{\parte@Abin}[1]{\ifnumcomp{#1}{>}{0}
 {\ifnumcomp{#1}{=}{1}{x}{#1x}}{\ifnumcomp{#1}{=}{-1}{-x}{#1x}}}
@@ -161,16 +176,16 @@ ptinc/.estore in = \mytrioA,
 \newcommand{\rettaesplicita}[2]{y=\parte@Arettaimplicita{#1}\parte@Crettaimplicita{#2}}
 \newcommand{\pbinomio}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
-\ifnumequal{#2}{0}{\errore{\Errore@uno}}
+\ifnumequal{#2}{0}{\errore{\Erroreuno}}
 {\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
-\ifnumequal{#3}{0}{\errore{\Errore@due}}{
+\ifnumequal{#3}{0}{\errore{\Erroredue}}{
 \ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mybinoB}{+#3\mybinoB}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
 }
 \newcommand{\pbinomios}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
-\ifnumequal{#2}{0}{\errore{\Errore@uno}}
+\ifnumequal{#2}{0}{\errore{\Erroreuno}}
 {\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
-\ifnumequal{#3}{0}{\errore{\Errore@due}}{
+\ifnumequal{#3}{0}{\errore{\Erroredue}}{
 \ifnumgreater{#3}{0}{+#3}{#3}}}
 \newcommand{\pbinomiop}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
@@ -196,6 +211,7 @@ ptinc/.estore in = \mytrioA,
 \pgfkeys{/mytrinomio, default, #1}%
 (\ptrinomio[#1]{#2}{#3}{#4})
 }
+%%%incognite}
 \newcommand{\ptrinomiosp}[4][]{
 \pgfkeys{/mytrinomios, default, #1}%
 (\ptrinomios[#1]{#2}{#3}{#4})
@@ -203,7 +219,7 @@ ptinc/.estore in = \mytrioA,
 \newcommand{\ptrisgabc}[4][]{
 \pgfkeys{/mytrinomiosecondog, default, #1}%
 \pgfkeys{/myerrori, default}%
-\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
+\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
 {\ifnumequal{#2}{-1}{-\mytrioA^{2}}{#2\mytrioA^{2}}}}
 \ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
 {\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
@@ -211,7 +227,7 @@ ptinc/.estore in = \mytrioA,
 \newcommand{\ptrisgacb}[4][]{
 \pgfkeys{/mytrinomiosecondog, default, #1}%
 \pgfkeys{/myerrori, default}%
-\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
+\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{\mytrioA^{2}}
 {\ifnumequal{#2}{-1}{-\mytrioA^{2}}{#2\mytrioA^{2}}}}
 \ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
 \ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
@@ -221,14 +237,14 @@ ptinc/.estore in = \mytrioA,
 \pgfkeys{/myerrori, default}%
 \ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{\mytrioA}
 {\ifnumequal{#3}{-1}{-\mytrioA}{#3\mytrioA}}}
-\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
 {\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
 \ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}}
 \newcommand{\ptrisgcab}[4][]{
 \pgfkeys{/mytrinomiosecondog, default, #1}%
 \pgfkeys{/myerrori, default}%
 \ifnumequal{#4}{0}{}{#4} 
-\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
 {\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}
 \ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
 {\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}}
@@ -238,7 +254,7 @@ ptinc/.estore in = \mytrioA,
 \ifnumequal{#4}{0}{}{#4} 
 \ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{+\mytrioA}
 {\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}
-\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
 {\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}}
 \newcommand{\ptrisgbca}[4][]{
 \pgfkeys{/mytrinomiosecondog, default, #1}%
@@ -246,7 +262,7 @@ ptinc/.estore in = \mytrioA,
 \ifnumequal{#3}{0}{}{\ifnumequal{#3}{1}{\mytrioA}
 {\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{#3\mytrioA}{#3\mytrioA}}}}
 \ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}} 
-\ifnumequal{#2}{0}{\errore{\Errore@tre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
+\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{+\mytrioA^{2}}
 {\ifnumequal{#2}{-1}{-\mytrioA^{2}}{+#2\mytrioA^{2}}}}}
 \newcommand{\ptrisgm}[5][]{%
 \ifcase #5%
@@ -278,6 +294,67 @@ ptinc/.estore in = \mytrioA,
 \FPeval\resultaP{(-1)*(#2)*(#2)}%
 \FPeval\resultaP{round(resultaP:0)}
 \ptrisgabc[#1]{1}{#2}{\resultaP}
+}
+\newcommand{\pcirco}[4][]{
+\pgfkeys{/mycirc, default, #1}%
+\mytrioA^2+\mytrioB^2
+\ifnumequal{#2}{0}{}{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{+\mytrioA}{+#2\mytrioA}}{\ifnumequal{#2}{-1}
+{-\mytrioA}{#2\mytrioA}}}
+\ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioB}{+#3\mytrioB}}{\ifnumequal{#3}{-1}
+{-\mytrioB}{#3\mytrioB}}}
+\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}=0}
+\newcommand{\ppara}[4][]{
+\pgfkeys{/mypara, default, #1}%
+\pgfkeys{/myerrori, default}%
+\mytrioB=\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mytrioA^2}{#2\mytrioA^2}}}
+{\ifnumequal{#2}{-1}{-\mytrioA^2}{#2\mytrioA^2}}
+\ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioA}{+#3\mytrioA}}}
+{\ifnumequal{#3}{-1}{-\mytrioA}{#3\mytrioA}}
+\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}}
+\newcommand{\pellis}[3][]{
+\pgfkeys{/myellis, default, #1}%
+\pgfkeys{/myerrori, default}%
+\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{\mytrioA^2}{\ifnumequal{#2}{-1}{\mytrioA^2}{
+\FPeval\resultaP{(#2)*(#2)}%
+\FPeval\resultaP{round(resultaP:0)} 
+\dfrac{\mytrioA^2}{\resultaP}}}}
+\ifnumequal{#3}{0}{\errore{\Erroretre}}{\ifnumequal{#3}{1}{+\mytrioB^2}{\ifnumequal{#3}{-1}{+\mytrioB^2}{
+\FPeval\resultaP{(#3)*(#3)}%
+\FPeval\resultaP{round(resultaP:0)} 
++\dfrac{\mytrioB^2}{\resultaP}}}}=1%
+}
+\newcommand{\pfncirco}[1][]{
+\pgfkeys{/mycirc, default, #1}%
+\mytrioA^2+\mytrioB^2+a\mytrioA+b\mytrioB+c=0}%
+\newcommand{\pfnpara}[1][]{
+\pgfkeys{/mypara, default, #1}%
+\mytrioB=a\mytrioA^2+b\mytrioA+c}%
+\newcommand{\pfnellis}[1][]{
+\pgfkeys{/myellis, default, #1}%
+\dfrac{\mytrioA^2}{a^2}+\dfrac{\mytrioB^2}{b^2}=1}%
+\newcommand{\piperassex}[3][]{
+\pgfkeys{/myiper, default, #1}%
+\pgfkeys{/myerrori, default}%
+\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{\mytrioA^2}{\ifnumequal{#2}{-1}{\mytrioA^2}{
+\FPeval\resultaP{(#2)*(#2)}%
+\FPeval\resultaP{round(resultaP:0)} 
+\dfrac{\mytrioA^2}{\resultaP}}}}
+\ifnumequal{#3}{0}{\errore{\Erroretre}}{\ifnumequal{#3}{1}{-\mytrioB^2}{\ifnumequal{#3}{-1}{-\mytrioB^2}{
+\FPeval\resultaP{(#3)*(#3)}%
+\FPeval\resultaP{round(resultaP:0)} 
+-\dfrac{\mytrioB^2}{\resultaP}}}}=1%
+}
+\newcommand{\piperassey}[3][]{
+\pgfkeys{/myiper, default, #1}%
+\pgfkeys{/myerrori, default}%
+\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{\mytrioA^2}{\ifnumequal{#2}{-1}{\mytrioA^2}{
+\FPeval\resultaP{(#2)*(#2)}%
+\FPeval\resultaP{round(resultaP:0)} 
+\dfrac{\mytrioA^2}{\resultaP}}}}
+\ifnumequal{#3}{0}{\errore{\Erroretre}}{\ifnumequal{#3}{1}{-\mytrioB^2}{\ifnumequal{#3}{-1}{-\mytrioB^2}{
+\FPeval\resultaP{(#3)*(#3)}%
+\FPeval\resultaP{round(resultaP:0)} 
+-\dfrac{\mytrioB^2}{\resultaP}}}}=-1%
 }
 %% 
 %% Copyright (C) 2022 by Claudio Duchi

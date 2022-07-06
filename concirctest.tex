@@ -36,10 +36,8 @@
     \ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioA}{+#3\mytrioA}}}
 {\ifnumequal{#3}{-1}{-\mytrioA}{#3\mytrioA}}
 \ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}}
-\newcommand{\pfnellis}[1][]{
-	\pgfkeys{/myellis, default, #1}%
-\pgfkeys{/myerrori, default}%
-	\dfrac{\mytrioA^2}{a^2}+\dfrac{\mytrioB^2}{b^2}=1}
+
+
 \newcommand{\pellis}[3][]{
 		\pgfkeys{/myellis, default, #1}%
 	\pgfkeys{/myerrori, default}%
@@ -51,6 +49,44 @@
 			\FPeval\resultaP{(#3)*(#3)}%
 			\FPeval\resultaP{round(resultaP:0)}	
 			+\dfrac{\mytrioB^2}{\resultaP}}}}=1%
+}
+\newcommand{\piperassex}[3][]{
+	\pgfkeys{/myiper, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{\mytrioA^2}{\ifnumequal{#2}{-1}{\mytrioA^2}{
+				\FPeval\resultaP{(#2)*(#2)}%
+				\FPeval\resultaP{round(resultaP:0)}	
+				\dfrac{\mytrioA^2}{\resultaP}}}}
+	\ifnumequal{#3}{0}{\errore{\Erroretre}}{\ifnumequal{#3}{1}{-\mytrioB^2}{\ifnumequal{#3}{-1}{-\mytrioB^2}{
+				\FPeval\resultaP{(#3)*(#3)}%
+				\FPeval\resultaP{round(resultaP:0)}	
+				-\dfrac{\mytrioB^2}{\resultaP}}}}=1%
+}
+\newcommand{\piperassey}[3][]{
+	\pgfkeys{/myiper, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumequal{#2}{1}{\mytrioA^2}{\ifnumequal{#2}{-1}{\mytrioA^2}{
+				\FPeval\resultaP{(#2)*(#2)}%
+				\FPeval\resultaP{round(resultaP:0)}	
+				\dfrac{\mytrioA^2}{\resultaP}}}}
+	\ifnumequal{#3}{0}{\errore{\Erroretre}}{\ifnumequal{#3}{1}{-\mytrioB^2}{\ifnumequal{#3}{-1}{-\mytrioB^2}{
+				\FPeval\resultaP{(#3)*(#3)}%
+				\FPeval\resultaP{round(resultaP:0)}	
+				-\dfrac{\mytrioB^2}{\resultaP}}}}=-1%
+}
+\newcommand{\iperequiassex}[2][]{
+	\pgfkeys{/myiper, default, #1}%
+\pgfkeys{/myerrori, default}%
+	\FPeval\resultaP{(#2)*(#2)}%
+\FPeval\resultaP{round(resultaP:0)}
+\mytrioA^2-\mytrioB^2=\resultaP%
+}
+\newcommand{\iperequiassey}[2][]{
+	\pgfkeys{/myiper, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\FPeval\resultaP{(#2)*(#2)}%
+	\FPeval\resultaP{round(resultaP:0)}
+	\mytrioA^2-\mytrioB^2=-\resultaP%
 }
 \begin{document}
 $\pcirco{1}{2}{3}$
@@ -119,4 +155,27 @@ $\pellis{-2}{-2}$
 $\pellis{-1}{2}$
 
 $\pellis[ptinc = t, stinc = v]{10}{2}$
+
+
+$\piperassex{1}{2}$
+
+$\piperassex{-1}{2}$
+
+$\piperassex{-2}{-2}$
+
+$\piperassex{-1}{2}$
+
+$\piperassex[ptinc = t, stinc = v]{10}{2}$
+
+$\iperequiassex{1}$
+
+$\iperequiassex{-11}$
+
+$\iperequiassex[ptinc = t, stinc = v]{1}$
+
+$\iperequiassey{1}$
+
+$\iperequiassey{-11}$
+
+$\iperequiassey[ptinc = t, stinc = v]{1}$
 \end{document}
