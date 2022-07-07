@@ -369,6 +369,77 @@ $\pbinomios[pbinc=a^2]{-2}{3}+\pbinomios{1}{-3}$
 %$\pbinomios[pbinc=a^2]{-2}{3}+\pbinomios{1}{-3}$
 %
 %
+%\DescribeMacro{\pbinomioie}
+%Comando per scrivere un binomio nella forma 
+% $a\sqrt{b}x+c$\sqrt{d}y$
+%
+%Se i coeffficienti   sono zero non viene stampato nulla
+%
+%\cs{pbinomioie}
+%\oarg{pbinc=x, sbinc=y}
+%\marg{a}
+%\marg{b}
+%\marg{c}
+%\marg{d}
+%
+%Esempi
+%
+% \iffalse
+%<*verb>
+% \fi
+\begin{verbatim}
+$\pbinomioie{0}{1}{0}{1}$
+
+$\pbinomioie{1}{0}{1}{0}$
+
+$\pbinomioie{1}{-1}{1}{-1}$
+
+$\pbinomioie{1}{1}{1}{1}$
+
+$\pbinomioie{1}{2}{1}{2}$
+
+$\pbinomioie{2}{1}{2}{1}$
+
+$\pbinomioie{2}{2}{2}{2}$
+
+$\pbinomioie{-1}{2}{-1}{2}$
+
+$\pbinomioie{-1}{1}{-1}{1}$
+
+$\pbinomioie{-2}{1}{-2}{1}$
+
+$\pbinomioie{-2}{3}{-2}{3}$
+
+$\pbinomioie[pbinc = u, sbinc = v]{-2}{3}{-2}{3}$
+\end{verbatim}
+% \iffalse
+%</verb>
+% \fi
+%$\pbinomioie{0}{1}{0}{1}$
+%
+%$\pbinomioie{1}{0}{1}{0}$
+%
+%$\pbinomioie{1}{-1}{1}{-1}$
+%
+%$\pbinomioie{1}{1}{1}{1}$
+%
+%$\pbinomioie{1}{2}{1}{2}$
+%
+%$\pbinomioie{2}{1}{2}{1}$
+%
+%$\pbinomioie{2}{2}{2}{2}$
+%
+%$\pbinomioie{-1}{2}{-1}{2}$
+%
+%$\pbinomioie{-1}{1}{-1}{1}$
+%
+%$\pbinomioie{-2}{1}{-2}{1}$
+%
+%$\pbinomioie{-2}{3}{-2}{3}$
+%
+%$\pbinomioie[pbinc = u, sbinc = v]{-2}{3}{-2}{3}$
+%
+%
 %\DescribeMacro{\ptrinomio}
 %Comando per scrivere un binomio nella forma 
 % $ax+by+cz$
@@ -1006,6 +1077,27 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 \newcommand{\pbinomiop}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	(\pbinomio[#1]{#2}{#3})
+}
+%    \end{macrocode}
+%\end{macro}
+%
+%\begin{macro}{\pbinomioie}
+%\changes{v1.0}{2022/07/07}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\pbinomioie}[5][]{
+	\pgfkeys{/mybinomio, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#2}{0}{}{\ifnumequal{#3}{0}{}{\ifnumless{#3}{0}{\errore{\Errorequattro}}{
+				\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\ifnumequal{#3}{1}{\mybinoA}{\sqrt{#3}\mybinoA}}
+					{\ifnumequal{#3}{1}{#2\mybinoA}{#2\sqrt{#3}\mybinoA}}}
+				{\ifnumequal{#2}{-1}{\ifnumequal{#3}{1}{-\mybinoA}{-\sqrt{#3}\mybinoA}}
+					{\ifnumequal{#3}{1}{#2\mybinoA}{#2\sqrt{#3}\mybinoA}}}}}}%
+	%
+	\ifnumequal{#4}{0}{}{\ifnumequal{#5}{0}{}{\ifnumless{#5}{0}{\errore{\Errorequattro}}{
+				\ifnumgreater{#4}{0}{\ifnumequal{#4}{1}{\ifnumequal{#5}{1}{+\mybinoB}{+\sqrt{#5}\mybinoB}}
+					{\ifnumequal{#5}{1}{+#4\mybinoB}{+#4\sqrt{#5}\mybinoB}}}
+				{\ifnumequal{#4}{-1}{\ifnumequal{#5}{1}{-\mybinoB}{-\sqrt{#5}\mybinoB}}
+					{\ifnumequal{#5}{1}{#4\mybinoB}{#4\sqrt{#5}\mybinoB}}}}}}
 }
 %    \end{macrocode}
 %\end{macro}
