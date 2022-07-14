@@ -1064,14 +1064,16 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\begin{macro}{\pbinomios}
 %\changes{v1.0}{2022/06/24}{Versione iniziale}
 %\changes{v1.1}{2022/07/13}{Corretta gestione errori}
+%\changes{v1.2}{2022/07/14}{Corretta quando parte letterale è zero}
 %    \begin{macrocode}
 \newcommand{\pbinomios}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
-	\ifnumequal{#2}{0}{\errore{\Erroreuno}}
+	\newbool{Azero}
+	\ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}
 	{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
 	\ifnumequal{#3}{0}{\errore{\Erroredue}}{
-		\ifnumgreater{#3}{0}{+#3}{#3}}}
+		\ifnumgreater{#3}{0}{\ifbool{Azero}{#3}{+#3}}{#3}}}
 %    \end{macrocode}
 %\end{macro}
 %
