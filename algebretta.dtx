@@ -832,15 +832,18 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 \pgfkeys{/myerrori/.is family, /myerrori,
 	default/.style = 
 	{
-		erroreuno =\space il parametro uno di pbinomio è zero,
-		erroredue =\space il parametro due  pbinomio è zero,
-		erroretre =\space il parametro $a$ è zero,
-		errorequattro =\space radicando negativo,
+		erroreuno =\space Attenzione: il parametro uno di pbinomio è zero,
+		erroredue =\space Attenzione: il parametro due di pbinomio è zero,
+		erroretre =\space Attenzione: il parametro $a$ è zero,
+		errorequattro =\space Attenzione: radicando negativo,
+		errorecinque =\space  Attenzione: la funzione omografica diventa una 
+		retta,
 	},
 	erroreuno/.estore in = \Erroreuno,
 	erroredue/.estore in = \Erroredue,
 	erroretre/.estore in = \Erroretre,
 	errorequattro/.estore in = \Errorequattro,
+	errorecinque/.estore in = \Errorecinque,
 }
 \newcommand{\errore}[1]{}
 
@@ -1065,7 +1068,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\changes{v1.0}{2022/06/24}{Versione iniziale}
 %\changes{v1.1}{2022/07/13}{Corretta gestione errori}
 %\changes{v1.2}{2022/07/14}{Corretta quando parte letterale è zero}
-%    \begin{macrocode}
+%    begin{macrocode}
 \newcommand{\pbinomios}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
