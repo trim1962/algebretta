@@ -1,0 +1,21 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[warning]{binomio}
+\newcommand{\pomografica}[5][]{
+	\pgfkeys{/mybinomio, default, #1}%
+\pgfkeys{/myerrori, default}%
+\ifnumequal{#4}{0}{\errore{\Errorecinque}}{}
+\ifnumcomp{#2*#4}{=}{#3*#5}{\errore{\Errorecinque}}{}
+%\ifnumequal{#2}{0}{\errore{\Erroreuno}}{}
+y=\dfrac{\pbinomios[#1]{#2}{#3}}{\pbinomios[#1]{#4}{#5}}
+}
+\begin{document}
+$\pomografica{2}{3}{0}{5}$
+
+$\pomografica{2}{6}{3}{1}$
+
+$\pomografica{2}{1}{2}{1}$
+
+$\pomografica{0}{1}{2}{1}$
+
+$\pomografica{0}{-1}{2}{1}$
+\end{document}

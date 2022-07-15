@@ -74,14 +74,14 @@
 				\FPeval\resultaP{round(resultaP:0)}	
 				-\dfrac{\mytrioB^2}{\resultaP}}}}=-1%
 }
-\newcommand{\iperequiassex}[2][]{
+\newcommand{\piperequiassex}[2][]{
 	\pgfkeys{/myiper, default, #1}%
 \pgfkeys{/myerrori, default}%
 	\FPeval\resultaP{(#2)*(#2)}%
 \FPeval\resultaP{round(resultaP:0)}
 \mytrioA^2-\mytrioB^2=\resultaP%
 }
-\newcommand{\iperequiassey}[2][]{
+\newcommand{\piperequiassey}[2][]{
 	\pgfkeys{/myiper, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\FPeval\resultaP{(#2)*(#2)}%
@@ -113,10 +113,13 @@ $\pcirco{0}{-2}{-3}$
 
 $\pcirco[ptinc = t, stinc = s]{9}{2}{3}$
 
+
+
 $\pfncirco$
 
 $\pfncirco[ptinc = t, stinc = s]$
 
+$\pfniperassex$
 
 $\pfnpara$
 
@@ -167,15 +170,19 @@ $\piperassex{-1}{2}$
 
 $\piperassex[ptinc = t, stinc = v]{10}{2}$
 
-$\iperequiassex{1}$
+$\piperequiassex{1}$
 
-$\iperequiassex{-11}$
+$\piperequiassex{-11}$
 
-$\iperequiassex[ptinc = t, stinc = v]{1}$
+$\piperequiassex[ptinc = t, stinc = v]{1}$
 
-$\iperequiassey{1}$
+$\piperequiassey{1}$
 
-$\iperequiassey{-11}$
+$\piperequiassey{-11}$
 
-$\iperequiassey[ptinc = t, stinc = v]{1}$
+$\piperequiassey[ptinc = t, stinc = v]{1}$
+
+$\pfniperassex$
+
+$\pfniperassey$
 \end{document}
