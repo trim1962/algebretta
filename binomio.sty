@@ -69,10 +69,10 @@ sconosciuto}}
 	ptinc/.estore in = \mytrioA,
 	stinc/.estore in = \mytrioB,
 }
+\newbool{Azero}
 \newcommand{\pbinomios}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
-	\newbool{Azero}
 	\ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}
 	{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
 	\ifnumequal{#3}{0}{\errore{\Erroredue}}{

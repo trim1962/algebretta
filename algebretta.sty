@@ -26,15 +26,18 @@
 \pgfkeys{/myerrori/.is family, /myerrori,
 default/.style =
 {
-erroreuno =\space il parametro uno di pbinomio è zero,
-erroredue =\space il parametro due  pbinomio è zero,
-erroretre =\space il parametro $a$ è zero,
-errorequattro =\space radicando negativo,
+erroreuno =\space Attenzione: il parametro uno di pbinomio è zero,
+erroredue =\space Attenzione: il parametro due di pbinomio è zero,
+erroretre =\space Attenzione: il parametro $a$ è zero,
+errorequattro =\space Attenzione: radicando negativo,
+errorecinque =\space  Attenzione: la funzione omografica diventa una
+retta,
 },
 erroreuno/.estore in = \Erroreuno,
 erroredue/.estore in = \Erroredue,
 erroretre/.estore in = \Erroretre,
 errorequattro/.estore in = \Errorequattro,
+errorecinque/.estore in = \Errorecinque,
 }
 \newcommand{\errore}[1]{}
 
@@ -185,13 +188,15 @@ stinc/.estore in = \mytrioB,
 \ifnumequal{#3}{0}{\errore{\Erroredue}}{
 \ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mybinoB}{+#3\mybinoB}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
 }
+
+\newbool{Azero}
 \newcommand{\pbinomios}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
-\ifnumequal{#2}{0}{\errore{\Erroreuno}}
+\ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}
 {\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
 \ifnumequal{#3}{0}{\errore{\Erroredue}}{
-\ifnumgreater{#3}{0}{+#3}{#3}}}
+\ifnumgreater{#3}{0}{\ifbool{Azero}{#3}{+#3}}{#3}}}
 \newcommand{\pbinomiop}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 (\pbinomio[#1]{#2}{#3})
