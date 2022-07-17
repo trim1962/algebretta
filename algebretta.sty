@@ -15,14 +15,13 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{algebretta}
 [2022/06/28 v3.0 creazione di binomi e trinomi]
-%%%fatto nessun controllo su i parametri.
-%%%nessun controllo su i parametri.
 
 \RequirePackage{etoolbox}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage[nomessages]{fp}
 \RequirePackage{pgfkeys}
+\newbool{Azero}
 \pgfkeys{/myerrori/.is family, /myerrori,
 default/.style =
 {
@@ -183,13 +182,14 @@ stinc/.estore in = \mytrioB,
 \newcommand{\pbinomio}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
-\ifnumequal{#2}{0}{\errore{\Erroreuno}}
+\ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}
 {\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
 \ifnumequal{#3}{0}{\errore{\Erroredue}}{
-\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mybinoB}{+#3\mybinoB}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
+\ifnumgreater{#3}{0}
+{\ifnumequal{#3}{1}{\ifbool{Azero}{\mybinoB\boolfalse{Azero}}{+\mybinoB}}
+{\ifbool{Azero}{#3\mybinoB\boolfalse{Azero}}{+#3\mybinoB}}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
 }
 
-\newbool{Azero}
 \newcommand{\pbinomios}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
@@ -204,14 +204,18 @@ stinc/.estore in = \mytrioB,
 \newcommand{\pbinomioie}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
-\ifnumequal{#2}{0}{}{\ifnumequal{#3}{0}{}{\ifnumless{#3}{0}{\errore{\Errorequattro}}{
+\ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}{\ifnumequal{#3}{0}{\errore{\Erroreuno}\booltrue{Azero}}{\ifnumless{#3}{0}{\errore{\Errorequattro}}{
 \ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\ifnumequal{#3}{1}{\mybinoA}{\sqrt{#3}\mybinoA}}
 {\ifnumequal{#3}{1}{#2\mybinoA}{#2\sqrt{#3}\mybinoA}}}
 {\ifnumequal{#2}{-1}{\ifnumequal{#3}{1}{-\mybinoA}{-\sqrt{#3}\mybinoA}}
 {\ifnumequal{#3}{1}{#2\mybinoA}{#2\sqrt{#3}\mybinoA}}}}}}%
 \ifnumequal{#4}{0}{}{\ifnumequal{#5}{0}{}{\ifnumless{#5}{0}{\errore{\Errorequattro}}{
-\ifnumgreater{#4}{0}{\ifnumequal{#4}{1}{\ifnumequal{#5}{1}{+\mybinoB}{+\sqrt{#5}\mybinoB}}
-{\ifnumequal{#5}{1}{+#4\mybinoB}{+#4\sqrt{#5}\mybinoB}}}
+\ifnumgreater{#4}{0}{\ifnumequal{#4}{1}{\ifnumequal{#5}{1}
+{\ifbool{Azero}{\mybinoB\boolfalse{Azero}}{+\mybinoB}}
+{\ifbool{Azero}{\sqrt{#5}\mybinoB\boolfalse{Azero}}{+\sqrt{#5}\mybinoB}}}
+{\ifnumequal{#5}{1}
+{\ifbool{Azero}{#4\mybinoB\boolfalse{Azero}}{+#4\mybinoB}}
+{\ifbool{Azero}{#4\sqrt{#5}\mybinoB\boolfalse{Azero}}{+#4\sqrt{#5}\mybinoB}}}}
 {\ifnumequal{#4}{-1}{\ifnumequal{#5}{1}{-\mybinoB}{-\sqrt{#5}\mybinoB}}
 {\ifnumequal{#5}{1}{#4\mybinoB}{#4\sqrt{#5}\mybinoB}}}}}}
 }
@@ -235,7 +239,6 @@ stinc/.estore in = \mytrioB,
 \pgfkeys{/mytrinomio, default, #1}%
 (\ptrinomio[#1]{#2}{#3}{#4})
 }
-%%%incognite}
 \newcommand{\ptrinomiosp}[4][]{
 \pgfkeys{/mytrinomios, default, #1}%
 (\ptrinomios[#1]{#2}{#3}{#4})
