@@ -1,0 +1,139 @@
+%%
+%% This is file `malgebretta.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% malgebretta.dtx  (with options: `package')
+%% ----------------------------------------------------------------
+%% Algebretta
+%% E-mail: claducATgmail.com
+%% Released under the LaTeX Project Public License v1.3c or later
+%% See http://www.latex-project.org/lppl.txt
+%% ----------------------------------------------------------------
+%% 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{mmalgebretta}
+[2022/06/28 v3.0 creazione di binomi e trinomi]
+\RequirePackage{etoolbox}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage[nomessages]{fp}
+\newcommand{\parteAbin}[1]{\ifnumcomp{#1}{>}{0}
+{\ifnumcomp{#1}{=}{1}{x}{#1x}}{\ifnumcomp{#1}{=}{-1}{-x}{#1x}}}
+\newcommand{\parteBbin}[1]{\ifnumcomp{#1}{>}{0}{+#1}{#1}}
+\newcommand{\binomio}[2]{\ifnumcomp{#1}{>}{0}
+{\parteAbin{#1}\parteBbin{#2}}{#2\parteAbin{#1}}}
+\newcommand{\binomiop}[2]{\ifnumcomp{#1}{>}{0}
+{(\parteAbin{#1}\parteBbin{#2})}{(#2\parteAbin{#1})}}
+\newcommand{\sommadifferenza}[2]{
+\FPeval\b{(#2)*(-1)}%
+\FPeval\b{round(b:0)}%
+\binomiop{#1}{\b}\binomiop{#1}{#2}}
+\newcommand{\parteAtriSecabc}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
+{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}
+{x^{2}}{#1x^{2}}}%
+{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}
+\newcommand{\parteBtriSecabc}[1]{%
+\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{\ifnumequal{#1}{1}{+x}{+#1x}}
+{\ifnumequal{#1}{-1}{-x}{#1x}}}%
+}
+\newcommand{\parteCtriSecabc}[1]{%
+\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{+#1}{#1}}%
+}
+\newcommand{\parteAtriSecbac}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
+{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}
+{+x^{2}}{+#1x^{2}}}%
+{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}
+\newcommand{\parteBtriSecbac}[1]{%
+\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{\ifnumequal{#1}{1}{x}{#1x}}
+{\ifnumequal{#1}{-1}{-x}{#1x}}}%
+}
+\newcommand{\parteCtriSeccab}[1]{%
+\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{#1}{#1}}%
+}
+\newcommand{\newtrinomioSecGrad}[4]{%
+\ifcase #4%
+\parteAtriSecabc{#1}\parteBtriSecabc{#2}\parteCtriSecabc{#3}%1 abc
+\or
+\parteAtriSecabc{#1}\parteCtriSecabc{#3}\parteBtriSecabc{#2}%2 acb
+\or
+\parteBtriSecbac{#2}\parteAtriSecbac{#1}\parteCtriSecabc{#3}%3 bac
+\or
+\parteBtriSecbac{#2}\parteCtriSecabc{#3}\parteAtriSecbac{#1}%4 bca
+\or
+\parteCtriSeccab{#3}\parteAtriSecbac{#1}\parteBtriSecabc{#2}%5 cab
+\or
+\parteCtriSeccab{#3}\parteBtriSecabc{#2}\parteAtriSecbac{#1}%6 cba
+\fi
+}%
+\newcommand{\parteAtriSec}[1]{\ifnumequal{#1}{0}{\message{a=0}\stop}%
+{\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}%
+{x^{2}}{#1x^{2}}}%
+{\ifnumequal{#1}{-1}{-x^{2}}{#1x^{2}}}}}%
+\newcommand{\parteBtriSec}[1]{%
+\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{\ifnumequal{#1}{1}{+x}{+#1x}}
+{\ifnumequal{#1}{-1}{-x}{#1x}}}%
+}
+\newcommand{\parteCtriSec}[1]{%
+\ifnumequal{#1}{0}{}{\ifnumgreater{#1}{0}{+#1}{#1}}%
+}
+\newcommand{\trimonioSecGrad}[3]{\parteAtriSec{#1}\parteBtriSec{#2}\parteCtriSec{#3}}%
+\newcommand{\verso}[1]{
+\ifcase #1%
+>
+\or
+<
+\or
+\geq
+\or
+\leq
+\fi
+}
+\newcommand{\mult}[1]{%
+\ifnumequal{#1}{0}{\PackageError{malgebretta}{$a$ è zero}}{%
+\ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}{+}{+#1}}%
+{\ifnumequal{#1}{-1}{-}{#1}}}}%
+\newcommand{\parteArettaimplicita}[1]{
+\ifnumequal{#1}{0}{}{
+\ifnumgreater{#1}{0}{
+\ifnumequal{#1}{1}{x}{#1x}}{
+\ifnumequal{#1}{-1}{-x}{#1x}}}}
+\newcommand{\parteBrettaimplicitaA}[1]{
+\ifnumequal{#1}{0}{}{
+\ifnumgreater{#1}{0}{
+\ifnumequal{#1}{1}{y}{+#1y}}{
+\ifnumequal{#1}{-1}{-y}{#1y}}}}
+\newcommand{\parteBrettaimplicitaB}[1]{
+\ifnumequal{#1}{0}{}{
+\ifnumgreater{#1}{0}{
+\ifnumequal{#1}{1}{+y}{+#1y}}{
+\ifnumequal{#1}{-1}{-y}{#1y}}}}
+\newcommand{\parteCrettaimplicita}[1]{
+\ifnumequal{#1}{0}{}{
+\ifnumgreater{#1}{0}{+#1}{#1}}}
+\newcommand{\rettaimplicita}[3]{\parteArettaimplicita{#1}
+\ifnumequal{#1}{0}{\parteBrettaimplicitaA{#2}}{\parteBrettaimplicitaB{#2}}
+\parteCrettaimplicita{#3}=0}
+\newcommand{\rettaesplicita}[2]{y=\parteArettaimplicita{#1}\parteCrettaimplicita{#2}}
+%% 
+%% Copyright (C) 2022 by Claudio Duchi
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License (LPPL), either
+%% version 1.3c of this license or (at your option) any later
+%% version.  The latest version of this license is in the file:
+%% 
+%% https://www.latex-project.org/lppl.txt
+%% 
+%% This work is "maintained" (as per LPPL maintenance status) by
+%% Claudio Duchi
+%% 
+%% This work consists of the file  malgebretta.dtx
+%% and the derived files
+%% malgebretta.ins,
+%% malgebretta.pdf and
+%% malgebretta.sty.
+%% 
+%%
+%% End of file `malgebretta.sty'.
