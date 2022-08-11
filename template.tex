@@ -1,25 +1,33 @@
-%\begin{macro}{\psommadifferenzae}
-%\changes{v1.0}{2022/08/10}{Versione iniziale somma  per differena}
 %    \begin{macrocode}
-\newcommand{\psommadifferenza}[3][]{
-	\pgfkeys{/mybinomio, default, #1}%
-	\pgfkeys{/myerrori, default}%
-	\psommadifferenzae[#1]{#2}{1}{#3}{1}
-}
+	\newcommand{\pl}[2]{\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{#1}{#1^{#2}}}}
+%    \end{macrocode}
+%\begin{macro}{\PM}
+%\changes{v1.0}{2022/08/1}{Versione iniziale parte letterale}
+%    \begin{macrocode}
+\newcommand{\PM}[5][]{
+\pgfkeys{/mymonomio, default, #1}%
+\pgfkeys{/myerrori, default}%
+\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{+\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
+{\ifnumequal{#2}{-1}{-\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
+{\ifnumgreater{#2}{0}{+#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}{#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}
+\pl{\mypmC}{#5}}}}}}
 %    \end{macrocode}
 %\end{macro}
-
-%\DescribeMacro{\psommadifferenza}
 %
-%Comando per scrivere una somma per differenza del tipo
-% $(ax+by)(ax-by)$
+%\DescribeMacro{\PM}
 %
-%Se i coeffficienti   sono zero non viene stampato nulla
+%Comando per scrivere un monomio nella forma
 %
-%\cs{psommadifferenzae}
-%\oarg{pbinc=x, sbinc=y}
-%\marg{a}
-%\marg{b}
+% $ka^nb^mc^q$
+%
+%Se i coefficienti  sono zero non viene stampato nulla
+%
+%\cs{PM}
+%\oarg	{pma = a, pmb = b, pmc =c}
+%\marg{k}
+%\marg{n}
+%\marg{m}
+%\marg{q}
 %
 %Esempi
 %
@@ -27,20 +35,19 @@
 %<*verb>
 % \fi
 \begin{verbatim}
-	1)$\psommadifferenza{2}{3}$	
+	1)$\PM{1}{0}{3}{4}$	
 	
-	2)$\psommadifferenza{-2}{3}$
+	2)$\PM{-2}{2}{0}{4}$
 	
-	3)$\psommadifferenza[pbinc = a, sbinc = b]{2}{3}$
+	3)$\PM[pma = x, pmb = y, pmc =z]{-2}{-2}{3}{4}$
 \end{verbatim}
 %\iffalse
 %</verb>
 % \fi
 %
-%1)$\psommadifferenza{2}{3}$	
+%1)$\PM{1}{0}{3}{4}$	
 %
-%2)$\psommadifferenza{-2}{3}$
+%2)$\PM{-2}{2}{0}{4}$
 %
-%3)$\psommadifferenza[pbinc = a, sbinc = b]{2}{3}$
-%
+%3)$\PM[pma = x, pmb = y, pmc =z]{-2}{-2}{3}{4}$
 %

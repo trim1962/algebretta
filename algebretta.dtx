@@ -180,6 +180,45 @@ algebretta.sty.
 %\end{tabular}
 %\end{center}
 %
+%\section{Monomi}
+%
+%\DescribeMacro{\PM}
+%
+%Comando per scrivere un monomio nella forma
+%
+% $ka^nb^mc^q$
+%
+%Se i coefficienti  sono zero non viene stampato nulla
+%
+%\cs{PM}
+%\oarg	{pma = a, pmb = b, pmc =c}
+%\marg{k}
+%\marg{n}
+%\marg{m}
+%\marg{q}
+%
+%Esempi
+%
+% \iffalse
+%<*verb>
+% \fi
+\begin{verbatim}
+1)$\PM{1}{0}{3}{4}$	
+
+2)$\PM{-2}{2}{0}{4}$
+
+3)$\PM[pma = x, pmb = y, pmc =z]{-2}{-2}{3}{4}$
+\end{verbatim}
+%\iffalse
+%</verb>
+% \fi
+%
+%1)$\PM{1}{0}{3}{4}$	
+%
+%2)$\PM{-2}{2}{0}{4}$
+%
+%3)$\PM[pma = x, pmb = y, pmc =z]{-2}{-2}{3}{4}$
+%
 %\section{Binomi}
 %
 %\DescribeMacro{\pbinomio}
@@ -810,6 +849,12 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 		sconosciuto}}
 \ProcessOptions\relax
 \pgfkeys{
+	/mymonomio/.is family, /mymonomio,
+	default/.style =
+	{pma = a, pmb = b, pmc =c},
+	pma/.estore in = \mypmA,
+	pmb/.estore in = \mypmB,
+	pmc/.estore in = \mypmC,
 	/mybinomio/.is family, /mybinomio,
 	default/.style =
 	{pbinc = x, sbinc = y},
@@ -872,6 +917,22 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 \ifnumequal{#1}{0}{\PackageError{algebretta}{$a$ è zero}}{%
 \ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}{+}{+#1}}%
 {\ifnumequal{#1}{-1}{-}{#1}}}}%
+%    \end{macrocode}
+%\end{macro}
+%
+%    \begin{macrocode}
+\newcommand{\pl}[2]{\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{#1}{#1^{#2}}}}
+%    \end{macrocode}
+%\begin{macro}{\PM}
+%\changes{v1.0}{2022/08/11}{Versione iniziale parte letterale}
+%    \begin{macrocode}
+\newcommand{\PM}[5][]{
+	\pgfkeys{/mymonomio, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{+\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
+		{\ifnumequal{#2}{-1}{-\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
+			{\ifnumgreater{#2}{0}{+#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}{#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}
+					\pl{\mypmC}{#5}}}}}}
 %    \end{macrocode}
 %\end{macro}
 %

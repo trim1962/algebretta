@@ -47,6 +47,12 @@ errorecinque/.estore in = \Errorecinque,
 sconosciuto}}
 \ProcessOptions\relax
 \pgfkeys{
+/mymonomio/.is family, /mymonomio,
+default/.style =
+{pma = a, pmb = b, pmc =c},
+pma/.estore in = \mypmA,
+pmb/.estore in = \mypmB,
+pmc/.estore in = \mypmC,
 /mybinomio/.is family, /mybinomio,
 default/.style =
 {pbinc = x, sbinc = y},
@@ -98,6 +104,14 @@ stinc/.estore in = \mytrioB,
 \ifnumequal{#1}{0}{\PackageError{algebretta}{$a$ è zero}}{%
 \ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}{+}{+#1}}%
 {\ifnumequal{#1}{-1}{-}{#1}}}}%
+\newcommand{\pl}[2]{\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{#1}{#1^{#2}}}}
+\newcommand{\PM}[5][]{
+\pgfkeys{/mymonomio, default, #1}%
+\pgfkeys{/myerrori, default}%
+\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{+\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
+{\ifnumequal{#2}{-1}{-\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
+{\ifnumgreater{#2}{0}{+#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}{#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}
+\pl{\mypmC}{#5}}}}}}
 \newcommand{\pbinomio}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
