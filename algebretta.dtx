@@ -347,7 +347,7 @@ $\PBS[pbinc=a^2]{-2}{3}+\PBS{1}{-3}$
 %12)$\PBI[pbinc = u, sbinc = v]{-2}{3}{-2}{3}$
 %
 %\section{Prodotti}
-%\DescribeMacro{\psommadifferenzae}
+%\DescribeMacro{\PSDE}
 %
 %Comando per scrivere una somma per differenza del tipo
 %
@@ -355,7 +355,7 @@ $\PBS[pbinc=a^2]{-2}{3}+\PBS{1}{-3}$
 %
 %Se i coeffficienti   sono zero non viene stampato nulla
 %
-%\cs{psommadifferenzae}
+%\cs{PSDE}
 %\oarg{pbinc=x, sbinc=y}
 %\marg{a}
 %\marg{b}
@@ -368,21 +368,21 @@ $\PBS[pbinc=a^2]{-2}{3}+\PBS{1}{-3}$
 %<*verb>
 % \fi
 \begin{verbatim}
-1)$\psommadifferenzae{2}{3}{4}{5}$	
+1)$\PSDE{2}{3}{4}{5}$	
 
-2)$\psommadifferenzae[pbinc = u^2, sbinc = v]{2}{3}{4}{5}$	
+2)$\PSDE[pbinc = u^2, sbinc = v]{2}{3}{4}{5}$	
 
-3)$\psommadifferenzae{-2}{3}{-4}{5}$
+3)$\PSDE{-2}{3}{-4}{5}$
 \end{verbatim}
 %\iffalse
 %</verb>
 % \fi
 %
-%1)$\psommadifferenzae{2}{3}{4}{5}$	
+%1)$\PSDE{2}{3}{4}{5}$	
 %
-%2)$\psommadifferenzae[pbinc = u^2, sbinc = v]{2}{3}{4}{5}$	
+%2)$\PSDE[pbinc = u^2, sbinc = v]{2}{3}{4}{5}$	
 %
-%3)$\psommadifferenzae{-2}{3}{-4}{5}$
+%3)$\PSDE{-2}{3}{-4}{5}$
 %
 %\DescribeMacro{\psommadifferenza}
 %
@@ -391,7 +391,7 @@ $\PBS[pbinc=a^2]{-2}{3}+\PBS{1}{-3}$
 %
 %Se i coeffficienti   sono zero non viene stampato nulla
 %
-%\cs{psommadifferenzae}
+%\cs{PSDE}
 %\oarg{pbinc=x, sbinc=y}
 %\marg{a}
 %\marg{b}
@@ -422,7 +422,7 @@ $\PBS[pbinc=a^2]{-2}{3}+\PBS{1}{-3}$
 %\section{Trinomi}
 %\DescribeMacro{\ptrinomio}
 %
-%Comando per scrivere un binomio nella forma 
+%Comando per scrivere un trinomio nella forma 
 % $ax+by+cz$
 %
 %Se $a$, $b$ o $c$ sono zero non viene stampato nulla
@@ -1011,10 +1011,10 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \end{macrocode}
 %\end{macro}
 %
-%\begin{macro}{\psommadifferenzae}
+%\begin{macro}{\PSDE}
 %\changes{v1.0}{2022/08/10}{Versione iniziale somma  per differenza estesa}
 %    \begin{macrocode}
-\newcommand{\psommadifferenzae}[5][]{
+\newcommand{\PSDE}[5][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\FPeval\b{(#4)*(-1)}%
@@ -1024,13 +1024,13 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \end{macrocode}
 %\end{macro}
 %
-%\begin{macro}{\psommadifferenzae}
+%\begin{macro}{\PSDE}
 %\changes{v1.0}{2022/08/10}{Versione iniziale somma  per differenza}
 %    \begin{macrocode}
 \newcommand{\psommadifferenza}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
-	\psommadifferenzae[#1]{#2}{1}{#3}{1}
+	\PSDE[#1]{#2}{1}{#3}{1}
 }
 %    \end{macrocode}
 %\end{macro}
