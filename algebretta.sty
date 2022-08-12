@@ -183,6 +183,13 @@ stinc/.estore in = \mytrioB,
 \FPeval\b{round(b:0)}%
 (\PBI[#1]{#2}{#3}{\b}{#5})(\PBI[#1]{#2}{#3}{#4}{#5})
 }
+\newcommand{\PSDES}[5][]{
+\pgfkeys{/mybinomio, default, #1}%
+\pgfkeys{/myerrori, default}%
+\FPeval\b{(#4)*(-1)}%
+\FPeval\b{round(b:0)}%
+(\PBIS[#1]{#2}{#3}{\b}{#5})(\PBIS[#1]{#2}{#3}{#4}{#5})
+}
 \newcommand{\PSD}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
