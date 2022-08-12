@@ -929,10 +929,11 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 \newcommand{\PM}[5][]{
 	\pgfkeys{/mymonomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
-	\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{+\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
-		{\ifnumequal{#2}{-1}{-\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
-			{\ifnumgreater{#2}{0}{+#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}{#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}
-					\pl{\mypmC}{#5}}}}}}
+	\ifnumequal{#2}{0}{}
+	{\ifnumequal{#2}{1}{+\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
+	{\ifnumequal{#2}{-1}{-\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
+	{\ifnumgreater{#2}{0}{+#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
+	{#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}}}}}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -945,11 +946,13 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}
-	{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
+	{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{\mybinoA}{#2\mybinoA}}
+	{\ifnumequal{#2}{-1}{-\mybinoA}{#2\mybinoA}}}
 	\ifnumequal{#3}{0}{\errore{\Erroredue}}{
 		\ifnumgreater{#3}{0}
 		{\ifnumequal{#3}{1}{\ifbool{Azero}{\mybinoB\boolfalse{Azero}}{+\mybinoB}}
-			{\ifbool{Azero}{#3\mybinoB\boolfalse{Azero}}{+#3\mybinoB}}}{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
+			{\ifbool{Azero}{#3\mybinoB\boolfalse{Azero}}{+#3\mybinoB}}}
+		{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
 }
 %    \end{macrocode}
 %\end{macro}
@@ -1236,9 +1239,11 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 \newcommand{\pcirco}[4][]{
 	\pgfkeys{/mycirc, default, #1}%
 	\mytrioA^2+\mytrioB^2
-	\ifnumequal{#2}{0}{}{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}{+\mytrioA}{+#2\mytrioA}}{\ifnumequal{#2}{-1}
+	\ifnumequal{#2}{0}{}{\ifnumgreater{#2}{0}
+		{\ifnumequal{#2}{1}{+\mytrioA}{+#2\mytrioA}}{\ifnumequal{#2}{-1}
 			{-\mytrioA}{#2\mytrioA}}}
-	\ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioB}{+#3\mytrioB}}{\ifnumequal{#3}{-1}
+	\ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}
+		{\ifnumequal{#3}{1}{+\mytrioB}{+#3\mytrioB}}{\ifnumequal{#3}{-1}
 			{-\mytrioB}{#3\mytrioB}}}
 	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}=0}
 %    \end{macrocode}
@@ -1251,10 +1256,12 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 \newcommand{\ppara}[4][]{
 	\pgfkeys{/mypara, default, #1}%
 	\pgfkeys{/myerrori, default}%
-	\mytrioB=\ifnumequal{#2}{0}{\errore{\Erroretre}}{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}
+	\mytrioB=\ifnumequal{#2}{0}
+	{\errore{\Erroretre}}{\ifnumgreater{#2}{0}{\ifnumequal{#2}{1}
 			{\mytrioA^2}{#2\mytrioA^2}}}
 	{\ifnumequal{#2}{-1}{-\mytrioA^2}{#2\mytrioA^2}}
-	\ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioA}{+#3\mytrioA}}}
+	\ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}
+		{\ifnumequal{#3}{1}{+\mytrioA}{+#3\mytrioA}}}
 	{\ifnumequal{#3}{-1}{-\mytrioA}{#3\mytrioA}}
 	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}}
 %    \end{macrocode}
