@@ -25,8 +25,8 @@
 \pgfkeys{/myerrori/.is family, /myerrori,
 default/.style =
 {
-erroreuno =\space Attenzione: il parametro uno di pbinomio è zero,
-erroredue =\space Attenzione: il parametro due di pbinomio è zero,
+erroreuno =\space Attenzione: il parametro uno di PB è zero,
+erroredue =\space Attenzione: il parametro due di PB è zero,
 erroretre =\space Attenzione: il parametro $a$ è zero,
 errorequattro =\space Attenzione: radicando negativo,
 errorecinque =\space  Attenzione: la funzione omografica diventa una
@@ -113,7 +113,7 @@ stinc/.estore in = \mytrioB,
 {\ifnumequal{#2}{-1}{-\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
 {\ifnumgreater{#2}{0}{+#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
 {#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}}}}}
-\newcommand{\pbinomio}[3][]{
+\newcommand{\PB}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}
@@ -136,7 +136,7 @@ stinc/.estore in = \mytrioB,
 \ifnumgreater{#3}{0}{\ifbool{Azero}{#3}{+#3}}{#3}}}
 \newcommand{\pbinomiop}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
-(\pbinomio[#1]{#2}{#3})
+(\PB[#1]{#2}{#3})
 }
 \newcommand{\pbinomioie}[5][]{
 \pgfkeys{/mybinomio, default, #1}%

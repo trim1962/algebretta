@@ -221,14 +221,14 @@ algebretta.sty.
 %
 %\section{Binomi}
 %
-%\DescribeMacro{\PB}
+%\DescribeMacro{\pbinomio}
 %
 %Comando per scrivere un binomio nella forma 
 % $ax+by$
 %
 %Se $a$ o $b$ sono zero non viene stampato nulla
 %
-%\cs{PB}
+%\cs{pbinomio}
 %\oarg{pbinc=a, sbinc=b}
 %\marg{a}
 %\marg{b}
@@ -239,22 +239,22 @@ algebretta.sty.
 %<*verb>
 % \fi
 \begin{verbatim}
-$\PB[pbinc=a^2, sbinc=z]{-2}{3}+\PB{1}{-3}$
+$\pbinomio[pbinc=a^2, sbinc=z]{-2}{3}+\pbinomio{1}{-3}$
 \end{verbatim}
 % \iffalse
 %</verb>
 % \fi
-%$\PB[pbinc=a^2, sbinc=z]{-2}{3}+\PB{1}{-3}$
+%$\pbinomio[pbinc=a^2, sbinc=z]{-2}{3}+\pbinomio{1}{-3}$
 %
 %
-%\DescribeMacro{\PBs}
+%\DescribeMacro{\pbinomios}
 %
 %Comando per scrivere un binomio nella forma 
 % $ax+b$
 %
 %Se $a$ o $b$ sono zero non viene stampato nulla
 %
-%\cs{PB}
+%\cs{pbinomio}
 %\oarg{pbinc=x}
 %\marg{a}
 %\marg{b}
@@ -826,8 +826,8 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 \pgfkeys{/myerrori/.is family, /myerrori,
 	default/.style = 
 	{
-		erroreuno =\space Attenzione: il parametro uno di PB è zero,
-		erroredue =\space Attenzione: il parametro due di PB è zero,
+		erroreuno =\space Attenzione: il parametro uno di pbinomio è zero,
+		erroredue =\space Attenzione: il parametro due di pbinomio è zero,
 		erroretre =\space Attenzione: il parametro $a$ è zero,
 		errorequattro =\space Attenzione: radicando negativo,
 		errorecinque =\space  Attenzione: la funzione omografica diventa una 
@@ -937,12 +937,12 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \end{macrocode}
 %\end{macro}
 %
-%\begin{macro}{\PB}
+%\begin{macro}{\pbinomio}
 %\changes{v1.0}{2022/06/24}{Versione iniziale}
 %\changes{v1.1}{2022/07/13}{Corretta gestione errori}
 %\changes{v1.2}{2022/07/15}{Corretta gestione ax}
 %    \begin{macrocode}
-\newcommand{\PB}[3][]{
+\newcommand{\pbinomio}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}
@@ -979,7 +979,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \begin{macrocode}
 \newcommand{\pbinomiop}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
-	(\PB[#1]{#2}{#3})
+	(\pbinomio[#1]{#2}{#3})
 }
 %    \end{macrocode}
 %\end{macro}
