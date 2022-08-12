@@ -138,7 +138,7 @@ stinc/.estore in = \mytrioB,
 \pgfkeys{/mybinomio, default, #1}%
 (\PB[#1]{#2}{#3})
 }
-\newcommand{\pbinomioie}[5][]{
+\newcommand{\PBI}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}{\ifnumequal{#3}{0}
@@ -162,7 +162,7 @@ stinc/.estore in = \mytrioB,
 \pgfkeys{/myerrori, default}%
 \FPeval\b{(#4)*(-1)}%
 \FPeval\b{round(b:0)}%
-(\pbinomioie[#1]{#2}{#3}{\b}{#5})(\pbinomioie[#1]{#2}{#3}{#4}{#5})
+(\PBI[#1]{#2}{#3}{\b}{#5})(\PBI[#1]{#2}{#3}{#4}{#5})
 }
 \newcommand{\psommadifferenza}[3][]{
 \pgfkeys{/mybinomio, default, #1}%

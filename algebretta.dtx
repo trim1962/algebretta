@@ -265,15 +265,15 @@ $\PB[pbinc=a^2, sbinc=z]{-2}{3}+\PB{1}{-3}$
 %<*verb>
 % \fi
 \begin{verbatim}
-$\pbinomios[pbinc=a^2]{-2}{3}+\pbinomios{1}{-3}$
+$\PBS[pbinc=a^2]{-2}{3}+\PBS{1}{-3}$
 \end{verbatim}
 % \iffalse
 %</verb>
 % \fi
-%$\pbinomios[pbinc=a^2]{-2}{3}+\pbinomios{1}{-3}$
+%$\PBS[pbinc=a^2]{-2}{3}+\PBS{1}{-3}$
 %
 %
-%\DescribeMacro{\pbinomioie}
+%\DescribeMacro{\PBI}
 %
 %Comando per scrivere un binomio nella forma 
 %
@@ -281,7 +281,7 @@ $\pbinomios[pbinc=a^2]{-2}{3}+\pbinomios{1}{-3}$
 %
 %Se i coeffficienti   sono zero non viene stampato nulla
 %
-%\cs{pbinomioie}
+%\cs{PBI}
 %\oarg{pbinc=x, sbinc=y}
 %\marg{a}
 %\marg{b}
@@ -294,57 +294,57 @@ $\pbinomios[pbinc=a^2]{-2}{3}+\pbinomios{1}{-3}$
 %<*verb>
 % \fi
 \begin{verbatim}
-1)$\pbinomioie{0}{1}{0}{1}$
+1)$\PBI{0}{1}{0}{1}$
 
-2)$\pbinomioie{1}{0}{1}{0}$
+2)$\PBI{1}{0}{1}{0}$
 
-3)$\pbinomioie{1}{-1}{1}{-1}$
+3)$\PBI{1}{-1}{1}{-1}$
 
-4)$\pbinomioie{1}{1}{1}{1}$
+4)$\PBI{1}{1}{1}{1}$
 
-5)$\pbinomioie{1}{2}{1}{2}$
+5)$\PBI{1}{2}{1}{2}$
 
-6)$\pbinomioie{2}{1}{2}{1}$
+6)$\PBI{2}{1}{2}{1}$
 
-7)$\pbinomioie{2}{2}{2}{2}$
+7)$\PBI{2}{2}{2}{2}$
 
-8)$\pbinomioie{-1}{2}{-1}{2}$
+8)$\PBI{-1}{2}{-1}{2}$
 
-9)$\pbinomioie{-1}{1}{-1}{1}$
+9)$\PBI{-1}{1}{-1}{1}$
 
-10)$\pbinomioie{-2}{1}{-2}{1}$
+10)$\PBI{-2}{1}{-2}{1}$
 
-11)$\pbinomioie{-2}{3}{-2}{3}$
+11)$\PBI{-2}{3}{-2}{3}$
 
-12)$\pbinomioie[pbinc = u, sbinc = v]{-2}{3}{-2}{3}$
+12)$\PBI[pbinc = u, sbinc = v]{-2}{3}{-2}{3}$
 \end{verbatim}
 %\iffalse
 %</verb>
 % \fi
 %
-%1)$\pbinomioie{0}{1}{0}{1}$
+%1)$\PBI{0}{1}{0}{1}$
 %
-%2)$\pbinomioie{1}{0}{1}{0}$
+%2)$\PBI{1}{0}{1}{0}$
 %
-%3)$\pbinomioie{1}{-1}{1}{-1}$
+%3)$\PBI{1}{-1}{1}{-1}$
 %
-%4)$\pbinomioie{1}{1}{1}{1}$
+%4)$\PBI{1}{1}{1}{1}$
 %
-%5)$\pbinomioie{1}{2}{1}{2}$
+%5)$\PBI{1}{2}{1}{2}$
 %
-%6)$\pbinomioie{2}{1}{2}{1}$
+%6)$\PBI{2}{1}{2}{1}$
 %
-%7)$\pbinomioie{2}{2}{2}{2}$
+%7)$\PBI{2}{2}{2}{2}$
 %
-%8)$\pbinomioie{-1}{2}{-1}{2}$
+%8)$\PBI{-1}{2}{-1}{2}$
 %
-%9)$\pbinomioie{-1}{1}{-1}{1}$
+%9)$\PBI{-1}{1}{-1}{1}$
 %
-%10)$\pbinomioie{-2}{1}{-2}{1}$
+%10)$\PBI{-2}{1}{-2}{1}$
 %
-%11)$\pbinomioie{-2}{3}{-2}{3}$
+%11)$\PBI{-2}{3}{-2}{3}$
 %
-%12)$\pbinomioie[pbinc = u, sbinc = v]{-2}{3}{-2}{3}$
+%12)$\PBI[pbinc = u, sbinc = v]{-2}{3}{-2}{3}$
 %
 %\section{Prodotti}
 %\DescribeMacro{\psommadifferenzae}
@@ -957,13 +957,13 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \end{macrocode}
 %\end{macro}
 %
-%\begin{macro}{\pbinomios}
+%\begin{macro}{\PBS}
 %\changes{v1.0}{2022/06/24}{Versione iniziale}
 %\changes{v1.1}{2022/07/13}{Corretta gestione errori}
 %\changes{v1.2}{2022/07/14}{Corretta gestione ax}
 %    \begin{macrocode}
 
-\newcommand{\pbinomios}[3][]{
+\newcommand{\PBS}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}
@@ -984,11 +984,11 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \end{macrocode}
 %\end{macro}
 %
-%\begin{macro}{\pbinomioie}
+%\begin{macro}{\PBI}
 %\changes{v1.0}{2022/07/07}{Versione iniziale}
 %\changes{v1.1}{2022/07/16}{Cambiata gestione quando primo coefficiente è zero}
 %    \begin{macrocode}
-\newcommand{\pbinomioie}[5][]{
+\newcommand{\PBI}[5][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}{\ifnumequal{#3}{0}
@@ -1019,7 +1019,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 	\pgfkeys{/myerrori, default}%
 	\FPeval\b{(#4)*(-1)}%
 	\FPeval\b{round(b:0)}%
-	(\pbinomioie[#1]{#2}{#3}{\b}{#5})(\pbinomioie[#1]{#2}{#3}{#4}{#5})
+	(\PBI[#1]{#2}{#3}{\b}{#5})(\PBI[#1]{#2}{#3}{#4}{#5})
 }
 %    \end{macrocode}
 %\end{macro}
