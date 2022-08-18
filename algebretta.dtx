@@ -91,10 +91,8 @@ algebretta.sty.
 \CodelineIndex
 \RecordChanges
 \listfiles
-\usepackage{imakeidx}
-\indexsetup{level=\section{Indice analitico}}
+
 \GlossaryPrologue{\section{Changelog}}
-\makeindex[intoc]
 \begin{document}
 	\DocInput{\jobname.dtx}
 	\PrintIndex
@@ -102,11 +100,44 @@ algebretta.sty.
 %</driver>
 % \fi
 %
-%\GetFileInfo{\jobname.sty}
+% \DoNotIndex{\begin,\CodelineIndex,\CodelineNumbered,\def,\DisableCrossrefs}
+% \DoNotIndex{\DocInput,\documentclass,\EnableCrossrefs,\end,\GetFileInfo}
+% \DoNotIndex{\NeedsTeXFormat,\OnlyDescription,\RecordChanges,\usepackage}
+% \DoNotIndex{\ProvidesClass,\ProvidesPackage,\ProvidesFile,\RequirePackage}
+% \DoNotIndex{\LoadClass,\PassOptionsToClass,\PassOptionsToPackage}
+% \DoNotIndex{\DeclareOption,\CurrentOption,\ProcessOptions,\ExecuteOptions}
+% \DoNotIndex{\AtEndOfClass,\AtEndOfPackage,\AtBeginDocument,\AtEndDocument}
+% \DoNotIndex{\InputIfFileExists,\IfFileExists,\ClassError,\PackageError}
+% \DoNotIndex{\ClassWarning,\PackageWarning,\ClassWarningNoLine}
+% \DoNotIndex{\PackageWarningNoLine,\ClassInfo,\PackageInfo,\MessageBreak}
+% \DoNotIndex{\space,\protect,\DeclareRobustCommand,\CheckCommand}
+% \DoNotIndex{\newcommand,\renewcommand,\providecommand,\newenvironment}
+% \DoNotIndex{\renewenvironment,\newif,\newlength,\newcounter,\setlength}
+% \DoNotIndex{\setcounter,\if,\ifx,\ifcase,\ifnum,\ifdim,\else,\fi}
+% \DoNotIndex{\texttt,\textbf,\textrm,\textsl,\textsc}
+% \DoNotIndex{\textup,\textit,\textmd,\textsf,\emph}
+% \DoNotIndex{\ttfamily,\rmfamily,\sffamily,\mdseries,\bfseries,\upshape}
+% \DoNotIndex{\slshape,\scshape,\itshape,\em,\LaTeX,\LaTeXe}
+% \DoNotIndex{\filename,\fileversion,\filedate,\let}
+% \DoNotIndex{\@@warning,\@Ialph,\@empty,\@ifundefined,\@startsection}
+% \DoNotIndex{\arabic,\bf,\gdef,\global,\noindent,\normalsize,\or}
+% \DoNotIndex{\par,\relax,\unskip,\z@,\ifbool,\ifnumcomp,\ifnumequal}
+% \DoNotIndex{\ifnumgreater,\ifnumless,\pgfkeys,\FPeval,\FPprint,\leq}
+% \DoNotIndex{\boolfalse,\booltrue,\dfrac,\geq,\newbool,\resultaP,\sqrt}
+% \DoNotIndex{\subsection,placeholder,debug}
 %
-%\title{^^A
-	%  \textsf{Algebretta} 
-	%}
+%\changes{v1.0}{2022/06/19}{First public release}
+%\changes{v2.0}{2022/06/22}{Aggiunto pgfkeys}
+%\changes{v3.0}{2022/06/28}{Aggiunti parametri ingresso e gestione errori}
+%\changes{v3.1}{2022/07/04}{Aggiunte coniche e forme normali}
+%\changes{v3.2}{2022/08/10}{Aggiunto somma per differenza}
+%\changes{v3.3}{2022/08/13}{Uso esclusivo di pgfkeys}
+%\GetFileInfo{\jobname.sty}
+%\def\fileversion{versione 3.3}
+%\def\filedate{2022/08/13}
+\title{Il pacchetto Algebretta\thanks{Questo documento
+		corrisponde al pacchetto \textsf{Algebretta}~\fileversion, con data 
+		\filedate.}}
 %\author{^^A
 	%  Claudio Duchi^^A
 	%^^A
@@ -117,12 +148,6 @@ algebretta.sty.
 %
 %\maketitle
 %
-%\changes{v1.0}{2022/06/19}{First public release}
-%\changes{v2.0}{2022/06/22}{Aggiunto pgfkeys}
-%\changes{v3.0}{2022/06/28}{Aggiunti parametri ingresso e gestione errori}
-%\changes{v3.1}{2022/07/04}{Aggiunte coniche e forme normali}
-%\changes{v3.2}{2022/08/10}{Aggiunto somma per differenza}
-%\changes{v3.3}{2022/08/13}{Uso esclusivo di pgfkeys}
 %\tableofcontents
 %\section{Introduzione}
 %Algebretta nasce come supporto ad esami. Pacchetto per la gestione delle prove 
@@ -187,7 +212,7 @@ algebretta.sty.
 %
 %Comando per scrivere un monomio nella forma
 %
-% $ka^nb^mc^q$
+% \[ka^nb^mc^q\]
 %
 %Se i coefficienti  sono zero non viene stampato nulla
 %
@@ -225,7 +250,7 @@ algebretta.sty.
 %\DescribeMacro{\PB}
 %
 %Comando per scrivere un binomio nella forma 
-% $ax+by$
+% \[ax+by\]
 %
 %Se $a$ o $b$ sono zero non viene stampato nulla
 %
@@ -247,11 +272,10 @@ $\PB[pbinc=a^2, sbinc=z]{-2}{3}+\PB{1}{-3}$
 % \fi
 %$\PB[pbinc=a^2, sbinc=z]{-2}{3}+\PB{1}{-3}$
 %
-%
 %\DescribeMacro{\PBS}
 %
 %Comando per scrivere un binomio nella forma 
-% $ax+b$
+% \[ax+b\]
 %
 %Se $a$ o $b$ sono zero non viene stampato nulla
 %
@@ -262,23 +286,22 @@ $\PB[pbinc=a^2, sbinc=z]{-2}{3}+\PB{1}{-3}$
 %
 %Esempi
 %
-% \iffalse
+%\iffalse
 %<*verb>
-% \fi
+%\fi
 \begin{verbatim}
 $\PBS[pbinc=a^2]{-2}{3}+\PBS{1}{-3}$
 \end{verbatim}
-% \iffalse
+%\iffalse
 %</verb>
-% \fi
+%\fi
 %$\PBS[pbinc=a^2]{-2}{3}+\PBS{1}{-3}$
-%
 %
 %\DescribeMacro{\PBI}
 %
 %Comando per scrivere un binomio nella forma 
 %
-% $a\sqrt{b}x+c\sqrt{d}y$
+% \[a\sqrt{b}x+c\sqrt{d}y\]
 %
 %Se i coeffficienti   sono zero non viene stampato nulla
 %
@@ -351,9 +374,9 @@ $\PBS[pbinc=a^2]{-2}{3}+\PBS{1}{-3}$
 %
 %Comando per scrivere un binomio nella forma 
 %
-% $a\sqrt{b}x+c\sqrt{d}$
+% \[a\sqrt{b}x+c\sqrt{d}\]
 %
-%Se i coeffficienti   sono zero non viene stampato nulla
+%Se i coeffficienti sono zero non viene stampato nulla
 %
 %\cs{PBIS}
 %\oarg{pbinc=x}
@@ -367,7 +390,7 @@ $\PBS[pbinc=a^2]{-2}{3}+\PBS{1}{-3}$
 %
 %Comando per scrivere una somma per differenza del tipo
 %
-% $(a\sqrt{b}x+c\sqrt{d}y)(a\sqrt{b}x-c\sqrt{d}y)$
+% \[(a\sqrt{b}x+c\sqrt{d}y)(a\sqrt{b}x-c\sqrt{d}y)\]
 %
 %Se i coeffficienti   sono zero non viene stampato nulla
 %
@@ -403,7 +426,7 @@ $\PBS[pbinc=a^2]{-2}{3}+\PBS{1}{-3}$
 %\DescribeMacro{\PSD}
 %
 %Comando per scrivere una somma per differenza del tipo
-% $(ax+by)(ax-by)$
+% \[(ax+by)(ax-by)\]
 %
 %Se i coeffficienti   sono zero non viene stampato nulla
 %
@@ -435,11 +458,48 @@ $\PBS[pbinc=a^2]{-2}{3}+\PBS{1}{-3}$
 %3)$\PSD[pbinc = a, sbinc = b]{2}{3}$
 %
 %
+%\DescribeMacro{\PSDES}
+%
+%Comando per scrivere una somma per differenza del tipo
+%
+%\[(a\sqrt{b}x+c\sqrt{d})(a\sqrt{b}x-c\sqrt{d})\]
+%
+%Se i coeffficienti   sono zero non viene stampato nulla
+%
+%\cs{PSDES}
+%\oarg{pbinc = x}
+%\marg{a}
+%\marg{b}
+%\marg{c}
+%\marg{d}
+%
+%Esempi
+%
+%\iffalse
+%<*verb>
+%\fi
+\begin{verbatim}
+1)$\PSDES{2}{3}{4}{5}$	
+
+2)$\PSDES[pbinc = u^2]{2}{3}{4}{5}$	
+
+3)$\PSDES{-2}{3}{-4}{5}$
+\end{verbatim}
+%\iffalse
+%</verb>
+%\fi
+%
+%1)$\PSDES{2}{3}{4}{5}$	
+%
+%2)$\PSDES[pbinc = u^2]{2}{3}{4}{5}$	
+%
+%3)$\PSDES{-2}{3}{-4}{5}$
+%
 %\section{Trinomi}
 %\DescribeMacro{\ptrinomio}
 %
 %Comando per scrivere un trinomio nella forma 
-% $ax+by+cz$
+% \[ax+by+cz\]
 %
 %Se $a$, $b$ o $c$ sono zero non viene stampato nulla
 %
@@ -475,7 +535,7 @@ $\ptrinomio[ptinc=a, ttinc=b]{-1}{3}{1}$
 %\DescribeMacro{\ptrinomiop}
 %
 %Comando per scrivere un trinomio nella forma 
-% $(ax+by+cz)$
+% \[(ax+by+cz)\]
 %
 %Se $a$, $b$ o $c$ sono zero non viene stampato nulla
 %
@@ -488,7 +548,7 @@ $\ptrinomio[ptinc=a, ttinc=b]{-1}{3}{1}$
 %\DescribeMacro{\ptrinomios}
 %
 %Comando per scrivere un trinomio nella forma 
-% $ax+by+c$
+%  \[ax+by+c\]
 %
 %Se $a$, $b$ o $c$ sono zero non viene stampato nulla
 %
@@ -521,7 +581,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\DescribeMacro{\ptrinomiosp}
 %
 %Comando per scrivere un trinomio nella forma 
-% $(ax+by+c)$
+% \[ax+by+c\]
 %
 %Se $a$, $b$ o $c$ sono zero non viene stampato nulla
 %
@@ -535,7 +595,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\DescribeMacro{\ptrisgabc}
 %
 %Comando per scrivere un trinomio di secondo grado nella forma 
-% $ax^2+bx+c$
+%  \[ax^2+bx+c\]
 %
 %Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
 %in modalita warning o 
@@ -551,7 +611,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\DescribeMacro{\ptrisgacb}
 %
 %Comando per scrivere un trinomio di secondo grado nella forma 
-% $ax^2+c+bx$
+% \[ax^2+c+bx\]
 %
 %Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
 %in modalita warning o 
@@ -563,11 +623,10 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\marg{b}
 %\marg{c}
 %
-%
 %\DescribeMacro{\ptrisgbac}
 %
 %Comando per scrivere un trinomio di secondo grado nella forma 
-% $bx+ax^2+c$
+% \[bx+ax^2+c\]
 %
 %Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
 %in modalita warning o 
@@ -579,11 +638,10 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\marg{b}
 %\marg{c}
 %
-%
 %\DescribeMacro{\ptrisgcab}
 %
 %Comando per scrivere un trinomio di secondo grado nella forma 
-% $c+ax^2+bx$
+% \[c+ax^2+bx\]
 %
 %Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
 %in modalita warning o 
@@ -595,11 +653,10 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\marg{b}
 %\marg{c}
 %
-%
 %\DescribeMacro{\ptrisgcba}
 %
 %Comando per scrivere un trinomio di secondo grado nella forma 
-% $c+bx+ax^2$
+% \[c+bx+ax^2\]
 %
 %Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
 %in modalita warning o 
@@ -611,11 +668,10 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\marg{b}
 %\marg{c}
 %
-%
 %\DescribeMacro{\ptrisgbca}
 %
 %Comando per scrivere un trinomio di secondo grado nella forma 
-% $bx+c+ax^2$
+% \[bx+c+ax^2\]
 %
 %Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
 %in modalita warning o 
@@ -627,10 +683,10 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\marg{b}
 %\marg{c}
 %
-%
 %\DescribeMacro{\ptrisgm}
 %
-% Comando per scrivere un trinomio di secondo grado $ax^2+bx+c$ non dotato di 
+% Comando per scrivere un trinomio di secondo grado  \[ax^2+bx+c\] non dotato 
+%di 
 %parentesi 
 %
 %Se $b$ o $c$ sono zero non viene stampato nulla. Se $a$ è zero, 
@@ -664,9 +720,9 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %Comando per scrivere un'equazione di secondo grado nella forma 
 %
-% $px^2+(p+q)x+q=0$
+% \[px^2+(p+q)x+q=0\]
 %
-%$x=-1\vee x=-\dfrac{p}{q}$
+%\[x=-1\vee x=-\dfrac{p}{q}\]
 %
 % Se $p$ è zero, 
 %in modalita warning o 
@@ -681,10 +737,10 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %Comando per scrivere un'equazione di secondo grado nella forma 
 %
-% $x^2+ax-a^2$
+% \[x^2+ax-a^2\]
 %
-%$x=-a\left(\dfrac{1+\sqrt{5}}{2}\right)\vee$ 
-%$x=a\left(\dfrac{1-\sqrt{5}}{2}\right)$
+%\[x=-a\left(\dfrac{1+\sqrt{5}}{2}\right)\vee 
+%x=a\left(\dfrac{1-\sqrt{5}}{2}\right)\] 
 %
 %\cs{ptrisgphi}
 %\oarg{ptinc = x}
@@ -696,7 +752,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %Comando per scrivere l'equazione di una ciconferenza nella forma 
 %
-% $x^2+y^2+ax+ay+c=0$
+% \[x^2+y^2+ax+ay+c=0\]
 %
 %\cs{pcirco}
 %\oarg{ptinc = x, stinc = y}
@@ -704,12 +760,11 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\marg{b}
 %\marg{c}
 %
-%
 %\DescribeMacro{\ppara}
 %
 %Comando per scrivere l'equazione di una parabola nella forma 
 %
-% $y=ax^2+bx+c$
+% \[y=ax^2+bx+c\]
 %
 %\cs{ppara}
 %\oarg{ptinc = x, stinc = y}
@@ -721,18 +776,18 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %Comando per scrivere l'equazione di un'ellisse nella forma 
 %
-% $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$
+% \[\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1\]
 %
 %\cs{pellis}
 %\oarg{ptinc = x, stinc = y}
 %\marg{a}
 %\marg{b}
-
+%
 %\DescribeMacro{\piperassex}
 %
 %Comando per scrivere l'equazione di un'iperbole nella forma 
 %
-% $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$
+% \[\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1\]
 %
 %\cs{piperassex}
 %\oarg{ptinc = x, stinc = y}
@@ -743,7 +798,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %Comando per scrivere l'equazione di un'iperbole nella forma 
 %
-% $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=-1$
+% \[\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=-1\]
 %
 %\cs{piperassey}
 %\oarg{ptinc = x, stinc = y}
@@ -754,7 +809,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %Comando per scrivere l'equazione di un'iperbole nella forma 
 %
-% $x^2-y^2=a^2$
+% \[x^2-y^2=a^2\]
 %
 %\cs{piperequiassex}
 %\oarg{ptinc = x, stinc = y}
@@ -764,7 +819,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %Comando per scrivere l'equazione di un'iperbole nella forma 
 %
-% $x^2-y^2=-a^2$
+% \[x^2-y^2=-a^2\]
 %
 %\cs{piperequiassey}
 %\oarg{ptinc = x, stinc = y}
@@ -774,7 +829,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %Comando per scrivere l'equazione di una circonferenza in forma normale 
 %
-% $x^2+y^2+ax+ay+c=0$
+% \[x^2+y^2+ax+ay+c=0\]
 %
 %\cs{pfncirco}
 %\oarg{ptinc = x, stinc = y}
@@ -783,7 +838,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %Comando per scrivere l'equazione di una parabola in forma normale 
 %
-% $y=ax^2+bx+c$
+% \[y=ax^2+bx+c\]
 %
 %\cs{pfnpara}
 %\oarg{ptinc = x, stinc = y}
@@ -792,31 +847,28 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %
 %Comando per scrivere l'equazione di un'ellisse in forma normale 
 %
-% $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$
+% \[dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1\]
 %
 %\cs{pfnellis}
 %\oarg{ptinc = x, stinc = y}
-%
 %
 %\DescribeMacro{\pfniperassex}
 %
 %Comando per scrivere l'equazione di un'iperbole in forma normale 
 %
-% $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1$
+% \[\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=1\]
 %
 %\cs{pfniperassex}
 %\oarg{ptinc = x, stinc = y}
-%
 %
 %\DescribeMacro{\pfniperassey}
 %
 %Comando per scrivere l'equazione di un'iperbole in forma normale 
 %
-% $\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=-1$
+% \[\dfrac{x^2}{a^2}-\dfrac{y^2}{b^2}=-1\]
 %
 %\cs{pfniperassey}
 %\oarg{ptinc = x, stinc = y}
-%
 %
 %\StopEventually{^^A
 %  \newpage
@@ -853,9 +905,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 	errorecinque/.estore in = \Errorecinque,
 }
 
-
 \newcommand{\errore}[1]{}
-
 \DeclareOption{warning}{\renewcommand{\errore}[1]{\PackageWarning{errori}{#1}}}
 \DeclareOption{debug}{\renewcommand{\errore}[1]{\PackageError{errori}{#1}{}}}
 \DeclareOption*{\PackageWarning{errori}{Il parametro ‘\CurrentOption’ è 
@@ -934,10 +984,11 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\end{macro}
 %
 %    \begin{macrocode}
+%\changes{v1.0}{2022/08/11}{Versione iniziale parte letterale}
 \newcommand{\pl}[2]{\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{#1}{#1^{#2}}}}
 %    \end{macrocode}
 %\begin{macro}{\PM}
-%\changes{v1.0}{2022/08/11}{Versione iniziale parte letterale}
+%\changes{v1.0}{2022/08/11}{Versione iniziale Monomio}
 %    \begin{macrocode}
 \newcommand{\PM}[5][]{
 	\pgfkeys{/mymonomio, default, #1}%
@@ -965,8 +1016,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 		\ifnumgreater{#3}{0}
 		{\ifnumequal{#3}{1}{\ifbool{Azero}{\mybinoB\boolfalse{Azero}}{+\mybinoB}}
 			{\ifbool{Azero}{#3\mybinoB\boolfalse{Azero}}{+#3\mybinoB}}}
-		{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
-}
+		{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -975,7 +1025,6 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\changes{v1.1}{2022/07/13}{Corretta gestione errori}
 %\changes{v1.2}{2022/07/14}{Corretta gestione ax}
 %    \begin{macrocode}
-
 \newcommand{\PBS}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
@@ -992,8 +1041,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \begin{macrocode}
 \newcommand{\pbinomiop}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
-	(\PB[#1]{#2}{#3})
-}
+	(\PB[#1]{#2}{#3})}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -1018,8 +1066,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 						{\ifbool{Azero}{#4\mybinoB\boolfalse{Azero}}{+#4\mybinoB}}
 						{\ifbool{Azero}{#4\sqrt{#5}\mybinoB\boolfalse{Azero}}{+#4\sqrt{#5}\mybinoB}}}}
 				{\ifnumequal{#4}{-1}{\ifnumequal{#5}{1}{-\mybinoB}{-\sqrt{#5}\mybinoB}}
-					{\ifnumequal{#5}{1}{#4\mybinoB}{#4\sqrt{#5}\mybinoB}}}}}}
-}
+					{\ifnumequal{#5}{1}{#4\mybinoB}{#4\sqrt{#5}\mybinoB}}}}}}}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -1043,11 +1090,9 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 						{\ifbool{Azero}{#4\boolfalse{Azero}}{+#4}}
 						{\ifbool{Azero}{#4\sqrt{#5}\boolfalse{Azero}}{+#4\sqrt{#5}}}}}
 				{\ifnumequal{#4}{-1}{\ifnumequal{#5}{1}{-1}{-\sqrt{#5}}}
-					{\ifnumequal{#5}{1}{#4}{#4\sqrt{#5}}}}}}}
-}
+					{\ifnumequal{#5}{1}{#4}{#4\sqrt{#5}}}}}}}}
 %    \end{macrocode}
 %\end{macro}
-%
 %
 %\begin{macro}{\PSDE}
 %\changes{v1.0}{2022/08/10}{Versione iniziale somma  per differenza estesa}
@@ -1057,23 +1102,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 	\pgfkeys{/myerrori, default}%
 	\FPeval\b{(#4)*(-1)}%
 	\FPeval\b{round(b:0)}%
-	(\PBI[#1]{#2}{#3}{\b}{#5})(\PBI[#1]{#2}{#3}{#4}{#5})
-}
-%    \end{macrocode}
-%\end{macro}
-%
-%
-%\begin{macro}{\PSDES}
-%\changes{v1.0}{2022/08/12}{Versione iniziale somma per differenza estesa 
-%semplificata}
-%    \begin{macrocode}
-\newcommand{\PSDES}[5][]{
-	\pgfkeys{/mybinomio, default, #1}%
-	\pgfkeys{/myerrori, default}%
-	\FPeval\b{(#4)*(-1)}%
-	\FPeval\b{round(b:0)}%
-	(\PBIS[#1]{#2}{#3}{\b}{#5})(\PBIS[#1]{#2}{#3}{#4}{#5})
-}
+	(\PBI[#1]{#2}{#3}{\b}{#5})(\PBI[#1]{#2}{#3}{#4}{#5})}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -1085,6 +1114,19 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 	\pgfkeys{/myerrori, default}%
 	\PSDE[#1]{#2}{1}{#3}{1}
 }
+%    \end{macrocode}
+%\end{macro}
+%
+%\begin{macro}{\PSDES}
+%\changes{v1.0}{2022/08/12}{Versione iniziale somma per differenza estesa 
+	%semplificata}
+%    \begin{macrocode}
+\newcommand{\PSDES}[5][]{
+	\pgfkeys{/mybinomio, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\FPeval\b{(#4)*(-1)}%
+	\FPeval\b{round(b:0)}%
+	(\PBIS[#1]{#2}{#3}{\b}{#5})(\PBIS[#1]{#2}{#3}{#4}{#5})}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -1101,11 +1143,9 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 		{\ifnumequal{#3}{-1}{-\mytrioB}{#3\mytrioB}}}
 	\ifnumequal{#4}{0}{}{
 		\ifnumgreater{#4}{0}{\ifnumequal{#4}{1}{+\mytrioC}{+#4\mytrioC}}
-		{\ifnumequal{#4}{-1}{-\mytrioC}{#4\mytrioC}}}
-}
+		{\ifnumequal{#4}{-1}{-\mytrioC}{#4\mytrioC}}}}
 %    \end{macrocode}
 %\end{macro}
-%
 %
 %\begin{macro}{\ptrinomios}
 %\changes{v1.0}{2022/06/25}{Versione iniziale}
@@ -1117,19 +1157,16 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 		{\ifnumequal{#2}{-1}{-\mytrioA}{#2\mytrioA}}}
 	\ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioB}{+#3\mytrioB}}
 		{\ifnumequal{#3}{-1}{-\mytrioB}{#3\mytrioB}}}
-	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
-}
+	\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}}
 %    \end{macrocode}
 %\end{macro}
-%
 %
 %\begin{macro}{\ptrinomiop}
 %\changes{v1.0}{2022/06/25}{Versione iniziale trinomio} 
 %    \begin{macrocode}
 \newcommand{\ptrinomiop}[4][]{
 	\pgfkeys{/mytrinomio, default, #1}%
-	(\ptrinomio[#1]{#2}{#3}{#4})
-}
+	(\ptrinomio[#1]{#2}{#3}{#4})}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -1139,8 +1176,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \begin{macrocode}
 \newcommand{\ptrinomiosp}[4][]{
 	\pgfkeys{/mytrinomios, default, #1}%
-	(\ptrinomios[#1]{#2}{#3}{#4})
-}
+	(\ptrinomios[#1]{#2}{#3}{#4})}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -1158,7 +1194,6 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \end{macrocode}
 %\end{macro}
 %
-%
 %\begin{macro}{\ptrisgacb}
 %\changes{v1.0}{2022/06/29}{Versione iniziale trinomio secondo grado}
 %    \begin{macrocode}
@@ -1172,7 +1207,6 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 		{\ifnumequal{#3}{-1}{-\mytrioA}{\ifnumgreater{#3}{0}{+#3\mytrioA}{#3\mytrioA}}}}}
 %    \end{macrocode}
 %\end{macro}
-%
 %
 %\begin{macro}{\ptrisgbac}
 %\changes{v1.0}{2022/06/29}{Versione iniziale trimonio secondo grado}
@@ -1267,8 +1301,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 	\pgfkeys{/myerrori, default}%
 	\FPeval\resultaP{(#2)+(#3)}%
 	\FPeval\resultaP{round(resultaP:0)}
-	\ptrisgabc[#1]{#2}{\resultaP}{#3}
-}
+	\ptrisgabc[#1]{#2}{\resultaP}{#3}}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -1281,8 +1314,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 	\pgfkeys{/myerrori, default}%
 	\FPeval\resultaP{(-1)*(#2)*(#2)}%
 	\FPeval\resultaP{round(resultaP:0)}
-	\ptrisgabc[#1]{1}{#2}{\resultaP}
-}
+	\ptrisgabc[#1]{1}{#2}{\resultaP}}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -1336,8 +1368,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 		{\ifnumequal{#3}{-1}{+\mytrioB^2}{
 				\FPeval\resultaP{(#3)*(#3)}%
 				\FPeval\resultaP{round(resultaP:0)}	
-				+\dfrac{\mytrioB^2}{\resultaP}}}}=1%
-}
+				+\dfrac{\mytrioB^2}{\resultaP}}}}=1}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -1354,8 +1385,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 	\ifnumequal{#3}{0}{\errore{\Erroretre}}{\ifnumequal{#3}{1}{-\mytrioB^2}
 		{\ifnumequal{#3}{-1}{-\mytrioB^2}{\FPeval\resultaP{(#3)*(#3)}%
 				\FPeval\resultaP{round(resultaP:0)}	
-				-\dfrac{\mytrioB^2}{\resultaP}}}}=1%
-}
+				-\dfrac{\mytrioB^2}{\resultaP}}}}=1}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -1372,8 +1402,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 	\ifnumequal{#3}{0}{\errore{\Erroretre}}{\ifnumequal{#3}{1}{-\mytrioB^2}
 		{\ifnumequal{#3}{-1}{-\mytrioB^2}{\FPeval\resultaP{(#3)*(#3)}%
 				\FPeval\resultaP{round(resultaP:0)}	
-				-\dfrac{\mytrioB^2}{\resultaP}}}}=-1%
-}
+				-\dfrac{\mytrioB^2}{\resultaP}}}}=-1}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -1386,8 +1415,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 	\pgfkeys{/myerrori, default}%
 	\FPeval\resultaP{(#2)*(#2)}%
 	\FPeval\resultaP{round(resultaP:0)}
-	\mytrioA^2-\mytrioB^2=\resultaP%
-}
+	\mytrioA^2-\mytrioB^2=\resultaP}
 %    \end{macrocode}
 %\end{macro}
 %
@@ -1400,8 +1428,7 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 	\pgfkeys{/myerrori, default}%
 	\FPeval\resultaP{(#2)*(#2)}%
 	\FPeval\resultaP{round(resultaP:0)}
-	\mytrioA^2-\mytrioB^2=-\resultaP%
-}
+	\mytrioA^2-\mytrioB^2=-\resultaP}
 %    \end{macrocode}
 %\end{macro}
 %

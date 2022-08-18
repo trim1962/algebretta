@@ -15,7 +15,9 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{algebretta}
 [2022/06/28 v3.0 creazione di binomi e trinomi]
-
+\title{Il pacchetto Algebretta\thanks{Questo documento
+corrisponde al pacchetto \textsf{Algebretta}~\fileversion, con data
+\filedate.}}
 \RequirePackage{etoolbox}
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
@@ -40,7 +42,6 @@ errorecinque/.estore in = \Errorecinque,
 }
 
 \newcommand{\errore}[1]{}
-
 \DeclareOption{warning}{\renewcommand{\errore}[1]{\PackageWarning{errori}{#1}}}
 \DeclareOption{debug}{\renewcommand{\errore}[1]{\PackageError{errori}{#1}{}}}
 \DeclareOption*{\PackageWarning{errori}{Il parametro ‘\CurrentOption’ è
@@ -123,9 +124,7 @@ stinc/.estore in = \mytrioB,
 \ifnumgreater{#3}{0}
 {\ifnumequal{#3}{1}{\ifbool{Azero}{\mybinoB\boolfalse{Azero}}{+\mybinoB}}
 {\ifbool{Azero}{#3\mybinoB\boolfalse{Azero}}{+#3\mybinoB}}}
-{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}
-}
-
+{\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}}
 \newcommand{\PBS}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
@@ -136,8 +135,7 @@ stinc/.estore in = \mytrioB,
 \ifnumgreater{#3}{0}{\ifbool{Azero}{#3}{+#3}}{#3}}}
 \newcommand{\pbinomiop}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
-(\PB[#1]{#2}{#3})
-}
+(\PB[#1]{#2}{#3})}
 \newcommand{\PBI}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
@@ -155,8 +153,7 @@ stinc/.estore in = \mytrioB,
 {\ifbool{Azero}{#4\mybinoB\boolfalse{Azero}}{+#4\mybinoB}}
 {\ifbool{Azero}{#4\sqrt{#5}\mybinoB\boolfalse{Azero}}{+#4\sqrt{#5}\mybinoB}}}}
 {\ifnumequal{#4}{-1}{\ifnumequal{#5}{1}{-\mybinoB}{-\sqrt{#5}\mybinoB}}
-{\ifnumequal{#5}{1}{#4\mybinoB}{#4\sqrt{#5}\mybinoB}}}}}}
-}
+{\ifnumequal{#5}{1}{#4\mybinoB}{#4\sqrt{#5}\mybinoB}}}}}}}
 \newcommand{\PBIS}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
@@ -174,27 +171,24 @@ stinc/.estore in = \mytrioB,
 {\ifbool{Azero}{#4\boolfalse{Azero}}{+#4}}
 {\ifbool{Azero}{#4\sqrt{#5}\boolfalse{Azero}}{+#4\sqrt{#5}}}}}
 {\ifnumequal{#4}{-1}{\ifnumequal{#5}{1}{-1}{-\sqrt{#5}}}
-{\ifnumequal{#5}{1}{#4}{#4\sqrt{#5}}}}}}}
-}
+{\ifnumequal{#5}{1}{#4}{#4\sqrt{#5}}}}}}}}
 \newcommand{\PSDE}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \FPeval\b{(#4)*(-1)}%
 \FPeval\b{round(b:0)}%
-(\PBI[#1]{#2}{#3}{\b}{#5})(\PBI[#1]{#2}{#3}{#4}{#5})
+(\PBI[#1]{#2}{#3}{\b}{#5})(\PBI[#1]{#2}{#3}{#4}{#5})}
+\newcommand{\PSD}[3][]{
+\pgfkeys{/mybinomio, default, #1}%
+\pgfkeys{/myerrori, default}%
+\PSDE[#1]{#2}{1}{#3}{1}
 }
 \newcommand{\PSDES}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \FPeval\b{(#4)*(-1)}%
 \FPeval\b{round(b:0)}%
-(\PBIS[#1]{#2}{#3}{\b}{#5})(\PBIS[#1]{#2}{#3}{#4}{#5})
-}
-\newcommand{\PSD}[3][]{
-\pgfkeys{/mybinomio, default, #1}%
-\pgfkeys{/myerrori, default}%
-\PSDE[#1]{#2}{1}{#3}{1}
-}
+(\PBIS[#1]{#2}{#3}{\b}{#5})(\PBIS[#1]{#2}{#3}{#4}{#5})}
 \newcommand{\ptrinomio}[4][]{
 \pgfkeys{/mytrinomio, default, #1}%
 \ifnumequal{#2}{0}{}{
@@ -205,8 +199,7 @@ stinc/.estore in = \mytrioB,
 {\ifnumequal{#3}{-1}{-\mytrioB}{#3\mytrioB}}}
 \ifnumequal{#4}{0}{}{
 \ifnumgreater{#4}{0}{\ifnumequal{#4}{1}{+\mytrioC}{+#4\mytrioC}}
-{\ifnumequal{#4}{-1}{-\mytrioC}{#4\mytrioC}}}
-}
+{\ifnumequal{#4}{-1}{-\mytrioC}{#4\mytrioC}}}}
 \newcommand{\ptrinomios}[4][]{
 \pgfkeys{/mytrinomios, default, #1}%
 \ifnumequal{#2}{0}{}{
@@ -214,16 +207,13 @@ stinc/.estore in = \mytrioB,
 {\ifnumequal{#2}{-1}{-\mytrioA}{#2\mytrioA}}}
 \ifnumequal{#3}{0}{}{\ifnumgreater{#3}{0}{\ifnumequal{#3}{1}{+\mytrioB}{+#3\mytrioB}}
 {\ifnumequal{#3}{-1}{-\mytrioB}{#3\mytrioB}}}
-\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}
-}
+\ifnumequal{#4}{0}{}{\ifnumgreater{#4}{0}{+#4}{#4}}}
 \newcommand{\ptrinomiop}[4][]{
 \pgfkeys{/mytrinomio, default, #1}%
-(\ptrinomio[#1]{#2}{#3}{#4})
-}
+(\ptrinomio[#1]{#2}{#3}{#4})}
 \newcommand{\ptrinomiosp}[4][]{
 \pgfkeys{/mytrinomios, default, #1}%
-(\ptrinomios[#1]{#2}{#3}{#4})
-}
+(\ptrinomios[#1]{#2}{#3}{#4})}
 \newcommand{\ptrisgabc}[4][]{
 \pgfkeys{/mytrinomiosecondog, default, #1}%
 \pgfkeys{/myerrori, default}%
@@ -294,15 +284,13 @@ stinc/.estore in = \mytrioB,
 \pgfkeys{/myerrori, default}%
 \FPeval\resultaP{(#2)+(#3)}%
 \FPeval\resultaP{round(resultaP:0)}
-\ptrisgabc[#1]{#2}{\resultaP}{#3}
-}
+\ptrisgabc[#1]{#2}{\resultaP}{#3}}
 \newcommand{\ptrisgphi}[2][]{%
 \pgfkeys{/mytrinomiosecondog, default, #1}%
 \pgfkeys{/myerrori, default}%
 \FPeval\resultaP{(-1)*(#2)*(#2)}%
 \FPeval\resultaP{round(resultaP:0)}
-\ptrisgabc[#1]{1}{#2}{\resultaP}
-}
+\ptrisgabc[#1]{1}{#2}{\resultaP}}
 \newcommand{\pcirco}[4][]{
 \pgfkeys{/mycirc, default, #1}%
 \mytrioA^2+\mytrioB^2
@@ -336,8 +324,7 @@ stinc/.estore in = \mytrioB,
 {\ifnumequal{#3}{-1}{+\mytrioB^2}{
 \FPeval\resultaP{(#3)*(#3)}%
 \FPeval\resultaP{round(resultaP:0)} 
-+\dfrac{\mytrioB^2}{\resultaP}}}}=1%
-}
++\dfrac{\mytrioB^2}{\resultaP}}}}=1}
 \newcommand{\piperassex}[3][]{
 \pgfkeys{/myiper, default, #1}%
 \pgfkeys{/myerrori, default}%
@@ -348,8 +335,7 @@ stinc/.estore in = \mytrioB,
 \ifnumequal{#3}{0}{\errore{\Erroretre}}{\ifnumequal{#3}{1}{-\mytrioB^2}
 {\ifnumequal{#3}{-1}{-\mytrioB^2}{\FPeval\resultaP{(#3)*(#3)}%
 \FPeval\resultaP{round(resultaP:0)} 
--\dfrac{\mytrioB^2}{\resultaP}}}}=1%
-}
+-\dfrac{\mytrioB^2}{\resultaP}}}}=1}
 \newcommand{\piperassey}[3][]{
 \pgfkeys{/myiper, default, #1}%
 \pgfkeys{/myerrori, default}%
@@ -360,22 +346,19 @@ stinc/.estore in = \mytrioB,
 \ifnumequal{#3}{0}{\errore{\Erroretre}}{\ifnumequal{#3}{1}{-\mytrioB^2}
 {\ifnumequal{#3}{-1}{-\mytrioB^2}{\FPeval\resultaP{(#3)*(#3)}%
 \FPeval\resultaP{round(resultaP:0)} 
--\dfrac{\mytrioB^2}{\resultaP}}}}=-1%
-}
+-\dfrac{\mytrioB^2}{\resultaP}}}}=-1}
 \newcommand{\piperequiassex}[2][]{
 \pgfkeys{/myiper, default, #1}%
 \pgfkeys{/myerrori, default}%
 \FPeval\resultaP{(#2)*(#2)}%
 \FPeval\resultaP{round(resultaP:0)}
-\mytrioA^2-\mytrioB^2=\resultaP%
-}
+\mytrioA^2-\mytrioB^2=\resultaP}
 \newcommand{\piperequiassey}[2][]{
 \pgfkeys{/myiper, default, #1}%
 \pgfkeys{/myerrori, default}%
 \FPeval\resultaP{(#2)*(#2)}%
 \FPeval\resultaP{round(resultaP:0)}
-\mytrioA^2-\mytrioB^2=-\resultaP%
-}
+\mytrioA^2-\mytrioB^2=-\resultaP}
 \newcommand{\pfncirco}[1][]{
 \pgfkeys{/mycirc, default, #1}%
 \mytrioA^2+\mytrioB^2+a\mytrioA+b\mytrioB+c=0}%
