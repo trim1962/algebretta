@@ -27,8 +27,8 @@ corrisponde al pacchetto \textsf{Algebretta}~\fileversion, con data
 \pgfkeys{/myerrori/.is family, /myerrori,
 default/.style =
 {
-erroreuno =\space Attenzione: il parametro uno di PB è zero,
-erroredue =\space Attenzione: il parametro due di PB è zero,
+erroreuno =\space Attenzione: il parametro uno di AgPB è zero,
+erroredue =\space Attenzione: il parametro due di AgPB è zero,
 erroretre =\space Attenzione: il parametro $a$ è zero,
 errorequattro =\space Attenzione: radicando negativo,
 errorecinque =\space  Attenzione: la funzione omografica diventa una
@@ -106,7 +106,7 @@ stinc/.estore in = \mytrioB,
 \ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}{+}{+#1}}%
 {\ifnumequal{#1}{-1}{-}{#1}}}}%
 \newcommand{\pl}[2]{\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{#1}{#1^{#2}}}}
-\newcommand{\PM}[5][]{
+\newcommand{\AgPM}[5][]{
 \pgfkeys{/mymonomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \ifnumequal{#2}{0}{}
@@ -114,7 +114,7 @@ stinc/.estore in = \mytrioB,
 {\ifnumequal{#2}{-1}{-\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
 {\ifnumgreater{#2}{0}{+#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
 {#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}}}}}
-\newcommand{\PB}[3][]{
+\newcommand{\AgPB}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}
@@ -135,7 +135,7 @@ stinc/.estore in = \mytrioB,
 \ifnumgreater{#3}{0}{\ifbool{Azero}{#3}{+#3}}{#3}}}
 \newcommand{\pbinomiop}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
-(\PB[#1]{#2}{#3})}
+(\AgPB[#1]{#2}{#3})}
 \newcommand{\PBI}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
