@@ -125,7 +125,7 @@ stinc/.estore in = \mytrioB,
 {\ifnumequal{#3}{1}{\ifbool{Azero}{\mybinoB\boolfalse{Azero}}{+\mybinoB}}
 {\ifbool{Azero}{#3\mybinoB\boolfalse{Azero}}{+#3\mybinoB}}}
 {\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}}
-\newcommand{\PBS}[3][]{
+\newcommand{\AgPBS}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}
@@ -136,7 +136,7 @@ stinc/.estore in = \mytrioB,
 \newcommand{\pbinomiop}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 (\AgPB[#1]{#2}{#3})}
-\newcommand{\PBI}[5][]{
+\newcommand{\AgPBI}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}{\ifnumequal{#3}{0}
@@ -154,7 +154,7 @@ stinc/.estore in = \mytrioB,
 {\ifbool{Azero}{#4\sqrt{#5}\mybinoB\boolfalse{Azero}}{+#4\sqrt{#5}\mybinoB}}}}
 {\ifnumequal{#4}{-1}{\ifnumequal{#5}{1}{-\mybinoB}{-\sqrt{#5}\mybinoB}}
 {\ifnumequal{#5}{1}{#4\mybinoB}{#4\sqrt{#5}\mybinoB}}}}}}}
-\newcommand{\PBIS}[5][]{
+\newcommand{\AgPBIS}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}{\ifnumequal{#3}{0}
@@ -172,23 +172,23 @@ stinc/.estore in = \mytrioB,
 {\ifbool{Azero}{#4\sqrt{#5}\boolfalse{Azero}}{+#4\sqrt{#5}}}}}
 {\ifnumequal{#4}{-1}{\ifnumequal{#5}{1}{-1}{-\sqrt{#5}}}
 {\ifnumequal{#5}{1}{#4}{#4\sqrt{#5}}}}}}}}
-\newcommand{\PSDE}[5][]{
+\newcommand{\AgPSDE}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \FPeval\b{(#4)*(-1)}%
 \FPeval\b{round(b:0)}%
-(\PBI[#1]{#2}{#3}{\b}{#5})(\PBI[#1]{#2}{#3}{#4}{#5})}
-\newcommand{\PSD}[3][]{
+(\AgPBI[#1]{#2}{#3}{\b}{#5})(\AgPBI[#1]{#2}{#3}{#4}{#5})}
+\newcommand{\AgPSD}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
-\PSDE[#1]{#2}{1}{#3}{1}
+\AgPSDE[#1]{#2}{1}{#3}{1}
 }
-\newcommand{\PSDES}[5][]{
+\newcommand{\AgPSDES}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \FPeval\b{(#4)*(-1)}%
 \FPeval\b{round(b:0)}%
-(\PBIS[#1]{#2}{#3}{\b}{#5})(\PBIS[#1]{#2}{#3}{#4}{#5})}
+(\AgPBIS[#1]{#2}{#3}{\b}{#5})(\AgPBIS[#1]{#2}{#3}{#4}{#5})}
 \newcommand{\ptrinomio}[4][]{
 \pgfkeys{/mytrinomio, default, #1}%
 \ifnumequal{#2}{0}{}{
