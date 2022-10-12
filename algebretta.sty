@@ -27,8 +27,8 @@ corrisponde al pacchetto \textsf{Algebretta}~\fileversion, con data
 \pgfkeys{/myerrori/.is family, /myerrori,
 default/.style =
 {
-erroreuno =\space Attenzione: il parametro uno di AgPB è zero,
-erroredue =\space Attenzione: il parametro due di AgPB è zero,
+erroreuno =\space Attenzione: il parametro uno di APB è zero,
+erroredue =\space Attenzione: il parametro due di APB è zero,
 erroretre =\space Attenzione: il parametro $a$ è zero,
 errorequattro =\space Attenzione: radicando negativo,
 errorecinque =\space  Attenzione: la funzione omografica diventa una
@@ -106,7 +106,7 @@ stinc/.estore in = \mytrioB,
 \ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}{+}{+#1}}%
 {\ifnumequal{#1}{-1}{-}{#1}}}}%
 \newcommand{\pl}[2]{\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{#1}{#1^{#2}}}}
-\newcommand{\AgPM}[5][]{
+\newcommand{\PM}[5][]{
 \pgfkeys{/mymonomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \ifnumequal{#2}{0}{}
@@ -114,7 +114,7 @@ stinc/.estore in = \mytrioB,
 {\ifnumequal{#2}{-1}{-\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
 {\ifnumgreater{#2}{0}{+#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}
 {#2\pl{\mypmA}{#3}\pl{\mypmB}{#4}\pl{\mypmC}{#5}}}}}}
-\newcommand{\AgPB}[3][]{
+\newcommand{\APB}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}
@@ -125,7 +125,7 @@ stinc/.estore in = \mytrioB,
 {\ifnumequal{#3}{1}{\ifbool{Azero}{\mybinoB\boolfalse{Azero}}{+\mybinoB}}
 {\ifbool{Azero}{#3\mybinoB\boolfalse{Azero}}{+#3\mybinoB}}}
 {\ifnumequal{#3}{-1}{-\mybinoB}{#3\mybinoB}}}}
-\newcommand{\AgPBS}[3][]{
+\newcommand{\APBS}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}
@@ -135,8 +135,8 @@ stinc/.estore in = \mytrioB,
 \ifnumgreater{#3}{0}{\ifbool{Azero}{#3}{+#3}}{#3}}}
 \newcommand{\pbinomiop}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
-(\AgPB[#1]{#2}{#3})}
-\newcommand{\AgPBI}[5][]{
+(\APB[#1]{#2}{#3})}
+\newcommand{\PBI}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}{\ifnumequal{#3}{0}
@@ -154,7 +154,7 @@ stinc/.estore in = \mytrioB,
 {\ifbool{Azero}{#4\sqrt{#5}\mybinoB\boolfalse{Azero}}{+#4\sqrt{#5}\mybinoB}}}}
 {\ifnumequal{#4}{-1}{\ifnumequal{#5}{1}{-\mybinoB}{-\sqrt{#5}\mybinoB}}
 {\ifnumequal{#5}{1}{#4\mybinoB}{#4\sqrt{#5}\mybinoB}}}}}}}
-\newcommand{\AgPBIS}[5][]{
+\newcommand{\PBIS}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}{\ifnumequal{#3}{0}
@@ -172,23 +172,29 @@ stinc/.estore in = \mytrioB,
 {\ifbool{Azero}{#4\sqrt{#5}\boolfalse{Azero}}{+#4\sqrt{#5}}}}}
 {\ifnumequal{#4}{-1}{\ifnumequal{#5}{1}{-1}{-\sqrt{#5}}}
 {\ifnumequal{#5}{1}{#4}{#4\sqrt{#5}}}}}}}}
-\newcommand{\AgPSDE}[5][]{
+\newcommand{\PSDE}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \FPeval\b{(#4)*(-1)}%
 \FPeval\b{round(b:0)}%
-(\AgPBI[#1]{#2}{#3}{\b}{#5})(\AgPBI[#1]{#2}{#3}{#4}{#5})}
-\newcommand{\AgPSD}[3][]{
+(\PBI[#1]{#2}{#3}{\b}{#5})(\PBI[#1]{#2}{#3}{#4}{#5})}
+\newcommand{\PSDS}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
-\AgPSDE[#1]{#2}{1}{#3}{1}
+\FPeval\cc{(#3)*(-1)}%
+\FPeval\cc{round(cc:0)}%
+(\APBS[#1]{#2}{\cc})(\APBS[#1]{#2}{#3})}
+\newcommand{\PSD}[3][]{
+\pgfkeys{/mybinomio, default, #1}%
+\pgfkeys{/myerrori, default}%
+\PSDE[#1]{#2}{1}{#3}{1}
 }
-\newcommand{\AgPSDES}[5][]{
+\newcommand{\PSDES}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
 \FPeval\b{(#4)*(-1)}%
 \FPeval\b{round(b:0)}%
-(\AgPBIS[#1]{#2}{#3}{\b}{#5})(\AgPBIS[#1]{#2}{#3}{#4}{#5})}
+(\PBIS[#1]{#2}{#3}{\b}{#5})(\PBIS[#1]{#2}{#3}{#4}{#5})}
 \newcommand{\ptrinomio}[4][]{
 \pgfkeys{/mytrinomio, default, #1}%
 \ifnumequal{#2}{0}{}{

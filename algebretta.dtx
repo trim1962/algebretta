@@ -208,7 +208,7 @@ algebretta.sty.
 %
 %\section{Monomi}
 %
-%\DescribeMacro{\AgPM}
+%\DescribeMacro{\PM}
 %
 %Comando per scrivere un monomio nella forma
 %
@@ -216,7 +216,7 @@ algebretta.sty.
 %
 %Se i coefficienti  sono zero non viene stampato nulla
 %
-%\cs{AgPM}
+%\cs{PM}
 %\oarg	{pma = a, pmb = b, pmc =c}
 %\marg{k}
 %\marg{n}
@@ -229,32 +229,32 @@ algebretta.sty.
 %<*verb>
 % \fi
 \begin{verbatim}
-1)$\AgPM{1}{0}{3}{4}$	
+1)$\PM{1}{0}{3}{4}$	
 
-2)$\AgPM{-2}{2}{0}{4}$
+2)$\PM{-2}{2}{0}{4}$
 
-3)$\AgPM[pma = x, pmb = y, pmc =z]{-2}{-2}{3}{4}$
+3)$\PM[pma = x, pmb = y, pmc =z]{-2}{-2}{3}{4}$
 \end{verbatim}
 %\iffalse
 %</verb>
 % \fi
 %
-%1)$\AgPM{1}{0}{3}{4}$	
+%1)$\PM{1}{0}{3}{4}$	
 %
-%2)$\AgPM{-2}{2}{0}{4}$
+%2)$\PM{-2}{2}{0}{4}$
 %
-%3)$\AgPM[pma = x, pmb = y, pmc =z]{-2}{-2}{3}{4}$
+%3)$\PM[pma = x, pmb = y, pmc =z]{-2}{-2}{3}{4}$
 %
 %\section{Binomi}
 %
-%\DescribeMacro{\AgPB}
+%\DescribeMacro{\APB}
 %
 %Comando per scrivere un binomio nella forma 
 % \[ax+by\]
 %
 %Se $a$ o $b$ sono zero non viene stampato nulla
 %
-%\cs{AgPB}
+%\cs{APB}
 %\oarg{pbinc=a, sbinc=b}
 %\marg{a}
 %\marg{b}
@@ -265,21 +265,21 @@ algebretta.sty.
 %<*verb>
 % \fi
 \begin{verbatim}
-$\AgPB[pbinc=a^2, sbinc=z]{-2}{3}+\AgPB{1}{-3}$
+$\APB[pbinc=a^2, sbinc=z]{-2}{3}+\APB{1}{-3}$
 \end{verbatim}
 % \iffalse
 %</verb>
 % \fi
-%$\AgPB[pbinc=a^2, sbinc=z]{-2}{3}+\AgPB{1}{-3}$
+%$\APB[pbinc=a^2, sbinc=z]{-2}{3}+\APB{1}{-3}$
 %
-%\DescribeMacro{\AgPBS}
+%\DescribeMacro{\APBS}
 %
 %Comando per scrivere un binomio nella forma 
 % \[ax+b\]
 %
 %Se $a$ o $b$ sono zero non viene stampato nulla
 %
-%\cs{AgPBS}
+%\cs{APB}
 %\oarg{pbinc=x}
 %\marg{a}
 %\marg{b}
@@ -290,14 +290,14 @@ $\AgPB[pbinc=a^2, sbinc=z]{-2}{3}+\AgPB{1}{-3}$
 %<*verb>
 %\fi
 \begin{verbatim}
-$\AgPBS[pbinc=a^2]{-2}{3}+\AgPBS{1}{-3}$
+$\APBS[pbinc=a^2]{-2}{3}+\APBS{1}{-3}$
 \end{verbatim}
 %\iffalse
 %</verb>
 %\fi
-%$\AgPBS[pbinc=a^2]{-2}{3}+\AgPBS{1}{-3}$
+%$\APBS[pbinc=a^2]{-2}{3}+\APBS{1}{-3}$
 %
-%\DescribeMacro{\AgPBI}
+%\DescribeMacro{\PBI}
 %
 %Comando per scrivere un binomio nella forma 
 %
@@ -305,7 +305,7 @@ $\AgPBS[pbinc=a^2]{-2}{3}+\AgPBS{1}{-3}$
 %
 %Se i coeffficienti   sono zero non viene stampato nulla
 %
-%\cs{AgPBI}
+%\cs{PBI}
 %\oarg{pbinc=x, sbinc=y}
 %\marg{a}
 %\marg{b}
@@ -318,59 +318,59 @@ $\AgPBS[pbinc=a^2]{-2}{3}+\AgPBS{1}{-3}$
 %<*verb>
 % \fi
 \begin{verbatim}
-1)$\AgPBI{0}{1}{0}{1}$
+1)$\PBI{0}{1}{0}{1}$
 
-2)$\AgPBI{1}{0}{1}{0}$
+2)$\PBI{1}{0}{1}{0}$
 
-3)$\AgPBI{1}{-1}{1}{-1}$
+3)$\PBI{1}{-1}{1}{-1}$
 
-4)$\AgPBI{1}{1}{1}{1}$
+4)$\PBI{1}{1}{1}{1}$
 
-5)$\AgPBI{1}{2}{1}{2}$
+5)$\PBI{1}{2}{1}{2}$
 
-6)$\AgPBI{2}{1}{2}{1}$
+6)$\PBI{2}{1}{2}{1}$
 
-7)$\AgPBI{2}{2}{2}{2}$
+7)$\PBI{2}{2}{2}{2}$
 
-8)$\AgPBI{-1}{2}{-1}{2}$
+8)$\PBI{-1}{2}{-1}{2}$
 
-9)$\AgPBI{-1}{1}{-1}{1}$
+9)$\PBI{-1}{1}{-1}{1}$
 
-10)$\AgPBI{-2}{1}{-2}{1}$
+10)$\PBI{-2}{1}{-2}{1}$
 
-11)$\AgPBI{-2}{3}{-2}{3}$
+11)$\PBI{-2}{3}{-2}{3}$
 
-12)$\AgPBI[pbinc = u, sbinc = v]{-2}{3}{-2}{3}$
+12)$\PBI[pbinc = u, sbinc = v]{-2}{3}{-2}{3}$
 \end{verbatim}
 %\iffalse
 %</verb>
 % \fi
 %
-%1)$\AgPBI{0}{1}{0}{1}$
+%1)$\PBI{0}{1}{0}{1}$
 %
-%2)$\AgPBI{1}{0}{1}{0}$
+%2)$\PBI{1}{0}{1}{0}$
 %
-%3)$\AgPBI{1}{-1}{1}{-1}$
+%3)$\PBI{1}{-1}{1}{-1}$
 %
-%4)$\AgPBI{1}{1}{1}{1}$
+%4)$\PBI{1}{1}{1}{1}$
 %
-%5)$\AgPBI{1}{2}{1}{2}$
+%5)$\PBI{1}{2}{1}{2}$
 %
-%6)$\AgPBI{2}{1}{2}{1}$
+%6)$\PBI{2}{1}{2}{1}$
 %
-%7)$\AgPBI{2}{2}{2}{2}$
+%7)$\PBI{2}{2}{2}{2}$
 %
-%8)$\AgPBI{-1}{2}{-1}{2}$
+%8)$\PBI{-1}{2}{-1}{2}$
 %
-%9)$\AgPBI{-1}{1}{-1}{1}$
+%9)$\PBI{-1}{1}{-1}{1}$
 %
-%10)$\AgPBI{-2}{1}{-2}{1}$
+%10)$\PBI{-2}{1}{-2}{1}$
 %
-%11)$\AgPBI{-2}{3}{-2}{3}$
+%11)$\PBI{-2}{3}{-2}{3}$
 %
-%12)$\AgPBI[pbinc = u, sbinc = v]{-2}{3}{-2}{3}$
+%12)$\PBI[pbinc = u, sbinc = v]{-2}{3}{-2}{3}$
 %
-%\DescribeMacro{\AgPBIS}
+%\DescribeMacro{\PBIS}
 %
 %Comando per scrivere un binomio nella forma 
 %
@@ -378,7 +378,7 @@ $\AgPBS[pbinc=a^2]{-2}{3}+\AgPBS{1}{-3}$
 %
 %Se i coeffficienti sono zero non viene stampato nulla
 %
-%\cs{AgPBIS}
+%\cs{PBIS}
 %\oarg{pbinc=x}
 %\marg{a}
 %\marg{b}
@@ -386,7 +386,7 @@ $\AgPBS[pbinc=a^2]{-2}{3}+\AgPBS{1}{-3}$
 %\marg{d}
 %
 %\section{Prodotti}
-%\DescribeMacro{\AgPSDE}
+%\DescribeMacro{\PSDE}
 %
 %Comando per scrivere una somma per differenza del tipo
 %
@@ -394,7 +394,7 @@ $\AgPBS[pbinc=a^2]{-2}{3}+\AgPBS{1}{-3}$
 %
 %Se i coeffficienti   sono zero non viene stampato nulla
 %
-%\cs{AgPSDE}
+%\cs{PSDE}
 %\oarg{pbinc=x, sbinc=y}
 %\marg{a}
 %\marg{b}
@@ -407,30 +407,30 @@ $\AgPBS[pbinc=a^2]{-2}{3}+\AgPBS{1}{-3}$
 %<*verb>
 % \fi
 \begin{verbatim}
-1)$\AgPSDE{2}{3}{4}{5}$	
+1)$\PSDE{2}{3}{4}{5}$	
 
-2)$\AgPSDE[pbinc = u^2, sbinc = v]{2}{3}{4}{5}$	
+2)$\PSDE[pbinc = u^2, sbinc = v]{2}{3}{4}{5}$	
 
-3)$\AgPSDE{-2}{3}{-4}{5}$
+3)$\PSDE{-2}{3}{-4}{5}$
 \end{verbatim}
 %\iffalse
 %</verb>
 % \fi
 %
-%1)$\AgPSDE{2}{3}{4}{5}$	
+%1)$\PSDE{2}{3}{4}{5}$	
 %
-%2)$\AgPSDE[pbinc = u^2, sbinc = v]{2}{3}{4}{5}$	
+%2)$\PSDE[pbinc = u^2, sbinc = v]{2}{3}{4}{5}$	
 %
-%3)$\AgPSDE{-2}{3}{-4}{5}$
+%3)$\PSDE{-2}{3}{-4}{5}$
 %
-%\DescribeMacro{\AgPSD}
+%\DescribeMacro{\PSD}
 %
 %Comando per scrivere una somma per differenza del tipo
 % \[(ax+by)(ax-by)\]
 %
 %Se i coeffficienti   sono zero non viene stampato nulla
 %
-%\cs{AgPSD}
+%\cs{PSD}
 %\oarg{pbinc=x, sbinc=y}
 %\marg{a}
 %\marg{b}
@@ -441,24 +441,60 @@ $\AgPBS[pbinc=a^2]{-2}{3}+\AgPBS{1}{-3}$
 %<*verb>
 % \fi
 \begin{verbatim}
-1)$\AgPSD{2}{3}$	
+1)$\PSD{2}{3}$	
 
-2)$\AgPSD{-2}{3}$
+2)$\PSD{-2}{3}$
 
-3)$\AgPSD[pbinc = a, sbinc = b]{2}{3}$
+3)$\PSD[pbinc = a, sbinc = b]{2}{3}$
 \end{verbatim}
 %\iffalse
 %</verb>
 % \fi
 %
-%1)$\AgPSD{2}{3}$	
+%1)$\PSD{2}{3}$	
 %
-%2)$\AgPSD{-2}{3}$
+%2)$\PSD{-2}{3}$
 %
-%3)$\AgPSD[pbinc = a, sbinc = b]{2}{3}$
+%3)$\PSD[pbinc = a, sbinc = b]{2}{3}$
 %
 %
-%\DescribeMacro{\AgPSDES}
+%
+%\DescribeMacro{\PSDS}
+%
+%Comando per scrivere una somma per differenza del tipo
+% \[(ax+b)(ax-b)\]
+%
+%Se i coeffficienti   sono zero non viene stampato nulla
+%
+%\cs{PSDS}
+%\oarg{pbinc=x}
+%\marg{a}
+%\marg{b}
+%
+%Esempi
+%
+% \iffalse
+%<*verb>
+% \fi
+\begin{verbatim}
+1)$\PSDS{2}{3}$	
+
+2)$\PSDS{-2}{3}$
+
+3)$\PSDS[pbinc = a]{2}{3}$
+\end{verbatim}
+%\iffalse
+%</verb>
+% \fi
+%
+%1)$\PSDS{2}{3}$	
+%
+%2)$\PSDS{-2}{3}$
+%
+%3)$\PSDS[pbinc = a]{2}{3}$
+%
+%
+%\DescribeMacro{\PSDES}
 %
 %Comando per scrivere una somma per differenza del tipo
 %
@@ -466,7 +502,7 @@ $\AgPBS[pbinc=a^2]{-2}{3}+\AgPBS{1}{-3}$
 %
 %Se i coeffficienti   sono zero non viene stampato nulla
 %
-%\cs{AgPSDES}
+%\cs{PSDES}
 %\oarg{pbinc = x}
 %\marg{a}
 %\marg{b}
@@ -479,21 +515,21 @@ $\AgPBS[pbinc=a^2]{-2}{3}+\AgPBS{1}{-3}$
 %<*verb>
 %\fi
 \begin{verbatim}
-1)$\AgPSDES{2}{3}{4}{5}$	
+1)$\PSDES{2}{3}{4}{5}$	
 
-2)$\AgPSDES[pbinc = u^2]{2}{3}{4}{5}$	
+2)$\PSDES[pbinc = u^2]{2}{3}{4}{5}$	
 
-3)$\AgPSDES{-2}{3}{-4}{5}$
+3)$\PSDES{-2}{3}{-4}{5}$
 \end{verbatim}
 %\iffalse
 %</verb>
 %\fi
 %
-%1)$\AgPSDES{2}{3}{4}{5}$	
+%1)$\PSDES{2}{3}{4}{5}$	
 %
-%2)$\AgPSDES[pbinc = u^2]{2}{3}{4}{5}$	
+%2)$\PSDES[pbinc = u^2]{2}{3}{4}{5}$	
 %
-%3)$\AgPSDES{-2}{3}{-4}{5}$
+%3)$\PSDES{-2}{3}{-4}{5}$
 %
 %\section{Trinomi}
 %\DescribeMacro{\ptrinomio}
@@ -891,8 +927,8 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 \pgfkeys{/myerrori/.is family, /myerrori,
 	default/.style = 
 	{
-		erroreuno =\space Attenzione: il parametro uno di AgPB è zero,
-		erroredue =\space Attenzione: il parametro due di AgPB è zero,
+		erroreuno =\space Attenzione: il parametro uno di APB è zero,
+		erroredue =\space Attenzione: il parametro due di APB è zero,
 		erroretre =\space Attenzione: il parametro $a$ è zero,
 		errorequattro =\space Attenzione: radicando negativo,
 		errorecinque =\space  Attenzione: la funzione omografica diventa una 
@@ -987,10 +1023,10 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\changes{v1.0}{2022/08/11}{Versione iniziale parte letterale}
 \newcommand{\pl}[2]{\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{#1}{#1^{#2}}}}
 %    \end{macrocode}
-%\begin{macro}{\AgPM}
+%\begin{macro}{\PM}
 %\changes{v1.0}{2022/08/11}{Versione iniziale Monomio}
 %    \begin{macrocode}
-\newcommand{\AgPM}[5][]{
+\newcommand{\PM}[5][]{
 	\pgfkeys{/mymonomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\ifnumequal{#2}{0}{}
@@ -1001,12 +1037,12 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \end{macrocode}
 %\end{macro}
 %
-%\begin{macro}{\AgPB}
+%\begin{macro}{\APB}
 %\changes{v1.0}{2022/06/24}{Versione iniziale}
 %\changes{v1.1}{2022/07/13}{Corretta gestione errori}
 %\changes{v1.2}{2022/07/15}{Corretta gestione ax}
 %    \begin{macrocode}
-\newcommand{\AgPB}[3][]{
+\newcommand{\APB}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}
@@ -1020,12 +1056,12 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \end{macrocode}
 %\end{macro}
 %
-%\begin{macro}{\AgPBS}
+%\begin{macro}{\APBS}
 %\changes{v1.0}{2022/06/24}{Versione iniziale}
 %\changes{v1.1}{2022/07/13}{Corretta gestione errori}
 %\changes{v1.2}{2022/07/14}{Corretta gestione ax}
 %    \begin{macrocode}
-\newcommand{\AgPBS}[3][]{
+\newcommand{\APBS}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}
@@ -1041,15 +1077,15 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \begin{macrocode}
 \newcommand{\pbinomiop}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
-	(\AgPB[#1]{#2}{#3})}
+	(\APB[#1]{#2}{#3})}
 %    \end{macrocode}
 %\end{macro}
 %
-%\begin{macro}{\AgPBI}
+%\begin{macro}{\PBI}
 %\changes{v1.0}{2022/07/07}{Versione iniziale}
 %\changes{v1.1}{2022/07/16}{Cambiata gestione quando primo coefficiente è zero}
 %    \begin{macrocode}
-\newcommand{\AgPBI}[5][]{
+\newcommand{\PBI}[5][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}{\ifnumequal{#3}{0}
@@ -1070,10 +1106,10 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \end{macrocode}
 %\end{macro}
 %
-%\begin{macro}{\AgPBIS}
+%\begin{macro}{\PBIS}
 %\changes{v1.0}{2022/08/12}{Versione iniziale}
 %    \begin{macrocode}
-\newcommand{\AgPBIS}[5][]{
+\newcommand{\PBIS}[5][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\ifnumequal{#2}{0}{\errore{\Erroreuno}\booltrue{Azero}}{\ifnumequal{#3}{0}
@@ -1094,39 +1130,51 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %    \end{macrocode}
 %\end{macro}
 %
-%\begin{macro}{\AgPSDE}
+%\begin{macro}{\PSDE}
 %\changes{v1.0}{2022/08/10}{Versione iniziale somma  per differenza estesa}
 %    \begin{macrocode}
-\newcommand{\AgPSDE}[5][]{
+\newcommand{\PSDE}[5][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\FPeval\b{(#4)*(-1)}%
 	\FPeval\b{round(b:0)}%
-	(\AgPBI[#1]{#2}{#3}{\b}{#5})(\AgPBI[#1]{#2}{#3}{#4}{#5})}
+	(\PBI[#1]{#2}{#3}{\b}{#5})(\PBI[#1]{#2}{#3}{#4}{#5})}
 %    \end{macrocode}
 %\end{macro}
 %
-%\begin{macro}{\AgPSD}
-%\changes{v1.0}{2022/08/10}{Versione iniziale somma  per differenza}
+%\begin{macro}{\PSDS}
+%\changes{v1.0}{2022/10/12}{Versione iniziale somma  per differenza}
 %    \begin{macrocode}
-\newcommand{\AgPSD}[3][]{
+\newcommand{\PSDS}[3][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
-	\AgPSDE[#1]{#2}{1}{#3}{1}
+	\FPeval\cc{(#3)*(-1)}%
+	\FPeval\cc{round(cc:0)}%
+	(\APBS[#1]{#2}{\cc})(\APBS[#1]{#2}{#3})}
+%    \end{macrocode}
+%\end{macro}
+%
+%\begin{macro}{\PSD}
+%\changes{v1.0}{2022/08/10}{Versione iniziale somma  per differenza}
+%    \begin{macrocode}
+\newcommand{\PSD}[3][]{
+	\pgfkeys{/mybinomio, default, #1}%
+	\pgfkeys{/myerrori, default}%
+	\PSDE[#1]{#2}{1}{#3}{1}
 }
 %    \end{macrocode}
 %\end{macro}
 %
-%\begin{macro}{\AgPSDES}
+%\begin{macro}{\PSDES}
 %\changes{v1.0}{2022/08/12}{Versione iniziale somma per differenza estesa 
 	%semplificata}
 %    \begin{macrocode}
-\newcommand{\AgPSDES}[5][]{
+\newcommand{\PSDES}[5][]{
 	\pgfkeys{/mybinomio, default, #1}%
 	\pgfkeys{/myerrori, default}%
 	\FPeval\b{(#4)*(-1)}%
 	\FPeval\b{round(b:0)}%
-	(\AgPBIS[#1]{#2}{#3}{\b}{#5})(\AgPBIS[#1]{#2}{#3}{#4}{#5})}
+	(\PBIS[#1]{#2}{#3}{\b}{#5})(\PBIS[#1]{#2}{#3}{#4}{#5})}
 %    \end{macrocode}
 %\end{macro}
 %
