@@ -1,25 +1,16 @@
 \documentclass[10pt,a4paper]{article}
-
-\usepackage[T1]{fontenc}
 \usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{algebretta}
-%\newcommand{\psommadifferenzae}[5][]{
-%	\pgfkeys{/mybinomio, default, #1}%
-%	\pgfkeys{/myerrori, default}%
-%	\FPeval\b{(#4)*(-1)}%
-%	\FPeval\b{round(b:0)}%
-%	(\pbinomioie[#1]{#2}{#3}{\b}{#5})(\pbinomioie[#1]{#2}{#3}{#4}{#5})
-%}
-
+\usepackage{fp}
 \newcommand{\NOP}[1]{
 	\FPeval\nnn{(#1)*(-1)}%
 	\FPeval\nnn{round(nnn:0)}%	
-	\mult{\nnn}%
+	\nnn
 }
 
 \begin{document}
 $\NOP{2}$
+
 $\NOP{-1}$
+
+$\NOP{\NOP{-1}}$
 \end{document}

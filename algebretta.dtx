@@ -223,6 +223,14 @@ algebretta.sty.
 %\end{tabular}
 %\end{center}
 %
+%\DescribeMacro{\NOPP}
+%
+%Comando per scrivere l'opposto di un parametro
+%
+%\cs{NOPP}
+%\marg{x}
+%
+%
 %\section{Monomi}
 %
 %\DescribeMacro{\PM}
@@ -272,7 +280,7 @@ algebretta.sty.
 %Se $a$ o $b$ sono zero non viene stampato nulla
 %
 %\cs{APB}
-%\oarg{pbinc=a, sbinc=b}
+%\oarg{pbinc=x, sbinc=y}
 %\marg{a}
 %\marg{b}
 %
@@ -1044,6 +1052,17 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 	\FPeval\nnn{(#1)*(-1)}%
 	\FPeval\nnn{round(nnn:0)}%	
 	\mult{\nnn}}}%
+%    \end{macrocode}
+%\end{macro}
+%
+%\begin{macro}{\NOPP}
+%\changes{v1.0}{2023/03/01}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\NOPP}[1]{%
+	\ifnumequal{#1}{0}{\PackageError{algebretta}{$a$ è zero}}{%
+		\FPeval\nab{(#1)*(-1)}%
+		\FPeval\nab{round(nab:0)}%	
+		\nab}}%
 %    \end{macrocode}
 %\end{macro}
 %

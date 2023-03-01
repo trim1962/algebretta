@@ -110,6 +110,11 @@ stinc/.estore in = \mytrioB,
 \FPeval\nnn{(#1)*(-1)}%
 \FPeval\nnn{round(nnn:0)}% 
 \mult{\nnn}}}%
+\newcommand{\NOPP}[1]{%
+\ifnumequal{#1}{0}{\PackageError{algebretta}{$a$ è zero}}{%
+\FPeval\nab{(#1)*(-1)}%
+\FPeval\nab{round(nab:0)}% 
+\nab}}%
 \newcommand{\pl}[2]{\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{#1}{#1^{#2}}}}
 \newcommand{\PM}[5][]{
 \pgfkeys{/mymonomio, default, #1}%
