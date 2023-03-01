@@ -105,6 +105,11 @@ stinc/.estore in = \mytrioB,
 \ifnumequal{#1}{0}{\PackageError{algebretta}{$a$ è zero}}{%
 \ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}{+}{+#1}}%
 {\ifnumequal{#1}{-1}{-}{#1}}}}%
+\newcommand{\NOP}[1]{%
+\ifnumequal{#1}{0}{\PackageError{algebretta}{$a$ è zero}}{%
+\FPeval\nnn{(#1)*(-1)}%
+\FPeval\nnn{round(nnn:0)}% 
+\mult{\nnn}}}%
 \newcommand{\pl}[2]{\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{#1}{#1^{#2}}}}
 \newcommand{\PM}[5][]{
 \pgfkeys{/mymonomio, default, #1}%
@@ -192,9 +197,9 @@ stinc/.estore in = \mytrioB,
 \newcommand{\PSDES}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
-\FPeval\b{(#4)*(-1)}%
-\FPeval\b{round(b:0)}%
-(\PBIS[#1]{#2}{#3}{\b}{#5})(\PBIS[#1]{#2}{#3}{#4}{#5})}
+\FPeval\xxx{(#4)*(-1)}%
+\FPeval\xxx{round(xxx:0)}%
+(\PBIS[#1]{#2}{#3}{\xxx}{#5})(\PBIS[#1]{#2}{#3}{#4}{#5})}
 \newcommand{\ptrinomio}[4][]{
 \pgfkeys{/mytrinomio, default, #1}%
 \ifnumequal{#2}{0}{}{
