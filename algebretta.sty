@@ -175,9 +175,9 @@ stinc/.estore in = \mytrioB,
 \newcommand{\PSDE}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
-\FPeval\b{(#4)*(-1)}%
-\FPeval\b{round(b:0)}%
-(\PBI[#1]{#2}{#3}{\b}{#5})(\PBI[#1]{#2}{#3}{#4}{#5})}
+\FPeval\www{(#4)*(-1)}%
+\FPeval\www{round(www:0)}%
+(\PBI[#1]{#2}{#3}{\www}{#5})(\PBI[#1]{#2}{#3}{#4}{#5})}
 \newcommand{\PSDS}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
