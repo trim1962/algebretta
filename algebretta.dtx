@@ -174,7 +174,7 @@ algebretta.sty.
 %\section{Funzioni base}
 %\DescribeMacro{\verso}
 %
-%Comando per scrivere il verso codificato
+%Comando per scrivere il verso di una diseguaglianza.
 %
 %\cs{verso}
 %\marg{x}
@@ -208,20 +208,28 @@ algebretta.sty.
 %
 %\DescribeMacro{\NOP}
 %
-%Comando per scrivere l'opposto di un numero
+%Comando per scrivere l'opposto di un numero intero
 %
 %\cs{NOP}
 %\marg{x}
 %
 %\begin{center}
-%	\begin{tabular}{lc}
-%	x & stampa \\
-%	$+1$ & $-$ \\
-%	$-1$ & $+$ \\
-%	$2$ & $-2$ \\
-%	$-2$ &$+2$ \\
-%\end{tabular}
-%\end{center}
+	%	\begin{tabular}{lc}
+		%	x & stampa \\
+		%	$+1$ & $-$ \\
+		%	$-1$ & $+$ \\
+		%	$2$ & $-2$ \\
+		%	$-2$ &$+2$ \\
+		%\end{tabular}
+	%\end{center}
+%
+%\DescribeMacro{\NOPVM}
+%
+%Comando per scrivere l'opposto di un numero in virgola mobile.
+%
+%\cs{NOPVM}
+%\marg{x}
+%
 %
 %\DescribeMacro{\NOPP}
 %
@@ -1049,6 +1057,13 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %\changes{v2.0}{2023/03/05}{Versione espandibile}
 %    \begin{macrocode}
 \NewExpandableDocumentCommand{\NOP}{m}{\inteval{0-(#1)}}
+%    \end{macrocode}
+%\end{macro}
+%
+%\begin{macro}{\NOPVM}
+%\changes{v1.0}{2023/03/05}{Versione iniziale}
+%    \begin{macrocode}
+\NewExpandableDocumentCommand{\NOPVM}{m}{\fpeval{-(#1)}}
 %    \end{macrocode}
 %\end{macro}
 %

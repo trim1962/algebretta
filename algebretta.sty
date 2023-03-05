@@ -106,6 +106,7 @@ stinc/.estore in = \mytrioB,
 \ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}{+}{+#1}}%
 {\ifnumequal{#1}{-1}{-}{#1}}}}%
 \NewExpandableDocumentCommand{\NOP}{m}{\inteval{0-(#1)}}
+\NewExpandableDocumentCommand{\NOPVM}{m}{\fpeval{-(#1)}}
 \NewExpandableDocumentCommand{\NOPP}{m}{\inteval{0-(#1)}}
 \newcommand{\pl}[2]{\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{#1}{#1^{#2}}}}
 \newcommand{\PM}[5][]{
