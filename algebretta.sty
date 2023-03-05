@@ -105,16 +105,8 @@ stinc/.estore in = \mytrioB,
 \ifnumequal{#1}{0}{\PackageError{algebretta}{$a$ è zero}}{%
 \ifnumcomp{#1}{>}{0}{\ifnumequal{#1}{1}{+}{+#1}}%
 {\ifnumequal{#1}{-1}{-}{#1}}}}%
-\newcommand{\NOP}[1]{%
-\ifnumequal{#1}{0}{\PackageError{algebretta}{$a$ è zero}}{%
-\FPeval\nnn{(#1)*(-1)}%
-\FPeval\nnn{round(nnn:0)}% 
-\mult{\nnn}}}%
-\newcommand{\NOPP}[1]{%
-\ifnumequal{#1}{0}{\PackageError{algebretta}{$a$ è zero}}{%
-\FPeval\nab{(#1)*(-1)}%
-\FPeval\nab{round(nab:0)}% 
-\nab}}%
+\NewExpandableDocumentCommand{\NOP}{m}{\inteval{0-(#1)}}
+\NewExpandableDocumentCommand{\NOPP}{m}{\inteval{0-(#1)}}
 \newcommand{\pl}[2]{\ifnumequal{#2}{0}{}{\ifnumequal{#2}{1}{#1}{#1^{#2}}}}
 \newcommand{\PM}[5][]{
 \pgfkeys{/mymonomio, default, #1}%
@@ -185,15 +177,11 @@ stinc/.estore in = \mytrioB,
 \newcommand{\PSDE}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
-\FPeval\www{(#4)*(-1)}%
-\FPeval\www{round(www:0)}%
-(\PBI[#1]{#2}{#3}{\www}{#5})(\PBI[#1]{#2}{#3}{#4}{#5})}
+(\PBI[#1]{#2}{#3}{\NOP{#4}}{#5})(\PBI[#1]{#2}{#3}{#4}{#5})}
 \newcommand{\PSDS}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
-\FPeval\cc{(#3)*(-1)}%
-\FPeval\cc{round(cc:0)}%
-(\APBS[#1]{#2}{\cc})(\APBS[#1]{#2}{#3})}
+(\APBS[#1]{#2}{\NOP{#3}})(\APBS[#1]{#2}{#3}}
 \newcommand{\PSD}[3][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
@@ -202,9 +190,9 @@ stinc/.estore in = \mytrioB,
 \newcommand{\PSDES}[5][]{
 \pgfkeys{/mybinomio, default, #1}%
 \pgfkeys{/myerrori, default}%
-\FPeval\xxx{(#4)*(-1)}%
-\FPeval\xxx{round(xxx:0)}%
-(\PBIS[#1]{#2}{#3}{\xxx}{#5})(\PBIS[#1]{#2}{#3}{#4}{#5})}
+%% \FPeval\xxx{(#4)*(-1)}%
+%% \FPeval\xxx{round(xxx:0)}%
+(\PBIS[#1]{#2}{#3}{\NOP{#4}}{#5})(\PBIS[#1]{#2}{#3}{#4}{#5})}
 \newcommand{\ptrinomio}[4][]{
 \pgfkeys{/mytrinomio, default, #1}%
 \ifnumequal{#2}{0}{}{

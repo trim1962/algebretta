@@ -1,16 +1,23 @@
 \documentclass[10pt,a4paper]{article}
 \usepackage{amsmath}
-\usepackage{fp}
-\newcommand{\NOP}[1]{
-	\FPeval\nnn{(#1)*(-1)}%
-	\FPeval\nnn{round(nnn:0)}%	
-	\nnn
-}
-
+\usepackage{algebretta}
+%\newcommand{\PSDSS}[3][]{
+%	\pgfkeys{/mybinomio, default, #1}%
+%	\pgfkeys{/myerrori, default}%
+%%	\FPeval\cc{(#3)*(-1)}%
+%%	\FPeval\cc{round(cc:0)}%
+%	(\APBS[#1]{#2}{\NOP{#3}})(\APBS[#1]{#2}{#3})}
 \begin{document}
 $\NOP{2}$
 
 $\NOP{-1}$
 
 $\NOP{\NOP{-1}}$
+
+$\NOP{\NOP{\NOP{-1}}}$
+
+
+$\PSDS{1}{-2}$
+
+$\PSDS{1}{2}$
 \end{document}
