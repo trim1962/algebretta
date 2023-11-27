@@ -189,6 +189,24 @@ algebretta.sty.
 %\end{tabular}
 %\end{center}
 %
+%\DescribeMacro{\OP}
+%
+%Comando per scrivere casualmente una delle quattro operazioni.
+%
+%\cs{OP}
+%\marg{x}
+%
+%\begin{center}
+	%\begin{tabular}{lc}
+		%	x&OP  \\
+		%	0&$+$  \\
+		%	1&$-$ \\
+		%	2&$\cdot$  \\
+		%	3&$\div$  \\
+		%\end{tabular}
+	%\end{center}
+%
+%
 %\DescribeMacro{\SG}
 %
 %Comando per scrivere un segno.
@@ -1058,6 +1076,24 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 }
 %    \end{macrocode}
 %\end{macro}
+%
+%\begin{macro}{\OP}
+%\changes{v1.0}{2023/11/27}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\OP}[1]{
+	\ifcase #1%
+	+
+	\or
+	-
+	\or
+	\cdot
+	\or
+	\div
+	\fi
+}
+%    \end{macrocode}
+%\end{macro}
+%
 %
 %\begin{macro}{\SG}
 %\changes{v1.0}{2023/11/27}{Versione iniziale}
