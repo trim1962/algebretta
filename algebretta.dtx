@@ -189,6 +189,23 @@ algebretta.sty.
 %\end{tabular}
 %\end{center}
 %
+%\DescribeMacro{\SG}
+%
+%Comando per scrivere un segno.
+%
+%\cs{SG}
+%\marg{x}
+%
+%\begin{center}
+	%\begin{tabular}{lc}
+		%	x&SG  \\
+		%	0&$+$  \\
+		%	1&$-$ \\
+		%\end{tabular}
+	%\end{center}
+%
+%
+%
 %\DescribeMacro{\mult}
 %
 %Comando per scrivere un numero
@@ -1038,6 +1055,19 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 \or
 \leq
 \fi
+}
+%    \end{macrocode}
+%\end{macro}
+%
+%\begin{macro}{\SG}
+%\changes{v1.0}{2023/11/27}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\SG}[1]{
+	\ifcase #1%
+	+
+	\or
+	-
+	\fi
 }
 %    \end{macrocode}
 %\end{macro}
