@@ -132,9 +132,10 @@ algebretta.sty.
 %\changes{v3.1}{2022/07/04}{Aggiunte coniche e forme normali}
 %\changes{v3.2}{2022/08/10}{Aggiunto somma per differenza}
 %\changes{v3.3}{2022/08/13}{Uso esclusivo di pgfkeys}
+%\changes{v4.0}{2024/01/09}{Aggiunto prodotti di radicali}
 %\GetFileInfo{\jobname.sty}
-%\def\fileversion{versione 3.3}
-%\def\filedate{2022/08/13}
+%\def\fileversion{versione 4.0}
+%\def\filedate{2024/01/09}
 \title{Il pacchetto Algebretta\thanks{Questo documento
 		corrisponde al pacchetto \textsf{Algebretta}~\fileversion, con data 
 		\filedate.}}
@@ -598,6 +599,75 @@ $\APBS[pbinc=a^2]{-2}{3}+\APBS{1}{-3}$
 %2)$\PSDES[pbinc = u^2]{2}{3}{4}{5}$	
 %
 %3)$\PSDES{-2}{3}{-4}{5}$
+%
+%\section{Radicali}
+%\DescribeMacro{\RNPBI}
+%
+%Comando per scrivere un binomio nella forma 
+%
+% \[a\sqrt{b}+c\sqrt{d}\]
+%
+%Se i coeffficienti   sono zero non viene stampato nulla
+%
+%\cs{RNPBI}
+%\marg{a}
+%\marg{b}
+%\marg{c}
+%\marg{d}
+%
+%Esempi
+%
+% \iffalse
+%<*verb>
+% \fi
+\begin{verbatim}
+1)$\RNPBI{0}{1}{0}{1}$
+
+2)$\RNPBI{1}{0}{1}{0}$
+
+3)$\RNPBI{1}{-1}{1}{-1}$
+
+4)$\RNPBI{1}{1}{1}{1}$
+
+5)$\RNPBI{1}{2}{1}{2}$
+
+6)$\RNPBI{2}{1}{2}{1}$
+
+7)$\RNPBI{2}{2}{2}{2}$
+
+8)$\RNPBI{-1}{2}{-1}{2}$
+
+9)$\RNPBI{-1}{1}{-1}{1}$
+
+10)$\RNPBI{-2}{1}{-2}{1}$
+
+11)$\RNPBI{-2}{3}{-2}{3}$
+\end{verbatim}
+%\iffalse
+%</verb>
+% \fi
+%
+%1)$\RNPBI{0}{1}{0}{1}$
+%
+%2)$\RNPBI{1}{0}{1}{0}$
+%
+%3)$\RNPBI{1}{-1}{1}{-1}$
+%
+%4)$\RNPBI{1}{1}{1}{1}$
+%
+%5)$\RNPBI{1}{2}{1}{2}$
+%
+%6)$\RNPBI{2}{1}{2}{1}$
+%
+%7)$\RNPBI{2}{2}{2}{2}$
+%
+%8)$\RNPBI{-1}{2}{-1}{2}$
+%
+%9)$\RNPBI{-1}{1}{-1}{1}$
+%
+%10)$\RNPBI{-2}{1}{-2}{1}$
+%
+%11)$\RNPBI{-2}{3}{-2}{3}$
 %
 %\section{Trinomi}
 %\DescribeMacro{\ptrinomio}
@@ -1296,6 +1366,15 @@ $\ptrinomios[ptinc=a, stinc=b]{-1}{3}{1}$
 %%	\FPeval\xxx{(#4)*(-1)}%
 %%	\FPeval\xxx{round(xxx:0)}%
 	(\PBIS[#1]{#2}{#3}{\NOP{#4}}{#5})(\PBIS[#1]{#2}{#3}{#4}{#5})}
+%    \end{macrocode}
+%\end{macro}
+%
+%\begin{macro}{\RNPBI}
+%\changes{v1.0}{2022/07/07}{Versione iniziale}
+%    \begin{macrocode}
+\newcommand{\RNPBI}[4]{
+	\PBI[pbinc =\empty , sbinc =\empty]{#1}{#2}{#3}{#4}
+}
 %    \end{macrocode}
 %\end{macro}
 %
