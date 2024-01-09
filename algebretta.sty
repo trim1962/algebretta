@@ -101,6 +101,17 @@ stinc/.estore in = \mytrioB,
 \leq
 \fi
 }
+\newcommand{\OP}[1]{
+\ifcase #1%
++
+\or
+-
+\or
+\cdot
+\or
+\div
+\fi
+}
 \newcommand{\SG}[1]{
 \ifcase #1%
 +
@@ -201,6 +212,12 @@ stinc/.estore in = \mytrioB,
 %% \FPeval\xxx{(#4)*(-1)}%
 %% \FPeval\xxx{round(xxx:0)}%
 (\PBIS[#1]{#2}{#3}{\NOP{#4}}{#5})(\PBIS[#1]{#2}{#3}{#4}{#5})}
+\newcommand{\RNPBI}[4]{
+\PBI[pbinc =\empty , sbinc =\empty]{#1}{#2}{#3}{#4}
+}
+\newcommand{\RNPSDE}[4]{
+\PSDE[pbinc =\empty , sbinc =\empty]{#1}{#2}{#3}{#4}
+}
 \newcommand{\ptrinomio}[4][]{
 \pgfkeys{/mytrinomio, default, #1}%
 \ifnumequal{#2}{0}{}{
