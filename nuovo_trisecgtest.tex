@@ -1,0 +1,56 @@
+\documentclass[10pt,a4paper]{article}
+%\usepackage[warning]{trisecg}
+\usepackage{pgfkeys}
+\usepackage{etoolbox}
+\newcommand{\trigsecgrad}[5]{%
+	\ifcase #5%
+	{#1 x^2}
+	\or
+	{#2 x}
+	\or
+	{#3}%
+	\or
+	{#1 x^2}%
+	\or
+	{#2 x}
+	\or
+	{#3}
+	\fi%
+\ifcase #5%
+{#2x}
+\or
+{#1 x^2}
+\or
+{#2 x}
+\or
+{#3}
+\or
+{#3}
+\or
+{#1 x^2}
+\fi
+\ifcase #5%
+{#3}
+\or
+{#3}
+\or
+{#1 x^2}
+\or
+{#2 x}
+\or
+{#1 x^2}
+\or
+{#2 x}
+\fi
+}
+\begin{document}
+\[\trigsecgrad{-0}{-0}{-0}{-0}{0}\]
+
+\[\trigsecgrad{1}{1}{1}{1}{1}\]
+
+\[\trigsecgrad{2}{2}{2}{2}{2}\]
+\[\trigsecgrad{3}{3}{3}{3}{3}\]
+\[\trigsecgrad{1}{2}{3}{4}{4}\]
+\[\trigsecgrad{1}{2}{3}{4}{5}\]
+
+\end{document}
